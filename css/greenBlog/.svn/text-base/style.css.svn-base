@@ -1,0 +1,207 @@
+/*** MAIN ***/
+*{
+margin: 0px;
+padding: 0px;
+
+}
+body{
+margin: 10px 0;
+background: #ccc;
+text-align: center;
+font-family: "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, sans-serif;
+color: #222222;
+font-size: 12px;
+}
+
+
+/*** DIV SPECIFIC ***/
+#wrap{
+text-align: left;
+width: 760px;
+margin: 0 auto;
+background: #ffffff;
+}
+#header{
+width: 100%;
+background: #aaaaaa url("greenheader.jpg") top center no-repeat;
+
+
+/*NOTE: Change "greenheader.jpg" above to "blueheader.jpg", "redheader.jpg",
+        or "brownheader.jpg" to change the color scheme of this page */
+
+height: 130px;
+}
+#header h1{
+color: #ffffff;
+
+position: relative;
+padding-left:1em;
+padding-top:1em;
+font-size:20px;
+}
+
+#header h2{
+color: #ffffff;
+text-align: left;
+position: relative;
+padding-left:1em;
+font-size:17px;
+}
+#header h3{
+color: #ffffff;
+text-align: right;
+position: relative;
+padding-right:2em;
+font-size:17px;
+}
+#header a
+{
+  color:yellow;
+}
+
+#header .input_small
+{
+  width:7em;
+}
+
+#menu{
+  position:absolute;
+  margin-top: 0px;
+  top:115px;
+}
+
+#menu a{
+font-size:14px;
+float: left;
+margin-left: 8px;
+display: block;
+padding: 0 5px;
+color: #ffffff;
+text-transform: lowercase;
+text-decoration: none;
+border-top: 2px solid #ffffff;
+}
+#menu a:hover{
+border-color: #a0a0a0;
+}
+
+#main{
+width: 100%;
+background: #ffffff url('main.jpg') top left repeat-x;
+}
+#main h1{
+font-size: 20pt;
+padding-bottom: 22px;
+color: #000000;
+background: url('titles.jpg') bottom left no-repeat;
+}
+#main h3{
+font-size: 12pt;
+padding-bottom: 9px;
+margin-bottom: 10px;
+margin-top: 10px;
+color: #222222;
+background: url('titles2.jpg') bottom left no-repeat;
+}
+#main h3{
+font-size: 12pt;
+padding-bottom: 9px;
+margin-bottom: 10px;
+color: #222222;
+background: url('titles2.jpg') bottom left no-repeat;
+}
+#main a{
+color: #222222;
+text-decoration: none;
+border-bottom: 1px dashed #222222;
+}
+#main a:hover{
+background: #e0e0e0;
+}
+#content{
+padding: 2em;
+}
+
+#left p{
+font-size: 12px;
+line-height: 22px;
+margin-bottom: 10px;
+}
+#right{
+margin-top: 5px;
+margin-bottom: 5px;
+border-left: 1px solid #e0e0e0;
+padding-left: 7px;
+width: 23%;
+float: right;
+}
+#left{
+float: left;
+width: 75%;
+margin-bottom: 5px;
+}
+#right p{
+font-size: 10px;
+line-height: 18px;
+margin-bottom: 8px;
+text-align:left;
+}
+#right ul{
+margin-left: 20px;
+font-size: 11px;
+}
+#right ul li{
+margin-bottom: 3px;
+}
+#footer{
+clear: both;
+width: 100%;
+background: #aaaaaa url('footer.jpg') bottom center no-repeat;
+}
+#subfooter{
+padding: 8px;
+}
+#subfooter p{
+text-align: center;
+font-size: 11px;
+color: #ffffff;
+}
+#subfooter a{
+color: #ffffff;
+text-decoration: underline;
+}
+#subfooter a:hover{
+border-bottom: 1px solid #ffffff;
+}
+
+/*** SPECIAL CLASSES & MISC***/
+.imgleft, .imgright, .imgcenter{
+padding: 3px;
+border: 1px solid #e0e0e0;
+}
+.imgleft{
+float: left;
+margin: 5px 15px 5px 0;
+}
+.imgright{
+float: right;
+margin: 5px 0 5px 15px;
+}
+.imgcenter{
+display: block;
+margin: 5px auto;
+}
+h1,h2,h3{
+text-transform: lowercase;
+}
+th{
+background: #d0d0d0;
+padding: 5px;
+border: 1px solid #a0a0a0;
+}
+td{
+vertical-align: top;
+line-height: 18px;
+padding: 5px;
+border: 1px solid #a0a0a0;
+}

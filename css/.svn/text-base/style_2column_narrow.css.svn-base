@@ -1,0 +1,25 @@
+/* skidoo 3 column */
+
+/* odstranit lavy stlpec na rozdiel od default layoutu na main page */
+#outer-column-container {
+    border-width: 0 210px 0 0;
+}
+#left-column { 
+    width: 0;			
+    margin-left: -0;
+}
+#rightColumn {
+    width: 210px;
+    margin-right: -210px;
+} 
+
+
+/* Zmensit celkovu velkost pretoze lavy stlpec zmizne */
+.wrap-env { max-width: 56.8em; }
+.wrap-t { max-width: 56.8em; }
+.wrap-b { max-width: 56.8em; }
+
+/********* IE 6 *********/
+* html .wrap-env { width: 56.8em; }
+* html .wrap-t { width: 56.8em; }
+* html .wrap-b { width: 56.8em; }

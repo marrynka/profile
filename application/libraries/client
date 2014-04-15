@@ -1,0 +1,78 @@
+<?php 
+class Client{
+		private $id;
+		private $key;
+		private $secret;
+		private $active;
+		/* return an instance of a IConsumer or return null on not found */
+		
+		function __construct($data)
+		{
+		    $this->id = $data['id_client'];
+		    $this->key = $data['client_key'];
+		    $this->secret = $data['client_secret'];
+		    $this->active = $data['active'];
+		}
+		public static function findByKey($key)
+		{
+		  $CI =& get_instance();
+		  $CI->load->model('client_model');
+		  return $CI->client_model->findByKey($key);
+		}
+
+		/* Create in the DB a consumer with a given key & secret */
+		public static function create($key,$secret)
+		{
+		  $CI =& get_instance();
+		  $CI->load->model('client_model');
+		  return $CI->client_model->create($key,$secret);
+		}
+
+		/* Returns if the consumer is active */
+		public function isActive()
+		{
+		  return $this->active;
+		}
+
+		/* Returns the consumer key */
+		public function getKey()
+		{
+		  return $this->key;
+		}
+
+		/* Returns the consumer secret key */
+		public function getSecretKey()
+		{
+		  return $this->secret;
+		}
+                public function getId()
+		{
+		  return $this->id;
+		}
+		/* Add a nonce to the nonce cache */
+		public function addNonce($nonce)
+		{
+		   $CI =& get_instance();
+		   $CI->load->model('client_model');
+		   
+		   return $CI->client_model->addNonce($nonce, $this->id);
+		}
+		
+		/* check if nonce exist for a specified consumer */
+		public function hasNonce($nonce,$timestamp)
+		{
+		   $CI =& get_instance();
+		   $CI->load->model('client_model');
+		   return $CI->client_model->hasNonce($nonce, $timestamp,$this->id);
+		}
+
+		
+
+		
+
+
+
+}
+
+
+?>

@@ -1,0 +1,22 @@
+/* skidoo 3 column */
+
+/* odstranit lavy aj pravy stlpec na rozdiel od default layoutu na main page */
+/* pridat marginy/padding kvoli absencii oboch bocnych stlpcov a teda aj absencii divu source-column-container */
+
+#page-container
+{
+	margin: 10px 10px 0 10px;/* vertical margin because of lacking left and right columns */
+	padding-bottom: 10px;
+}
+
+#outer-column-container {
+    border-width: 0 0 0 0;
+}
+#left-column {
+    width: 0;
+    margin-left: -0;
+}
+#rightColumn {
+    width: 0;
+    margin-right: -0;
+}

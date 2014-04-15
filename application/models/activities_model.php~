@@ -1,0 +1,17 @@
+<?php
+
+class Activities_model extends CI_Model
+{
+    function new_activity($id_user, $id_activity,$activity, $timestamp)
+    {
+	$data= array(
+		      'id_user' => $id_user,
+		      'id_activity' => $id_activity,
+		      'activity' => $activity,
+		      'time' =>$timestamp,
+		     )
+	$this->db->insert('profile_activities' , $data);
+    }
+}
+
+?>

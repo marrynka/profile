@@ -1,0 +1,269 @@
+/* CSS Document */
+body
+{
+
+margin:0;
+padding:0;
+font-family:Arial;
+
+
+}
+h1,h2,h3,h4,h5
+{
+margin-top:0;
+font-family:arial black, arial;
+text-align: center;    
+
+}
+#clearing_div
+{
+    clear:both;  
+}
+a
+{
+color:green;
+}
+#topBar
+{
+margin-left:auto;
+margin-right:auto;
+padding-top:30px;
+display:block;
+height: 114px;
+min-width: 50em;
+max-width: 70em;
+margin:auto;
+}
+#divider
+{
+    width=100%;
+    background-color: lightgrey;
+    height:20px;
+    display:block;
+    
+    
+}
+
+#logoWrap
+{
+    display:block;
+    width:25%;
+    height:114px;
+    background-image: url('../images/logo.jpg');
+    background-size:contain;
+    background-repeat:no-repeat;
+    display: block;
+    float: left;
+    margin-right:10px;
+    
+}
+#pictureWrap
+{   width:70%;
+    height:114px;
+    display:block;
+    float:left;
+    background-image: url('../images/pozadie.jpg');
+    background-size:cover;
+    background-repeat:no-repeat;
+    position:relative;
+    margin-left:10px;
+}
+#pictureWrap h1
+{
+font-size: 50px;
+position:absolute;
+bottom:-40px;
+left:0px;
+text-align:left;
+color: white;
+text-shadow: 0 1px 0 grey;
+}
+
+#contents
+{
+margin-left:auto;
+margin-right:auto;
+display:block;
+
+max-width: 70em;
+min-width:50em;
+
+}
+#about_sidebar
+{
+	display:block;
+    width:25%;
+    border-right: 20px solid lightgrey;
+    display: block;
+    float: left;
+    margin-right:10px;
+}
+#about_sidebar img
+{
+	
+	width:100%;
+}
+#avatar
+{
+
+}
+ul
+{
+	width:100%;
+	list-style-type:none;
+	margin:0px;
+	padding:0px;
+}
+ul a
+{
+	width:6em;
+	float:left;
+	text-align: center;
+	
+}
+#main_wrapper
+{
+	width:70%;
+    display:block;
+    float:left;
+    position:relative;
+    margin-left:10px;
+}
+
+
+
+/*
+tu konci hlavicka a menu
+*/
+
+
+#info
+{   
+   
+    margin-top:30px;
+    width:70%;
+    margin-left:10px;
+    display:block;
+    float:left;
+   
+    
+}
+#activity
+{
+border: 2px solid green;
+}
+#general_info
+{
+
+    height:100%;
+    float:left;
+    
+  
+}
+#about 
+{
+    width:100%;
+    height:8em;
+    border:2px grey solid;
+   
+    background-color: green;
+}
+#middleWrapper
+{
+    
+    width:100%;
+}
+#study_programme
+{
+    width:49%;
+    height:7em;
+    border:2px grey solid;
+  
+    float:left;
+    text-align:center;
+    background-color: lightgrey;
+}
+#dalsie_info
+{
+    width:49%;
+    height:7em;
+    border:2px grey solid;
+    
+    margin-right:-4px;
+    float:right;
+    background-color: lightgrey;
+}
+
+#contact
+{
+    text-align:center;
+    width:100%;
+    height:4em;
+    border:2px grey solid;
+    background-color: green;
+  
+}
+
+
+#contact_form, #login_form 
+{
+width:300px;
+background:#f0f0f0; 
+/*url(../img/login_bg.jpg) repeat-x; */
+border: 1px solid white;
+margin 250px auto 0;
+padding:1em;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+
+
+}
+
+input[type=text],input[type=password]
+{
+display:block;
+margin 0 0 1em 0;
+width 280px;
+border: 5px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+padding: 1em;
+}
+input[type=submit], form a
+{
+border:none;
+margin-right:1em;
+padding: 6px;
+text-decoration:none;
+font-size:12px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+ background: #348075;
+ color:white;
+ box-shadow: 0 1px 0 white;
+-moz-box-shadow: 0 1px white;
+webkit-box-shadow: 0 1px white; 
+}
+input[type=submit]:hover, form a:hover
+{
+background: #287368;
+cursor: pointer;
+}
+.error
+{
+color: #393939;
+font-size:15 px;
+}
+fieldset
+{
+width: 300px;
+margin: auto;
+margin-bottom: 2em;
+display:block;
+
+}
+h1
+{
+text-shadow: 0 1px 0 white;
+}
+

@@ -1,0 +1,152 @@
+body { 
+  margin: 0;
+  padding: 0;
+  background-color: #530200;
+  background-image: url(./bg.png);
+  background-repeat: repeat-x;
+  background-position: top;
+  text-align: left;
+  font-size: small;
+  color: #fff;
+  font-family: Verdana, Arial, Times, san-serif;
+}
+a, a:active, a:hover, a:visited {
+	text-decoration: none;
+}
+a, a:active, a:visited {
+	color: #fff;
+}
+a:hover {
+	color: #ff9900;
+}
+
+#wrap {
+  margin: 0px auto;
+  text-align: left;
+  width: 70em;
+  background-image: url(./topimage.jpg);
+  background-position: top;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+h1{
+  margin: 0;
+  padding-top: 146px;
+  width: 75%;
+  height: 50px;
+  text-align: right;
+  font-size: 32px;
+  font-weight: bold;
+}
+#header h2 {
+  position: absolute;
+  top: 80px;
+  left: 20%;
+}
+#header h2:first-letter {
+	text-transform: uppercase;
+}
+#header h3 {
+  position: absolute;
+  top: 20px;
+  left: 75%;
+  color: #000;
+  background-color: #fff;
+  padding: 5px;
+  filter:alpha(opacity=50);
+  -moz-opacity:.50;
+  opacity:.50;
+}
+
+#menu{
+  text-align: right;
+  border-bottom: 3px solid #fff;
+  margin-left: 20%;
+  height: 26px;
+  border-bottom-width: 3px;
+  padding-bottom: 0px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+#menu a {
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+  padding-right: 10px;
+}
+#menu a:hover{
+  color: #ff9900;
+}
+
+#right {
+  width: 20%;
+  float: left;
+  overflow: hidden;
+}
+#right h3 {
+  background-image:url(./jet.png);
+  background-position:left;
+  background-repeat:no-repeat;
+  padding-left:30px;
+}
+#right p {
+  text-align: left;
+}
+h3 {
+  font-family: Arial, Times, san-serif;
+  font-weight: bold;
+  font-size: 100%;
+}
+
+#left .date {
+	float: right;
+	padding-top: 3ex;
+}
+#left h2 {
+  background-image: url(./jet.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  font-size: 12px;
+  font-weight: bold;
+  padding-top: 14px; 
+  padding-left: 29px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #fff;
+}
+#left h2 a {
+  color: #fff;
+}
+#left div {
+  clear: both;
+}
+#left img {
+  padding: 1px;
+  border: 1px solid #99ccff;
+  background-color: #fff;
+  margin: 10px 10px 10px 0px;
+  float: left;
+}
+
+#left {
+  width: 80%;
+  float: right;
+  overflow: hidden;
+  min-height: 390px;
+}
+
+#left p {
+  font-size: 10px;
+}
+#left p a:hover {
+  color: #ff9900;
+  text-decoration: none;
+}
+
+#footer {
+  clear: both;
+  height: 113px;
+  background-image: url(./niz.jpg);
+  background-repeat: no-repeat;
+  background-position: bottom;
+}

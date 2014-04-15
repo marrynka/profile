@@ -1,0 +1,78 @@
+/* CSS Document */
+#body
+{
+padding:0px;
+margin:0px;
+}
+#logoWrap
+{
+    display:block;
+    width:280px;
+    height:114px;
+    background-image: url('../images/logo.jpg');
+    background-repeat:no-repeat;
+    display: block;
+    float: left;
+    
+}
+#mozaic
+{
+float:right;
+
+height:100;
+width:100;
+}
+#clearing_div
+{
+clear:both;
+}
+[id^=mozaic_row]
+{  
+height:100;
+float:left;
+margin-left:80px;
+}
+#mozaic_row0
+{
+margin-left:0px;
+}
+/*
+#mozaic_row0
+{
+width:100*4;
+height:100;
+float:left;
+
+}
+#mozaic_row1
+{
+width:100*5;
+height:100;
+float:left;
+}
+#mozaic_row2
+{
+width:100*4;
+height:100;
+float:left;
+
+}
+#mozaic_row3
+{
+width:100*3;
+height:100;
+float:left;
+}
+#mozaic_row4
+{
+width:100*2;
+height:100;
+float:left;
+}
+#mozaic_row5
+{
+width:100*1;
+height:100;
+float:left;
+}
+*/

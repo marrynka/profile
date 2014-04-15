@@ -1,0 +1,235 @@
+/*
+Copyright: Darren Hester 2006, http://www.designsbydarren.com
+License: Released Under the "Creative Commons License",
+http://creativecommons.org/licenses/by-nc/2.5/
+*/
+
+body {
+  text-align: center;
+  background: #656868 url('./img/bg.jpg') top center no-repeat fixed;
+  margin-top:30px;
+  margin-bottom:30px;
+  color:#333333;
+}
+
+A:link {
+	COLOR: #000000; text-decoration: underline
+}
+A:visited {
+	COLOR: #000000; text-decoration: underline
+}
+A:active {
+	COLOR: #000000; text-decoration: underline
+}
+A:hover {
+	COLOR: #000000; text-decoration: none
+}
+
+#wrap {
+  /*background: #F3E7A9 url('./img/bg.jpg') top left;*/
+  margin-left: auto;
+  margin-right: auto;
+  width: 640px;
+  text-align: left;
+  border: 4px solid #F4F4EE;
+}
+
+#header {
+  height: 140px;
+  background: #515230 url('./img/header.jpg') top left no-repeat;
+}
+
+#header h1 {
+  padding-top:30px;
+  padding-left: 20px;
+  font-family: verdana, helvetica, sans-serif;
+  font-size:26px;
+  font-weight:bold;
+  color: #FCF8E3;
+  letter-spacing: -1px;
+  margin:0px;
+}
+#header h2 {
+  padding-top:0px;
+  padding-left: 20px;
+  font-family: verdana, helvetica, sans-serif;
+  font-size:14px;
+  font-weight:bold;
+  color: #E2D179;
+  margin:0px;
+}
+#header h3 {
+  padding-top:0px;
+  padding-right: 20px;
+  font-family: verdana, helvetica, sans-serif;
+  font-size:13px;
+  font-weight:bold;
+  color: #FFFFFF;
+  margin:0px;
+}
+
+#menu {
+  position:absolute;
+  top:150px;
+  width:640px;
+  height:25px;
+  background: #A5A162 url('./img/menu_bg.jpg') top left no-repeat;
+}
+
+
+.loginArea
+{
+  font-family:"Arial";
+  font-size:11px;
+  position:absolute;
+  top:25px;
+  left:520px;
+  font-weight:800;
+  color:yellow;
+  padding:0px;
+}
+.loginArea input
+{
+  font-size:11px;
+  height:20px;
+}
+.loginArea a
+{
+font-size:14px;
+ color:yellow;
+}
+.loginArea label
+{
+ padding:3px;
+ background-color:#141608;
+}
+
+#menu a
+{
+padding: 0.2em 1em;
+background-color: transparent;
+color: #F3E7A9;
+text-decoration: none;
+float: left;
+border-right: 1px solid #BBB774;
+display: inline;
+font-size:14px;
+}
+
+#menu a:hover
+{
+background-color: transparent;
+color: #fff;
+}
+
+#main
+ {
+  background: url('./img/content_bg.jpg') top left no-repeat;
+  padding-top:10px;
+}
+
+#content
+ {
+  background: url('./img/page_bg.jpg');
+}
+
+#left
+{
+  float:left;
+  width:480px;
+
+}
+#left * { margin-left:5px;}
+pre
+{
+  width:430px;
+}
+
+.preview
+{
+ width:430px;
+ margin:10px;
+}
+
+#left  h3{
+  margin:10px;
+  margin-right:15px;
+  font-family: verdana;
+  font-size:13px;
+  font-weight: bold;
+  line-height:18px;
+  color: #A0410D;
+}
+
+#left p {
+  margin:10px;
+  margin-right:15px;
+  font-family: verdana;
+  font-size:12px;
+  line-height:18px;
+  color: #333333;
+}
+
+#right
+{
+  float:right;
+  width:155px;
+}
+
+#right p {
+  text-align:left;
+  margin:5px;
+  margin-bottom:15px;
+  padding-right:10px;
+  font-family: verdana;
+  font-size:9px;
+  line-height:16px;
+  color: #333333;
+}
+
+
+#right h3 {
+  margin-right:10px;
+  margin-bottom: 5px;
+  font-family: verdana;
+  font-size:12px;
+  font-weight: bold;
+  line-height:16px;
+  color: #FCF8E3;
+  background: #595A38;
+  padding:4px;
+  border:1px solid #3A3B22;
+}
+
+.spacer {
+  margin:0px;padding:0px;height:10px;clear:both;
+}
+
+#footer
+{
+ height: 60px;
+ background: #515230 url('./img/footer.jpg') top left no-repeat;
+}
+#footer p
+{
+  text-align:center;
+  padding-top:20px;
+  font-family: verdana;
+  font-size:11px;
+  line-height:16px;
+  color: #FCF8E3;
+}
+#footer a:link {
+	color: #F2C968; text-decoration: underline
+}
+}
+#footer a:hover {
+	color: #F2C968; text-decoration: none
+}
+.frm
+{
+  width:460px;
+  margin:10px;
+}
+
+

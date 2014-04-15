@@ -1,0 +1,1017 @@
+@charset "UTF-8";
+
+/***********
+This CSS is for:
+- main page (layout.xsl + portalView.xsl)
+
+- 3 column layout
+- only all layout things
+************/
+
+
+
+
+/*******************************************************************************
+*  3 column layout - skidoo
+*
+*  http://webhost.bridgew.edu/etribou/layouts/skidoo_redux/
+*
+*  Saiffer: Veci, ktore z layoutu nepouzivame som tu pre buducnost nechal a
+*  pridal som k ich nazvom "_____not_used".
+*
+*  skidoo_redux.css : 2008.09.30 : ruthsarian@gmail.com
+* -----------------------------------------------------------------------------
+*  Skidoo is a three-column, float-based layout utilizing negative margins to 
+*  provide column placement and cross-browser compatibility. There have been
+*  several incarnations of this layout: original skidoo, skidoo too, and now
+*  skidoo redux. This is the latest, most compatble and up-to-date version of
+*  the skidoo layout available. It is recommended you use this layout and not
+*  an older version of skidoo.
+*
+*  This layout is not for the faint of heart. Beginners will have problems
+*  understanding the nuances, but through a little experimentation of different
+*  variables, should be able to gain an understanding of what does what. For
+*  experienced developers this is best served as a reference tool, explaining
+*  what bugs are experienced on what browsing platforms for this and similar
+*  layouts. It could be used as a map in working your way through bugs that
+*  exist in your own layout. 
+*
+*  DISCUSSION TOPICS
+*    - why left/right margins need (semi-)static widths (ie. no percentages)
+*    - setting width of left/right columns
+*    - why columns drop
+*    - a general overview of float-based layouts and why they're "funny"
+*
+* ------------------------------------------------------------------------------
+*  This stylesheet is released into the public domain.
+*******************************************************************************/
+
+/*******************************************************************************
+ * EXTERNAL STYLESHEETS (tieto my nepouzivame)
+ *
+ * visual_consistencies.css
+ *   - sets margins and padding on generic HTML elements so that every browsers
+ *     has the same values rather than relying on the default values which vary
+ *     between browsers
+ *
+ * rmenu.css
+ *   - menu system based on unordered lists. too much to explain here, see
+ *     the referenced stylesheet for more information.
+ */
+
+
+/*******************************************************************************
+ * BASIC LAYOUT MECHANICS
+ *
+ * GENERAL NOTES
+ *   - yes, that's a lot of DIVs for a three-column layout. there is a reason
+ *     it all. first, all the columns must be floated to prevent a 3-pixel text
+ *     jog (a bug) that IE/Win 6 and earlier have. I can't use CSS hacks around
+ *     this one and need the extra markup. But using all floats can have
+ *     positive consequences, especially when using floated elements that need
+ *     to be cleared, but without clearing the other columns of the layout.
+ *   - NEGATIVE MARGINS is an approach to the three-column CSS layout that seems
+ *     to have the most compatibility and potential. the real strength of this
+ *     idea is to have the ability to provide different colors (or images) as
+ *     the background for each column. traditional three-column layouts can't
+ *     do this because the columns are only as tall as needed to fit their
+ *     content. in other words they don't run the full height of the layout.
+ *     negative margins gives us a means to fake this functionality. borders
+ *     (or padding, or margins) applied on #outer-column-container reserve the
+ *     space where the left and right columns will live. all three columns are
+ *     floated. since the columns are cleared inside #inner-column-container,
+ *     #inner-column-container (and #outer-column-container) will be as tall as
+ *     the tallest of the three columns. this means the borders will also be 
+ *     this tall, giving the visual appearance that all three columns are the
+ *     same height. 
+ *
+ * #page-container
+ *   - wraps the entire page. use this to set min/max widths and set any margins
+ *     or border that wraps the whole layout.
+ *
+ * #outer-column-container
+ *   - reserves space for the left and right columns. using borders allows you
+ *     to use the border color to act as the background color for the left and
+ *     right columns. background color could then act as the background of the
+ *     middle column.
+ *
+ * #inner-column-container
+ *   - provides the single-pixel black border between the middle column and
+ *     its outside brothers.
+ *
+ * #source-order-container
+ *   - source ordered layouts place the main content at the top of the page. to
+ *     do this with CSS in a three-column layout you need to wrap two of the
+ *     three columns in an element (DIV) to float them together as if it was a
+ *     a single column.
+ *   - this element contains both the #middle-column and #left-column elements.
+ *
+ * #middle-column, #left-column, #right-column
+ *   - containers for the each of the three columns in the layout
+ *
+ * #footer
+ *   - bottom of your webpage. a place to put copyright and contact information
+ *
+ * .clear-columns
+ *   - this class is assigned to an empty div placed after the last (floating)
+ *     column inside a block that contains two or more floating columns. it 
+ *     clears the floats, forcing the element containing the columns to 
+ *     visually contain all of its columns. there are alternative approaches
+ *     to clearing which do not require this extra markup (see
+ *     http://www.positioniseverything.net/easyclearing.html) however I find
+ *     this method is much more effective and compatible for the task at hand.
+ *     also, it should be evident by now that markup bloat is not a concern
+ *     with this particular layout. 
+ */
+.clear-columns
+{
+	clear: both;
+}
+#outer-column-container
+{
+	border-left: solid 210px #fff;	/* left column's width and background
+									   color */
+	border-right: solid 210px #fff;	/* right column's width and background
+									   color */
+}
+#inner-column-container
+{
+	width: 100%;	/* force this element to take the full width
+					   between the left and right columns. this is
+					   especially important as children of this
+					   element will have width:100%; set, and how
+					   that 100% value is interpreted depends on
+					   the width of it's parent (this element). */
+}
+#source-order-container
+{
+	float: left;		/* float left so the right column, which is
+						   outside this element, has a place to go. */
+	width: 100%;		/* force this to go as wide as possible */
+}
+#left-column
+{
+	float: left;		/* float left, where it'll live */
+	margin-left: -210px;	/* move it further left. the value here should
+						   be the same value as the left border width
+						   on #outer-column-container, but negative */
+	width: 210px;		/* need to set a definite width, should be the
+						   same width as the left border width on
+						   #outer-column-container */
+	background: url(column_bg.gif) right repeat-y;
+	margin-top: 10px;							 
+}
+#middle-column
+{
+	float: right;		/* middle column goes right of the left column
+						   since the two share the same parent 
+						   element */
+	width: 100%;		/* make the middle column as wide as possible
+						   for a fluid layout. this is not possible
+						   if it's parent element, 
+						   #source-order-container, wasn't also at
+						   100% width */
+}
+#right-column
+{
+	float: right;			/* float on the right side of the layout */
+	margin-right: -210px;	/* move it further right. the value here should
+							   be the same value as the right border width
+							   on #outer-column-container, but negative */
+	width: 210px;			/* need to set a definite width, should be the
+							   same width as the right border width on
+							   #outer-column-container */
+	background: url(column_bg.gif) left repeat-y;
+	margin-top: 10px;									 
+} 
+
+
+/*******************************************************************************
+ * BASE THEME
+ *
+ * Setup basic styling for the layout. This will set gutterspace and generate a
+ * basic border structure for the layout. Real layout styling belongs in a 
+ * separate "theme" stylesheet; leave this stylesheet untouched.
+ */
+body
+{
+	font-family: "Trebuchet MS", Verdana, Arial, sans-serif;
+  font-size: 90%;
+	background: #DDD url("squares-72-blur.png") center;
+	color: #000;
+	text-align: center;	
+	padding: 0;		/* padding on the body element when
+					   javascript min-width is in use will
+					   create problems in IE/Win 6. */
+	margin: 14px 0;	/* horizontal margins belong on
+					   #page-container. vertical margins
+					   are not there as well due to small
+					   rendering issues in IE/Win 5 when
+					   viewport is shorter than webpage */
+}
+	
+	
+#page-container
+{
+	background-color: #fff;	/* background for the middle column */
+	/*border: solid 1px #000;*/	/* border around the entire layout */
+	/*max-width: 69.8em;
+	min-width: 45em;*/		/* limit how narrow the layout will
+							   shrink before it stops. */
+	/*margin: 0 auto;*/			/* horizontal margins here instead of on 
+							   the body because we're setting min-
+							   width on this element. if margins set 
+							   on body users will see an odd skip in 
+							   the layout's rendering as it's 
+							   resized below min-width. (JS-based 
+							   min-width only.) */
+	text-align: left;
+}
+#masthead_____not_used
+{
+	border-bottom: solid 1px #000;	/* three of the four sides of this block
+									   will already have borders courtesy of
+									   the #page-container element so we 
+									   only need to render the bottom. */
+	padding-top: 1px;				/* prevent margin collapse. would need 1px
+									   bottom padding too if we didn't have the
+									   1px bottom border. */
+}
+#inner-column-container
+{
+	/*border: solid 2px #000;
+	border-width: 0 2px;
+	margin: 0 -2px;*/			/* compensate for the borders because of
+							   100% width declaration */
+}
+#middle-column div.rMenu-center
+{
+	border-bottom: solid 1px #000;	/* border along the bottom of the 
+									   horizontal menu at the top of
+									   the middle column */
+}
+#footer_____not_used
+{
+	border-top: solid 1px #000;	/* same situation as the masthead but
+								   this time we're rendering the top
+								   border. */
+	padding-bottom: 1px;		/* prevent margin collapse. would need a top
+								   padding of 1px too if we didn't have that
+								   1px border 	. */
+}
+.inside
+{
+	margin: 10px;			/* margin, instead of padding, used to 
+							   induce margin collapse if needed by 
+						 	   child elements */
+}
+
+#left-column .inside, #right-column .inside {margin-top: -10px;}
+
+/*******************************************************************************
+ * HACKS
+ *
+ * Not all browsers are created equal. Many CSS engines behave differently
+ * and can create discrepencies in the rendering of your layout across different
+ * browsing platforms. These hacks are aimed to resolve those discrepencies
+ * and provide a more consistent look to the layout.
+ *
+ * CSS hacks work by playing to a bug in the CSS engine or parser for a given 
+ * browser. This forces the browser to either apply or ignore a rule that other
+ * browsers wouldn't. This lets you apply rules to work around bugs in a specific
+ * browser that would otherwise break the layout. 
+ *
+ * It's important that when you use a CSS hack you do so in a way that is as
+ * specific in targeting the problem browser as possible. Some hacks might
+ * work for two or three different platforms, but you only need to apply it on
+ * one platform. You might find that this hack has no adverse effects on those
+ * other two platforms right now, but in a later version the hack might create
+ * problems. Save yourself the headache and do as much as you can to narrow
+ * the target of a CSS hack as much as possible.
+ *
+ * COMMON HACKS USED HERE
+ *
+ * The star-html hack (* html) targets Internet Explorer, both Windows and Mac,
+ * for versions 6 and earlier. There is no element higher up in the page
+ * than the HTML element. IE seems to think otherwise. Rules applied to any
+ * selector that begins with "* html" will be ignored by just about every
+ * browser except Internet Explorer. So any selector given below that begins
+ * with "* html" is targetted at Internet Explorer.
+ *
+ * The backslash-star comment hack targets IE/Mac. CSS comments end with an 
+ * asterisk and forward slash. Anything after that closing comment mark will
+ * be interpreted as as CSS rule. However if you prefix that closing comment
+ * mark with a backslash, IE/Mac won't recognize that the comment has been
+ * closed, but other browsers will. So any rules that come after the hacked
+ * closing comment will be applied by any browser except IE/Mac until a 
+ * non-hacked closing comment is found. 
+ *
+ * With the above two hacks outlined, it's possible to target IE on a specific
+ * OS platform. This is important as the CSS and rendering engines for Mac and
+ * Windows are completely different and have very different requirements in
+ * terms of hacks.
+ *
+ * You may see other empty comments in wierd places, those are variations on
+ * another comment hack to help target specific version of IE/Win (separating
+ * IE 5 from IE6 typically). 
+ *
+ * One other you'll see is a height setting of 0.1%. This is to trigger
+ * hasLayout (see reference section below). IE (at least pre-version 7) 
+ * will automatically expand a box beyond it's set height if its content
+ * is too tall. Setting height to 100% also works, but this can lead to
+ * problems where an element that should only be a few pixels tall turns
+ * out to be as tall as the rest of the page. By setting it to 0.1% you
+ * minimize the chance of elements being set taller than they need to be.
+ *
+ * WHY USE HACKS?
+ *
+ * For compatibility sake. Specifics on what each hack does, and why its
+ * used, is provided with the rule or ruleset in question. However, the 
+ * majority of hacks used have to do with an internal property in IE
+ * called hasLayout. The first item in the reference section below has
+ * all you could ever want to know, and more, about hasLayout.
+ *
+ * REFERENCE
+ *	http://www.satzansatz.de/cssd/onhavinglayout.html
+ *	http://www.communis.co.uk/dithered/css_filters/css_only/index.html
+ */
+.clear-columns
+{
+	/* hide from IE/Mac \*/
+	padding-bottom: 1px;
+	margin-bottom: -1px;	/* this padding/margin hack is here for
+							   older Mozilla engines (Netscape 7, 6,
+							   FireFox pre 2.0) which will not allow 
+							   an element to clear unless it has some 
+							   effect on how the rest of the layout 
+							   renders (ie, it takes up space). 
+							   Hidden from IE/Mac as it triggers a 
+							   horizontal scrollbar. */
+}
+* html #page-container
+{
+	/* hide from IE/Mac \*/
+	height: 0.1%;		/* IE/Win 5 needs this to prevent rendering
+						   issues if a minimum width is applied to
+						   this element and the viewport is sized
+						   narrower than it's minimum width. however
+						   this breaks IE/Mac so a comment hack is
+						   used to hide it. */
+	position: relative;	/* IE/Mac 5.0 seems to need this. without it
+						   any child element with position: relative
+						   isn't rendered. */
+	/*width: 69.8em;*/
+}
+* html #middle-column, 
+* html #left-column, 
+* html #right-column,
+* html #source-order-container
+{
+	/* hide from IE/Mac \*/
+	overflow: visible;	/* a bug through IE/Win 6 causes the widths of
+						   text boxes to be calculated narrower than
+						   they render, causing overflow of their parent
+						   elements. we need to explicitly handle this
+						   overflow. IE/Win 5.0 does not handle visible
+						   overflow correctly and so on some layouts,
+						   at some viewport widths you'll get a 
+						   horizontal scroll bar. */
+	/* hide from IE/Mac \*/
+	position: relative;	/* this resolves rendering bugs in IE/Win.
+						   without this the columns don't render on
+						   screen or text jog. */
+}
+* html #middle-column
+{
+	margin-right: -4px;		/* fix 3-pixel text jog in IE/Win 5.0.
+							   -4px because we also have to
+							   compensate for the overlaps from
+							   the left and right columns */
+	margin-right/* */: 0;	/* reset value on 5.5 and later using
+							   comment hack to hide this rule from 5.0 */
+}
+* html #middle-column .inside
+{
+	margin-right: 10px;			/* compensate for negative margin in
+								   previous rule, reset margins for 5.5 and later */
+}
+* html #masthead_____not_used, 
+* html #footer_____not_used
+{
+	/* hide from IE/Mac \*/
+	height: 0.1%;		/* this is to fix an IE 5.0 bug. setting this
+						   value forces these elements to contain their
+						   child elements, meaning margins will no
+						   longer collapse. */
+	height/**/: auto;	/* reset for IE/Win 5.5 and later by hiding
+						   this rule from 5.0 with the empty comment
+						   hack. also hidden from IE/Mac for the same
+						   reason. */
+}
+* html #masthead_____not_used .inside, 
+* html #footer_____not_used .inside
+{
+	margin-top: 0;
+	margin-bottom: 0;	/* since margins no longer collapse due to 
+						   previous rules we remove vertical margins
+						   from the .inside class */
+	margin/* */: 10px;	/* reset for IE 5.5 and later */
+}
+* html .inside
+{
+	margin: 10px 0.75em;	/* i don't yet understand this bug in IE 5.0
+							   which forces the right column down if the
+							   side margins are at a very specific value.
+							   if your side column widths are set in EMs,
+							   0.75em seems to work fine. */
+	margin-right: 2px;		/* reset for IE 5.5 and later */
+}
+* html #inner-column-container 
+{
+	display: block;
+}
+* html #source-order-container
+{
+	margin-right: -100%;	/* IE/Mac will force #source-order-container
+							   to the width of #left-column, even though
+							   that element is no longer inside it. this
+							   negative margin will help IE/Mac keep the
+							   three columns together under narrower 
+							   viewports than normal.
+	/* \*/ margin-right: -1px;	/* reset the above hack for IE/Win */
+}
+#left-column, #right-column
+{
+	position: relative;	/* resolve issues with links in left and right
+						   columns not being clickable in Safari */
+}
+
+/*******************************************************************************
+ * OVERSIZED SYSTEM FONT HACK
+ *
+ * Windows machines can have their screen DPI altered among other features 
+ * to provide accessibility to those with vision impairments. One relatively
+ * obscure feature increases font sizes in such a way that rounding errors
+ * in calculating font sizes are triggered in IE. The result is floating boxes
+ * start dropping or become misaligned. The fix is a negative 1 pixel margin 
+ * to certain floated elements to resolve the issue. Below is a set of a rules
+ * that targets this issue for all versions of IE up through IE7.
+ */
+*:first-child+html #middle-column {
+	margin-right: -1px;
+}
+*:first-child+html #source-order-container {
+	margin-left: -1px;
+}
+* html #middle-column {
+	margin-right: -1px;
+}
+* html #source-order-container {
+	margin-left: -1px;
+}
+
+/*******************************************************************************
+ * OVERLAP HACK
+ *
+ * Some browsers, most notably older versions of Gecko (Netscape 7, FF 1.5
+ * & earlier) have a problem with the negative margin approach used in this 
+ * layout: the two side columns won't be cleared if they exist entirely outside 
+ * the space of the parent element (#inner-column-container) where we clear the 
+ * three columns. So they need to be made to overlap the area of the middle 
+ * column by at least 1 pixels. This is why the outer columns have a 1 pixel 
+ * margin on their inner edge and the middle column (and source-order-container)
+ * have negative margins (to make room for the 1px margin from the outer
+ * columns).
+ *
+ * 
+ */
+#source-order-container
+{
+	margin-right: -1px;	/* make room for the right-column's overlap. */
+}
+#left-column
+{
+	margin-right: 1px;	/* overlap the middle column to help with
+						   clearing. see general notes above. */
+}
+#middle-column
+{
+	margin-left: -1px;	/* make room for the left-column's overflap */
+}
+#right-column
+{
+	margin-left: 1px;	/* overlap the middle column */
+}
+* html #left-column,
+* html #source-order-container
+{
+	margin-right: 0;	/* undo the overlap for IE */
+}
+* html #right-column,
+* html #middle-column
+{
+	margin-left: 0;		/* undo the overlap for IE */
+}
+*:first-child+html #left-column,
+*:first-child+html #source-order-container
+{
+	margin-right: 0;	/* undo the overlap for IE */
+}
+*:first-child+html #right-column,
+*:first-child+html #middle-column
+{
+	margin-left: 0;		/* undo the overlap for IE */
+}
+
+* html #right-column, * html #left-column {
+	margin-top: 10px;
+}
+
+* html #middle-column {
+	margin-top: -7px;
+}
+
+* html #left-column .inside,
+* html #right-column .inside {
+	margin-top: -10px;
+	}
+
+/******************************************************************************/
+/* Na zmenu sirky stplcov staci menit toto */
+/*
+
+#outer-column-container {
+    border-width: 0 [right column width] 0 [left column width];
+}
+#left-column {
+    width: [left column width];
+    margin-left: [negative of left column width];
+}
+#rightColumn {
+    width: [right column width];
+    margin-right: [negative of right column width];
+} 
+
+*/
+
+
+
+
+
+/*
+********************************
+*	END OF 3 COLUMN LAYOUT skidoo
+*	******************************
+*/
+
+
+
+
+
+
+
+/*** obaluje vsetko ***/
+.wrap-env {										
+  margin: 0 auto;
+	min-width: 45em;	
+  max-width: 69.8em; /*55*/
+  background: white;
+	text-align: left;
+}
+.wrap {												/* nahrada paddingu pre wrap-env ktory obsahuje rounded corners */
+  margin: 0 0.9em;
+}
+
+
+/* top rounded corners (nad kompletne celou strankou) */
+.wrap-t {
+  margin: 1em auto 0 auto;
+  max-width: 69.8em; /*56.8*/
+  display: block;
+  height: 13px;
+  padding: 0;
+}
+.wrap-t.lt {display: block; height: 13px; background: url("0lt.png") no-repeat left top}
+.wrap-t .rt {display: block; height: 13px; background: url("0rt.png") no-repeat right top;
+             padding: 0 13px;}
+.wrap-t .i {display: block; height: 13px; background: white}
+
+/* bottom rounded corners (nad footerom) */
+.wrap-b {
+  margin: 0 auto 1em auto;
+  max-width: 69.8em; /*56.8*/
+  display: block;
+  height: 13px;
+  padding: 0;
+}
+.wrap-b.lb {display: block; height: 13px; background: url("0lb.png") no-repeat left top}
+.wrap-b .rb {display: block; height: 13px; background: url("0rb.png") no-repeat right top;
+             padding: 0 13px;}
+.wrap-b .i {display: block; height: 13px; background: white}
+
+.wheader {
+  background: white;
+}
+#header {
+  /*height: 85px;*/
+  height: 95px;
+  position: relative;
+  padding: 2px;
+}
+
+#header h2 {display: none}
+/*
+#header a:visited, #header a:active, #header a:link {color: #006900}
+#menu a:visited, #menu a:active, #menu a:link, .heading a:visited {color: #006900}
+#header a:hover, #menu a:hover {color: #555} */
+#header ul {list-style-type: none}
+
+.heading {
+  position: relative;
+  margin-top:0.9ex;
+  margin-bottom:0ex;
+  background: #fff url("strom1.jpg") center repeat-x;
+  border:1px solid #fff;
+	height: 114px;
+}
+
+.heading .text {
+  font-size: 180%;
+  margin:1.5em 1em;
+  font-weight: bold;
+}
+
+.heading p {
+  position: absolute;
+  font-size: 90%;
+  /*background: url("p-o65.png");*/
+}
+
+.heading .text span {
+  /*background: url("p-o65.png");*/
+}
+
+.heading a,.heading a:visited, .heading a:active, .heading a:link, .heading a:visited
+{
+  color:black;
+}
+
+
+
+/* LOGO blog.matfyz.sk */
+H1#logo{
+  margin: 0;
+  text-align: left;
+  }  
+H1#logo A{padding-top: 10px; padding-left:10px; color: black;}  
+DIV#logo-wrapper {
+	z-index: 3;
+  position: relative;
+	top: 5px;  
+	left: 7px;  
+  /*width: 249px; height: 84px;*/
+  width: 252px; height: 87px;
+  font-family: Verdana, sans-serif;  
+  text-align: left;  
+  overflow: hidden;
+  } 
+DIV#logo-wrapper SPAN {
+  display: block;
+  background: url("/css/logo_blog_matfyz_sk_andale.jpg");
+  width: 100%; height: 100%;
+  position: absolute; top: 0; left: 0; z-index:1;
+  }  
+
+
+/* MENU */
+#menu {
+  background: #eee;
+  border-top: #ccc 1px solid;
+  font-size:85%;
+}
+
+/*#menu a:before { content: " | ";}
+#menu a:first-child:before { content: "";}*/
+#menu a {text-decoration: none}
+.wmenu {padding: 0 1px 1px 1px}
+.wmenu2 { background: url("menu1lb-6.png") no-repeat left bottom; }
+.wmenu3 { background: url("menu1rb-6.png") no-repeat right bottom; }
+.wmenu4 { padding: 3px 7px 4px 7px; }
+.wmenuLeft{
+	text-align: left;
+	display: inline;
+	float: left;
+}
+.wmenuRight{ text-align: right; }
+.wmenuRight ul { margin: 0; }
+.wmenuRight ul li { 
+	display: inline;
+	margin-right: .5em;
+}
+
+
+
+
+
+
+
+.post {
+  border-bottom: solid #006900 1px;
+  padding: 1ex 0;
+	position: relative; /* IE6 */
+}
+.post.last {
+  border-bottom: 0px;
+}
+.post:first-child {
+  padding: 0 0 1ex 0;
+}
+
+/*.post h2 {
+  margin: 2ex 0 1ex 0;
+  font-size: 180%;
+}*/
+h2.posting {
+  margin: 1.5ex 0 .5ex 0;
+  font-size: 150%;
+}
+
+h2.posting .dokuWiki, .noFormat .dokuWiki{
+	display: inline;
+}
+
+.bordering {
+  font-style: italic;
+  margin: 5px;
+  padding: 5px;
+}
+.boldering {
+  font-weight: bold;
+}
+
+.paging {
+  margin-top: 3ex;
+  margin-bottom: 3ex;
+  padding: 3px;
+  text-align: center;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+}
+.paging a {
+  margin-right: 1em;
+}
+a.raquo:after {
+	content: ' »»';
+}
+a.laquo:before {
+	content: '«« ';
+}
+
+.post h3 { /* bolo h2 */
+  margin: 1ex 0 1ex 0;
+  font-size: 136%;
+}
+
+.post h4 { /* bolo h3 */
+  margin: 1ex 0 1.5ex 0;
+  font-size: 100%;
+}
+
+.post .subtitle {
+  margin: 1ex 0 1.5ex 0;
+  font-size: 100%;
+  color: #555;
+  font-weight: normal;
+}
+
+h3:first-child {margin-top: 0}
+
+.post .date {
+  background: #EEE;
+  border-top: solid #CCC 1px;
+  padding: 0.3ex 0.5ex;
+  font-size: 90%;
+}
+.post .date p { margin: 0; }
+
+/* top post */
+.post .dateTop {
+  background: url(dateTopBorder.gif) right repeat-y #EEE;
+}
+.markTopPost {
+	float: right;
+	margin-right:0.5em;
+	font-weight: bold;
+}
+.markTopPostOut {
+	color: gray;
+}
+.imageTopPost {
+	float: right;
+	margin-right: .2em;
+}
+
+/* zmaz div co robi clear:both */
+*:first-child+html .post .date .clear { clear: none; }
+* html .post .date .clear { clear: none; }
+
+/* posun relativne pre ie7 */
+*:first-child+html .markTopPost{ 
+	position: relative;
+	top: -1.4em;
+} 
+*:first-child+html .imageTopPost{  
+	position: relative;
+	top: -1.4em;
+} 
+
+/* posun relativne pre ie6 */
+* html .markTopPost{  
+	position: relative;
+	top: -1.4em;
+} 
+* html .imageTopPost{   
+	position: relative;
+	top: -1.4em;
+} 
+
+
+.post .status {
+  margin: 1em 0 0 0;
+  padding: 0.3ex 0.5ex;
+  background: #EEE;
+  font-size: 90%;
+  border-bottom: solid #CCC 1px;
+}
+
+.read-more { display: block; margin: 1em 0 0 0}
+
+hr { display: none }
+
+.avatar {
+  margin: 0 auto;
+  width: 13em;
+  padding: 0.5em 0 0.5ex 0;
+}
+
+.avatar img {width:12.9em;}
+.avatar p {margin: 0; padding: 0}
+
+.f1a {
+  width: 13.7em;
+  margin: 0 0 1ex 0;
+	text-align: center;
+}
+* html .f1a {
+  width: 13.7em;
+}
+
+#footer {
+  margin: 0;
+  padding: 1ex 1ex 0.5ex 1ex;
+}
+
+#footer p {
+  text-align: right;
+  margin: 0;
+  padding: 0;
+}
+
+#footer-menu {
+  float: left;
+}
+
+#footer img.blockImg {
+  display: block;
+}
+
+
+
+.f1 .l {background: url("1ltbr.png") repeat-y left}
+.f1 .t {background: url("1ltbr.png") repeat-x top}
+.f1 .b {background: url("1ltbr.png") repeat-x bottom}
+.f1 .r {background: url("1ltbr.png") repeat-y right}
+.f1 .lt {background: url("1lt-6.png") no-repeat left top}
+.f1 .rt {background: url("1rt-6.png") no-repeat right top}
+.f1 .lb {background: url("1lb-6.png") no-repeat left bottom}
+.f1 .rb {background: url("1rb-6.png") no-repeat right bottom}
+
+
+/* **** IE7 *************************************************************** */
+*:first-child+html #menu {border-bottom: 1px solid #eee}
+
+/* **** IE6 *************************************************************** */
+
+* html body { text-align: center}
+* html .wrap-env { width: 69.8em;}
+* html .wrap-t { width: 69.8em;}
+* html .wrap-b { width: 69.8em; }
+* html .wrap-t * {font-size: 1px;}
+* html .wrap-b * {font-size: 1px;}
+* html .wrap-t.lt {background: url("0lt.gif") left top no-repeat}
+* html .wrap-t .rt {background: url("0rt.gif") right top no-repeat}
+* html .wrap-b.lb {background: url("0lb.gif") left bottom no-repeat}
+* html .wrap-b .rb {background: url("0rb.gif") right bottom no-repeat}
+* html #menu {border-bottom: solid #eee 1px}
+
+
+
+
+
+h5
+{
+  padding:0;
+  margin:0;
+}
+
+.tagCloud a
+{
+  font-weight:normal;
+}
+.tagCloud a em
+{
+  font-weight:bold;
+	font-style:normal;
+}
+* html .tagCloud a em {font-weight:normal;} /* IE6 fix - najvacsie slovo tagov je velmi velke */
+
+.tagCloud a:hover
+{
+  text-decoration:underline;
+  
+}
+.para
+{
+  margin-bottom:1em;
+}
+
+#beania_logo {margin-bottom: 20px;}
+
+.col2 a {text-decoration: none;}
+
+
+/* PORTLETS = FOR EVERY PORTLET BUT SIDE COLUMN PORTLETS */
+.portlet {}
+
+/* SIDEPORTLETS = FOR EVERY SIDE COLUMN PORTLETS */
+.sideportlet {
+	margin-bottom: 1em;
+}
+.sideportlet ol {
+	margin: 0;
+	padding-left: 2em;
+}
+.sideportlet li {
+	margin-bottom: .4em;
+}
+.sideportlet h3 {
+	background: #EEE;
+  border-top: solid #CCC 1px;
+  padding: 0.3ex 0.5ex;
+  font-size: 90%;
+  margin: 10px 0 5px 0;
+	position: relative;
+}
+* html .sideportlet h3 { /* vsetkemu v lavom stlpci asi bude treba dat pravy margin */
+  margin: 10px 8px 5px 0;
+}
+
+
+
+
+
+
+.display_none {display: none}
+
+h3.login { 
+  margin: 2ex 0 0 0;
+}
+
+/*perex specific properties*/
+.perex{
+	overflow: hidden;
+}
+.perex img.imgRight{
+	margin: 0 0 1em;
+}
+
+/********************************************************
+ Stare veci, ktore casom zmazem ak sa neobjavi ich zmysel
+*********************************************************
+.spacer {
+  padding:1em;
+  xclear: both;
+}
+**************************
+.f-o { background: red; }
+**************************
+ul {
+  list-style-type:disc;
+  color:#006900;
+  list-style:inside;
+}
+ul li {
+  color:#000000;
+}
+**************************
+*/

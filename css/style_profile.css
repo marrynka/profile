@@ -1,0 +1,131 @@
+#activityWrap
+{
+min-height:160px;
+background: url("layrus/8bit/post_regular_rightcorner.png") no-repeat scroll right bottom ;
+margin:10px;
+overflow:hidden;
+}
+
+#ac_picture img
+{
+
+font-size:50pt;
+background-color:pink;
+width:40%;
+float:right;
+
+}
+#ac_picture
+{
+margin:10px;
+}
+#ac_perex
+{
+float:left;
+width:50%;
+margin:10px;
+}
+#activity_time
+{
+width:100%;
+clear:both;
+}
+
+#navigationProfile ul
+{
+	text-align:justify;
+	
+	font-size:13pt;
+	margin:0px;
+	margin-right:30px;
+	padding: 0em;
+}
+#navigationProfile ul:after {
+    content: "";
+    width: 100%;
+    display: inline-block;
+}
+#navigationProfile ul:before {
+    content: '';
+    display: block;
+    
+}
+#navigationProfile a:link {text-decoration:none;}
+#navigationProfile a:visited {text-decoration:none;}
+#navigationProfile a:hover {text-decoration:underline; background-color:white; color: #006900;}
+#navigationProfile a:active {text-decoration:underline;}
+.selected
+{
+text-decoration:underline;
+}
+#navigationProfile ul li
+{
+	
+    display: inline-block;
+  
+   
+    position: relative;
+   
+}
+#mid-content-1
+{
+min-height:400px;
+}
+#mid-content-2
+{
+min-height:400px;
+}
+
+#login_form input[type=text],#login_form input[type=password]
+{
+display:block;
+height: 40px;
+margin:10px;
+
+}
+#login_form input[type=submit]
+{
+margin:10px;
+height:30px;
+width:60px;
+}
+#signup_form input
+{
+height: 40px;
+display:block;
+margin:10px;
+}
+#signup_form input[type=radio]
+{
+height:auto;
+display:inline;
+}
+#errors
+{
+display:block;
+color:black;
+font-weight:bold;
+}
+#signup_form
+{
+width:100%;
+}
+#signup_form input[type=submit]
+{
+margin:auto;
+}
+#general_info
+{
+width: 50%;
+float:left;
+}
+#about_info
+{
+width:50%;
+float:right;
+}
+#clear
+{
+clear:both;
+}
+

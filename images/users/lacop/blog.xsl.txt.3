@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:output method="xml" version="1.0" encoding="utf-8" doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" omit-xml-declaration="yes" />
+
+<xsl:param name="postID"/>
+
+<xsl:template match="/">
+  <html lang="en" xml:lang="en">
+    <head>
+      <title><xsl:value-of select='/user/blog/title' /></title>
+    </head>
+    <body>
+      <div class="header">
+        <xsl:if test="$postID">
+            <h1><a href="http://{/user/info/nick}.blog.matfyz.sk/"><xsl:value-of select='/user/blog/title' /></a></h1>
+        </xsl:if>
+        <xsl:if test="not($postID)">
+            <h1><xsl:value-of select='/user/blog/title' /></h1>
+        </xsl:if>
+        <xsl:value-of select='/user/info/nick' />'s blog
+      </div>
+      <xsl:choose>
+        <xsl:when test="$postID and /user/blog/post/@ID=$postID">
+          <xsl:apply-templates select="/user/blog/post[@ID=$postID]"/>
+        </xsl:when>
+        <xsl:when test="$postID">
+          error
+        </xsl:when>
+        <xsl:otherwise>
+          <div class="posts">
+            <xsl:apply-templates select="/user/blog/post" mode="short">
+              <xsl:sort select="date/@timestamp" order="descending"/>
+            </xsl:apply-templates>
+          </div>
+        </xsl:otherwise>
+      </xsl:choose>
+      <hr/>
+      <!--
+      <div class="people">
+        People that contributed to this blog as authors or commenters:
+        <xsl:apply-templates select="//nick" />
+      </div>
+      -->
+      <div class="stats">
+        Stats:
+        <xsl:value-of select="count(/user/blog/post)" />&#xA0;post(s),
+        <xsl:value-of select="sum(/user/blog/post/@accessCount)" />&#xA0;view(s).
+      </div>
+      <div class="footer">
+          Copyright &#xA9; 2012, <xsl:value-of select='/user/info/realName' />
+      </div>
+    </body>
+  </html>
+</xsl:template>
+ 
+<xsl:template match="post" mode="short">
+   <div class="post" lang="{@lang}" xml:lang="{@lang}">
+    <xsl:if test="@private='yes'">
+        <xsl:attribute name="class">post private</xsl:attribute>
+    </xsl:if>
+    <h2><a href="http://{/user/info/nick}.blog.matfyz.sk/{@ID}"><xsl:value-of select="title"/></a></h2>
+     <xsl:if test="subtitle">
+        <h3><xsl:value-of select="subtitle"/></h3>
+     </xsl:if>
+     Created: <xsl:value-of select="date"/>
+     <xsl:if test="lastUpdate">
+        (Updated: <xsl:value-of select="lastUpdate"/>)
+     </xsl:if>
+
+     <xsl:if test="string-length(content/p[position()=1]) &lt;= 100">
+      <xsl:copy-of select="substring(content/p[position()=1], 0, 50)"/>
+     </xsl:if>
+     <xsl:if test="string-length(content/p[position()=1]) &gt; 100">
+      <p>
+        <xsl:value-of select="substring(content/p[position()=1], 0, 100)"/>
+        <a href="http://{/user/info/nick}.blog.matfyz.sk/{@ID}">... [read more]</a>
+      </p>
+     </xsl:if>
+     <p>
+      Tags: <xsl:apply-templates select=".//tag" />
+     </p>
+     <p>
+      Viewed <xsl:value-of select="@accessCount" />&#xA0;time(s)
+     </p>
+     <strong>Comments:</strong>
+     <xsl:if test="comments/comment">
+      <xsl:value-of select="count(comments/comment)"/>
+    </xsl:if>
+    <xsl:if test="not(comments/comment)">
+      No comments
+    </xsl:if>
+   </div>
+</xsl:template>
+
+<xsl:template match="post">
+   <div class="post" lang="{@lang}" xml:lang="{@lang}">
+    <h2><xsl:value-of select="title"/></h2>
+     <xsl:if test="subtitle">
+        <h3><xsl:value-of select="subtitle"/></h3>
+     </xsl:if>
+     Created: <xsl:value-of select="date"/>
+     <xsl:if test="lastUpdate">
+        (Updated: <xsl:value-of select="lastUpdate"/>)
+     </xsl:if>
+     <xsl:copy-of select="content/*"/>
+     <p>
+      Tags: <xsl:apply-templates select=".//tag" />
+     </p>
+     <p>
+      Viewed <xsl:value-of select="@accessCount" />&#xA0;time(s)
+     </p>
+     <xsl:if test="preceding-sibling::post[1]">
+        <strong>Previous:</strong><a href="http://{/user/info/nick}.blog.matfyz.sk/{preceding-sibling::post[1]/@ID}"><xsl:value-of select="preceding-sibling::post[1]/title"/></a>
+     </xsl:if>
+     <xsl:if test="following-sibling::post[1]">
+        <strong>Next:</strong><a href="http://{/user/info/nick}.blog.matfyz.sk/{following-sibling::post[1]/@ID}"><xsl:value-of select="following-sibling::post[1]/title"/></a>
+     </xsl:if>
+     <h3>Comments:</h3>
+     <div class="comments">
+      <xsl:apply-templates select="comments/comment"/>
+     </div>
+     <h3>Post new comment:</h3>
+     <form action="?type=commentForm" method="post">
+         <fieldset>
+            <textarea rows="20" cols="60" name="comment">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;!DOCTYPE comment SYSTEM &quot;comment.dtd&quot;&gt;
+&lt;comment lang=&quot;<xsl:value-of select="@lang"/>&quot; ref=&quot;<xsl:value-of select="@ID"/>&quot;&gt;
+  &lt;title&gt;TITLE&lt;/title&gt;
+  &lt;content&gt;
+    &lt;p&gt;CONTENT&lt;/p&gt;
+  &lt;/content&gt;
+&lt;/comment&gt;
+            </textarea>
+            <input type="submit" name="submit" class="submit" value="Send!"/>
+        </fieldset>
+     </form>
+   </div>
+</xsl:template>
+
+<xsl:template match="comment">
+   <div class="comment" lang="{@lang}" xml:lang="{@lang}">
+     <h4><xsl:value-of select="title" /></h4>
+     <xsl:apply-templates select="author/nick"/>
+     <xsl:copy-of select="content/*"/>
+     <xsl:if test="comment">
+       <div class="comments">
+         <xsl:apply-templates select="comment"/>
+       </div>
+     </xsl:if>
+   </div>
+</xsl:template>
+ 
+<xsl:template match="nick">
+  <a href="http://{.}.blog.matfyz.sk"><xsl:value-of select="."/></a>
+  (<xsl:value-of select="../realName" />)
+</xsl:template>
+
+<xsl:template match="tag">
+  <span class="tag"><xsl:value-of select="." /></span>, 
+</xsl:template>
+
+</xsl:stylesheet>
+

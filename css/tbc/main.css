@@ -1,0 +1,168 @@
+
+.loginArea
+{
+ margin:1em;
+ text-align:right;
+ color: #ffe51e;
+}
+.loginArea label
+{
+ padding-right:0.3em;
+ margin:0;
+}
+.loginArea input
+{
+ border:1px solid #c0c0c0;
+ margin-right:5px;
+ padding:2px;
+}
+
+form.frm label {
+ width: 20em;
+ font-weight: bold;
+ float: left;
+ display: block;
+}
+form.frm .submit input, .frm button.submit{
+ display: inline;
+ float: none;
+}
+form.frm label {
+ text-align: right;
+ width: 10em;
+ padding-right: 20px;
+}
+form.frm textarea {
+ width: 35em;
+ height: 20em;
+ border: 1px solid #000;
+ margin-bottom: 10px;
+ font-size:110%;
+}
+
+form.frm textarea.smallBox {
+ width: 35em;
+ height: 6em;
+}
+form.frm textarea.megaBox {
+ width: 95%;
+ height: 30em;
+}
+form.frm br {
+ clear: left;
+}
+.frm input.input_small, input.input_large {
+ margin-bottom: 10px;
+ float: left;
+ display: block;
+}
+.frm input.input_small {
+ width: 5em;
+ border: 1px solid #000;
+}
+.frm input.input_large {
+ width: 20em;
+ border: 1px solid #000;
+}
+.frm input.submit, .frm button.submit{
+  padding:5px;
+ border: 1px solid #fff;
+ background-color: #c0c0c0;
+}
+input.submit:hover,.frm button.submit:hover {
+ background-color: #e0e0e0;
+}
+ fieldset
+{
+  border:none;
+  padding:0;
+  margin:0;
+}
+ul
+{
+  margin:1em;
+  margin-left:2em;
+
+  list-style:inside;
+}
+ol
+{
+  list-style:inside;
+  list-style-type: decimal;
+}
+#TOC ul
+{
+ list-style-type: none;
+ list-style:inside;
+}
+hr
+{
+  /*clear:left;*/
+  width:70%;
+  border:0px;
+  border-bottom:1px dashed #AAAAAA;
+  margin-bottom:1.5em;
+  margin-top:0em;
+}
+pre.text
+{
+  font-family: Verdana, "Geneva CE", Lucida, sans-serif;
+  font-family: Arial, sans-serif;
+  font-size:110%;padding:0.5em;border:1px dashed #8cacbb;color:#000;
+  overflow:auto;
+  line-height: 1.4em;
+  font-size: 15px;
+  background-color:#f7f9fa;
+  margin:0 0 1.0em 0;
+}
+p
+{
+  text-align:justify;
+  margin:auto;
+  padding-bottom:.5em;
+}
+
+.preview
+{
+   border:1px dashed #c0c0c0;
+   background-color:#eeeeee;
+   margin:2em;
+   padding:1em;
+}
+
+img.leftFloat {
+  float:left;
+  margin-right:10px;
+}
+img.rightFloat {
+  float:right;
+  margin-left:10px;
+
+  
+}
+.comment
+{
+
+  padding-left:1.5em;
+  border-left:2px solid #AAAAAA;
+}
+.reply
+{
+ margin-bottom:1em;
+}
+
+#footer p
+{text-align:center;}
+.ok
+{
+  text-align:center;
+  color:green;
+  padding:1em;
+}
+
+.fail
+{
+  text-align:center;
+  color:red;
+  padding:1em;
+}

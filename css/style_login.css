@@ -1,0 +1,55 @@
+
+
+
+#login_form input[type=text],#login_form input[type=password]
+{
+display:block;
+height: 40px;
+margin:10px;
+
+}
+#login_form input[type=submit]
+{
+margin:10px;
+height:30px;
+width:60px;
+}
+#signup_form input
+{
+height: 40px;
+display:block;
+margin:10px;
+}
+#signup_form input[type=radio]
+{
+height:auto;
+display:inline;
+}
+#errors
+{
+display:block;
+color:black;
+font-weight:bold;
+}
+#signup_form
+{
+width:100%;
+}
+#signup_form input[type=submit]
+{
+margin:auto;
+}
+#general_info
+{
+width: 50%;
+float:left;
+}
+#about_info
+{
+width:50%;
+float:right;
+}
+#clear
+{
+clear:both;
+}

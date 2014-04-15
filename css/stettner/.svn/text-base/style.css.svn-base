@@ -1,0 +1,271 @@
+body {
+  font-family: "Trebuchet MS", Verdana, Arial, sans-serif;
+  font-size: 90%;
+  background: #DDD url("squares-72-blur.png") center;
+}
+
+a, a:link, a:active { color: #006900; }
+a:visited { color: #555; }
+
+
+.wrap {
+  margin: 0 auto;
+  max-width: 55em;
+  background: white center;
+  padding: 0 0.9em;
+}
+
+.wrap-t {
+  margin: 1em auto 0 auto;
+  max-width: 56.8em;
+  display: block;
+  height: 13px;
+  padding: 0;
+}
+
+.wrap-t.lt {display: block; height: 13px; background: url("0lt.png") no-repeat left top}
+.wrap-t .rt {display: block; height: 13px; background: url("0rt.png") no-repeat right top;
+             padding: 0 13px;}
+.wrap-t .i {display: block; height: 13px; background: white}
+
+.wrap-b {
+  margin: 0 auto 1em auto;
+  max-width: 56.8em;
+  display: block;
+  height: 13px;
+  padding: 0;
+}
+
+.wrap-b.lb {display: block; height: 13px; background: url("0lb.png") no-repeat left top}
+.wrap-b .rb {display: block; height: 13px; background: url("0rb.png") no-repeat right top;
+             padding: 0 13px;}
+.wrap-b .i {display: block; height: 13px; background: white}
+
+.wheader {
+  background: white;
+}
+#header {
+  height: 85px;
+  position: relative;
+  padding: 0;
+}
+
+#header h1, #header h2 {display: none}
+
+.heading {
+  position: relative;
+  margin: 1.5ex 0 0 0 ;
+  background: #DDD url("strom1.jpg") center;
+  padding: 3em 2em 2em 2em;
+}
+
+.heading .text {
+  font-size: 180%;
+  margin: 0; padding: 0;
+  font-weight: bold;
+}
+
+.heading a {
+  position: absolute;
+  left: 1ex; top: 1ex;
+  font-size: 90%;
+  background: url("p-o65.png");
+  display: block;
+  padding: 0.5ex;
+}
+
+.heading .text span {
+  background: url("p-o65.png");
+  display: block;
+  padding: 0.5ex;
+}
+
+.wmenu {padding: 0 1px 1px 1px}
+.wmenu2 {
+  background: url("menu1rb-6.png") no-repeat right bottom;
+  padding: 0 7px 5px 7px;
+  text-align: right;
+}
+#menu {
+  background: url("menu1lb-6.png") no-repeat left bottom;
+  background-color: #EEE;
+  border-top: #CCC 1px solid;
+}
+
+#menu a:before { content: " | ";}
+#menu a {text-decoration: none}
+
+#header .loginArea {
+  position: absolute;
+  top: 5px; right: 5px;
+  margin: 0; padding: 0 3px;
+  text-align: inherit;
+}
+
+#header .loginArea * {
+  margin: 0; padding: 0;
+}
+
+#header .loginArea label {
+  color: black;
+}
+
+#header .loginArea .input_small {
+  width: 10em;
+}
+
+#header .loginArea input {
+  padding: 1px;
+}
+
+#main {
+  margin: 1.5ex 1px 0 1px;
+  position: relative;
+  padding: 0 15em 0 0;
+  background: white;
+}
+
+#left { padding: 0 }
+
+#right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 13.7em;
+  padding: 0 0 0 1ex;
+  border-left: solid #006900 2px;
+}
+
+.post {
+  border-bottom: solid #006900 1px;
+  padding: 1ex 0;
+}
+.post:first-child {
+  padding: 0 0 1ex 0;
+}
+
+.post h1 {
+  margin: 2ex 0 1ex 0;
+  font-size: 180%;
+}
+
+.post h2 {
+  margin: 2ex 0 1ex 0;
+  font-size: 136%;
+}
+
+.post h3 {
+  margin: 1ex 0 1.5ex 0;
+  font-size: 100%;
+}
+
+.post .subtitle {
+  margin: 1ex 0 1.5ex 0;
+  font-size: 100%;
+  color: #555;
+  font-weight: normal;
+}
+
+h3:first-child {margin-top: 0}
+
+.post .date {
+  background: #EEE;
+  border-top: solid #CCC 1px;
+  padding: 0.3ex 0.5ex;
+  font-size: 90%;
+  margin: 0;
+}
+
+.post .status {
+  margin: 1em 0 0 0;
+  padding: 0.3ex 0.5ex;
+  background: #EEE;
+  font-size: 90%;
+  border-bottom: solid #CCC 1px;
+}
+
+.read-more { display: block; margin: 1em 0 0 0}
+
+hr { display: none }
+
+.avatar {
+  margin: 0 auto;
+  width: 13em;
+  padding: 0.5em 0 0.5ex 0;
+}
+
+.avatar img {width:12.9em;}
+.avatar p {margin: 0; padding: 0}
+
+.f1a {
+  width: 13.7em;
+  margin: 0 0 1ex 0;
+}
+
+#footer {
+  margin: 0;
+  padding: 1ex 1ex 0.5ex 1ex;
+}
+
+#footer p {
+  text-align: right;
+  margin: 0;
+  padding: 0;
+}
+
+#footer-menu {
+  float: left;
+}
+
+#footer img {
+  display: block;
+  margin: 0 0 3px 0;
+}
+
+/* 2px frame
+#footer .l {height: 103px; background: url("2ltbr.png") repeat-y left}
+#footer .t {height: 103px; background: url("2ltbr.png") repeat-x top}
+#footer .b {height: 103px; background: url("2ltbr.png") repeat-x bottom}
+#footer .r {height: 103px; background: url("2ltbr.png") repeat-y right}
+#footer .lt {height: 103px; background: url("2lt.png") no-repeat left top}
+#footer .rt {height: 103px; background: url("2rt.png") no-repeat right top}
+#footer .lb {height: 103px; background: url("2lb.png") no-repeat left bottom}
+#footer .rb {height: 103px; background: url("2rb.png") no-repeat right bottom}
+*/
+
+.f1 .l {background: url("1ltbr.png") repeat-y left}
+.f1 .t {background: url("1ltbr.png") repeat-x top}
+.f1 .b {background: url("1ltbr.png") repeat-x bottom}
+.f1 .r {background: url("1ltbr.png") repeat-y right}
+.f1 .lt {background: url("1lt-6.png") no-repeat left top}
+.f1 .rt {background: url("1rt-6.png") no-repeat right top}
+.f1 .lb {background: url("1lb-6.png") no-repeat left bottom}
+.f1 .rb {background: url("1rb-6.png") no-repeat right bottom}
+
+.f-o { background: white }
+
+
+/* **** IE6 *************************************************************** */
+
+* html body { text-align: center}
+* html .wrap { width: 55em; text-align: left;}
+* html .wrap-t { width: 55em;}
+* html .wrap-b { width: 55em; }
+* html .wrap-t * {font-size: 1px;}
+* html .wrap-b * {font-size: 1px;}
+* html #right {right: auto; left: 0.7em; width: 14.3em;}
+* html .wrap-t.lt {background: url("gif/0lt.gif") left top no-repeat}
+* html .wrap-t .rt {background: url("gif/0rt.gif") right top no-repeat}
+* html .wrap-b.lb {background: url("gif/0lb.gif") left bottom no-repeat}
+* html .wrap-b .rb {background: url("gif/0rb.gif") right bottom no-repeat}
+/* * html .wmenu {border: solid red 1px;} */
+
+.spacer
+{
+  padding:1em;
+}
+h5
+{
+  padding:0;
+  margin:0;
+}

@@ -1,0 +1,1635 @@
+/***********
+This CSS is for:
+- globalne zmeny, rovnake pre cely portal
+- formulare
+- tabulky
+- atd...
+
+
+- individual styling of portlets
+************/
+
+
+
+a, a:link, a:active { color: #006900; }
+a:visited { color: #555; }
+#header a:visited,
+#menu a:visited { color: #006900; }
+a:hover { color: white; background-color: #006900;}
+#header a:hover { background-color: transparent; color:#006900 }
+#header .managermenuPortlet a:hover { text-decoration:underline; }
+#mid-top a:hover{background-color: transparent; color: #006900; border-bottom: 2px solid #006900;}
+
+
+a img { border: 0px; }
+
+/* clear pod novinkami na hlavnej stranke (a mozno aj inde...) */
+.clear {
+ clear: both;
+ font-size: 0;
+}
+/*cl pouzivat v pripade, ze clearing element je neprazdny*/
+.cl{
+	clear:both;
+}
+.blockme{
+	display:block;
+}
+#wat{
+	clear: left;
+}
+.clear_left{
+	clear:left;
+	font-size:0;
+}
+.clear_right{
+	clear:right;
+	font-size:0;
+}
+
+h1{
+	font-size:1.7em;
+	font-weight: normal;
+}
+/*nazvy stranok*/
+h1.main-caption{
+	text-align:center;
+}
+h2{
+	font-weight:normal;
+	font-size:1.45em;
+}
+.header_inline{
+	display:inline;
+}
+.header_left{
+	float:left;
+}
+
+form.frm input[disabled="disabled"].submit, .frm button.submit[disabled="disabled"],
+form.frm input.submit.disabled, .frm button.submit.disabled {
+ color:#aaa;
+ background-color:#f0f0f0;
+ display:inline;
+}
+
+
+.frm input.checkbox {
+  margin-right:2em;
+}
+
+form.frm label {
+ text-align: right;
+ width: 15em;
+ float: left;
+ padding-right: 20px;
+
+}
+
+form.frm textarea {
+	width: 35em;
+	height: 20em;
+	margin-bottom: 10px;
+	
+	border: 1px solid #999999;
+	box-shadow: 0 0 4px 0 #D0D0D0 inset;
+}
+
+form.frm textarea.smallBox {
+ width: 35em;
+ height: 6em;
+}
+form.frm textarea.mediumBox {
+ width: 35em;
+ height: 12em;
+}
+form.frm textarea.tagBox {
+ width: 95%;
+ height: 10em;
+}
+form.frm textarea.megaBox {
+ width: 95%;
+ height: 30em;
+}
+form.frm br {
+ clear: left;
+}
+.frm input.input_small, input.input_large, input.input_medium {
+ margin-bottom: 10px;
+}
+.input_tiny {
+ width: 2.2em;
+}
+.frm .input_small {
+ width: 5em;
+}
+.frm .input_medium {
+ width: 12em;
+}
+.frm .input_large {
+ width: 18em;
+}
+input { 
+	border: 1px solid #999999;
+	box-shadow: inset -0px -0px 4px 0px #d0d0d0;
+}
+input:focus{
+	border:1px solid #777777;
+	box-shadow: 0 0 4px 0 #D0D0D0;
+}
+input.submit, button.submit, a.submit {
+	outline: none;
+	border: 1px solid #d8d8d8; /*#bfbfbf;*/
+	background-color: #f7f6f6;
+	margin: 0;
+	padding: 4px;
+	
+	text-decoration: none;
+	font-size:0.95em;
+	color:black;
+	
+	/*fancy stuff*/
+	cursor: pointer;
+	background: #fbfafa url("layrus/8bit/button_gradient.png") repeat-x bottom;
+	background-image: linear-gradient(0deg, rgb(242, 242, 242) 0%, rgb(250, 249, 249) 100%);
+	/*box-shadow: 0px 1px 3px rgba(50, 50, 50, 0.4);*/
+	box-shadow: 0 2px 6px -3px black;
+}
+*:first-child+html input.submit,
+*:first-child+html button.submit,
+*:first-child+html a.submit { /*padding: 4px;*/ }  /* ie7 */
+* html input.submit,
+* html button.submit,
+* html a.submit {                    /* ie6 */
+	/*padding: 0px;
+	position: relative;
+	top: 1px;*/
+}
+
+input.submit:hover, button.submit:hover, a.submit:hover, a.submit_pressed {
+	color:black;
+	background-color: #fff;
+	/*ked nastavime none, chromu z toho drbne*/
+	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0);
+	
+	background: #fafafa url("layrus/8bit/button_pressed_gradient.png") repeat-x top;
+	background-image: linear-gradient(0deg, rgb(250, 250, 250) 80%, rgb(235, 235, 235) 100%);
+}
+
+
+fieldset {
+  border:none;
+  padding:0;
+  margin:0;
+}
+ul {}
+ol {}
+#TOC ul {
+ list-style-type: none;
+}
+hr, .hr_separator {
+  /*clear:left;*/
+	width:100%;
+	height:18px;
+	margin:23px auto 10px auto;
+	
+	border:0;
+	background: transparent url(layrus/8bit/separator_long_70per.png) no-repeat center top;
+}
+/* sorry tbc, there is no way to style HRs in IE7- without additional html markup.
+	it's either that or vendor specific css properties. or ugly HRs
+*/
+.hr_separator hr{
+	display:none;
+}
+pre.text {
+  font-family: Verdana, "Geneva CE", Lucida, sans-serif;
+  font-family: Arial, sans-serif;
+  padding:0.5em;border:1px dashed #8cacbb;color:#000;
+  overflow:auto;
+  line-height: 1.4em;
+  background-color:#f7f9fa;
+  margin:0 0 1.0em 0;
+}
+p {
+  margin:auto;
+  margin-bottom:1em;
+  margin-top:1em;
+}
+
+em {
+	font-style: italic;
+}
+
+.preview {
+  border:1px dashed #c0c0c0;
+  background-color: #eee;
+  margin:2em;
+  padding:1em;
+}
+
+img.imgLeft {
+  float:left;
+  margin:1em;
+  margin-top: 0;
+}
+img.imgRight {
+  float:right;
+  margin:1em;
+  margin-top: 0;
+}
+
+img.imgCenter
+{
+  display:block;
+  margin:auto;
+  margin-top:1em;
+  margin-bottom:1em;
+
+}
+
+/*single article*/
+.articleOne .post{
+	background: none;
+	margin-bottom:-10px;
+}
+.articleOne .stats{
+	font-size: 90%;
+	padding: 1em 0.5ex 0 0;
+	position: relative;
+	text-align:right;
+}
+.articleOne .stats .accesscount{
+	font-size:200%;
+}
+.articleOne .stats .external{
+/*	position:absolute;
+	bottom:0;
+	left:0;*/
+	float:left;
+}
+.articleOne .post .date {
+	background:none;
+	border:0;
+	margin-right:20px;
+	padding: 0.5em 0.5ex 0 0.5ex;
+}
+.articleOne .centerTitle{
+	text-shadow: 0px 2px 2px #ccc;
+	text-align:center;
+	background: url(layrus/8bit/separator_long.png) no-repeat center top;
+	margin:0.5em 0 0 0;
+	padding-top:0.5em;
+}
+.articleOne .centerSubtitle{
+	display:block;
+	text-align:center;
+	font-style:italic;
+	
+	margin:0.5em 0;
+}
+.articleOne .articleWrapper{
+	background: url(layrus/8bit/separator_long.png) no-repeat center top;
+	padding-top:1.5em;
+}
+.articleOne .voteminus:hover, .articleOne .voteplus:hover{
+	background:none;
+	/*todo: check out the css property for non-box shadow (transparent pngs)
+	/*drop-shadow: 1px 1px 2px rgba(50, 50, 50, 0.4);*/
+}
+.articleOne .voteminus{
+	margin-right: 10px;
+}
+/*comment tree*/
+.commentsContainer{
+	position:relative;
+	overflow:auto;
+}
+.commentsContainer .commentsHeader{
+	background:url(layrus/8bit/comment_line.png) repeat-y left;
+	padding-top:0.5em;
+}
+.commentsContainer h2{
+	font-weight: normal;
+	font-size:1.8em;
+	color: #777;
+	margin:0;
+	padding:0 0 0 27px;
+	display:inline;
+}
+.comment {
+	/**order-left:2px solid #AAAAAA;*/
+	background:url(layrus/8bit/comment_line.png) repeat-y left;
+	position:relative;
+	padding-top:0.5em;
+	overflow:auto;
+}
+.comment-content{
+	padding: 0.5em 2px 0.2em 27px;
+	background:url(layrus/8bit/comment_line_horizontal.png) no-repeat top left;
+}
+.commentsContainer .lastComment{
+	background:none;
+	/*background:url(layrus/8bit/comment_line_finishing.png) no-repeat top left;*/
+	padding-top:0;
+}
+.commentsContainer .lastComment .comment-content{
+	padding-top: 1em;
+	background:url(layrus/8bit/comment_line_horizontal_finishing.png) no-repeat top left;
+}
+.comment-inside{
+	background:#fafafa;
+	border:1px solid #e2e2e2;
+	border-radius: 5px;
+	box-shadow: 0px 1px 3px rgba(50, 50, 50, 0.4);
+	padding:0.5em;
+	
+	position:relative;
+}
+.comment-inside .commentAvatar{
+	border:1px solid #9e9e9e;
+	float:left;
+	margin-right:0.5em;
+	margin-bottom:0.2em;
+}
+.comment-inside h3{
+	float:right;
+	margin:0 0 1em 3em;
+}
+.comment-footer{
+	/*float:right;
+	vertical-align: bottom;*/
+	margin-top:0.2em;
+	text-align:right;
+	clear: both;
+}
+.comment-footer .comment-reply-inline{
+	background: url(layrus/8bit/quote.png) no-repeat bottom right;
+	padding-right:23px;
+	display:inline;
+	line-height:2em;
+}
+.comment-footer .submit{
+	margin-right:0.5em;
+}
+.comment-reply{
+	padding: 0.5em 0 0.2em 2em;
+	background:url(layrus/8bit/comment_line_horizontal_finishing.png) no-repeat top left;
+}
+.comment-reply .comment-inside{
+	position: relative;
+	display:inline;
+	line-height:3em;
+	float:left;
+	padding:5px;
+}
+.comment-reply img{
+	vertical-align: middle;
+}
+.reply {
+ margin-bottom: 1em;
+ margin-top: 0em;
+}
+.commentPost {
+	margin-bottom: 1em;
+	margin-top: 5px;
+}
+
+/*wat?*/
+.ok {
+	text-align:center;
+	color:green;
+	padding:1em;
+}
+
+.fail {
+	text-align:center;
+	color:red;
+	padding:1em;
+}
+
+
+.dokuWiki {
+  margin-bottom:2em;
+}
+p.date
+{
+  font-size:80%;
+  margin-top:0;
+}
+
+#sortList
+{
+ font-size:90%;
+ text-align: right;
+ margin:0;
+ padding:0;
+ padding-bottom:1.5ex;
+}
+*html #sortList {padding-top: 1ex; padding-bottom:1ex;}
+#sortList a
+{
+ color: #000;
+ background-repeat:no-repeat;
+ margin-left:10px;
+}
+#sortList a.asc
+{
+ /*background-image: url('sort_ascending.png');*/
+ font-weight: bold;
+}
+#sortList a.desc:after
+{
+  content:' ▾';
+  color:#006633;
+}
+#sortList a.asc:after
+{
+  content:' ▴';
+  color:#006633;
+
+}
+#sortList a.desc
+{
+ /*background-image: url('sort_descending.png');*/
+ font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#content {
+  min-height:15em;
+}
+
+
+.hint
+{
+  font-size: .8em;
+  margin-bottom: 1em;
+}
+.capital
+{
+	/* display:block;*/
+	font-size:150%;
+	text-transform:uppercase;
+}
+
+#posts {
+	margin-top: 1em;
+}
+
+#posts .tagCloud {
+	xwidth: 70%;
+	xmargin-left: 25%;
+	float: left;
+	padding: 6px;
+	border: 1px solid #ccc;
+	background-color: #f0f0f0;
+}
+/*
+.tagCloud a:link {text-decoration: none}
+.tagCloud a:visited{text-decoration: none}
+*/
+
+.post form, .post fieldset {
+	display: inline;
+}
+
+.center
+{
+  text-align:center;
+  margin:auto;
+}
+.clearstatcache
+{
+  clear:both;
+}
+
+
+
+
+
+
+
+.searchhighlight span.highlight, .post span.highlight, span.highlightedkey {
+	background-color: #006900;
+	color: white;
+	/*background-color: #f6ff00;*/
+	font-weight: bold;
+}
+
+#timeline
+{
+ color: #f00;
+ font-weight: bold;
+}
+#timeline iframe{
+ height: 20px;
+ border: 0;
+ margin: 0;
+ padding: 0;
+}
+#subtitleBox.disabled label
+{
+ color: #808080;
+}
+#subtitleBox.disabled input
+{
+ border-color: #808080;
+}
+
+.preview.scrollbar
+{
+ height: 30em;
+ overflow: auto;
+}
+
+
+
+
+
+
+.postList ol {
+  padding:0;
+  margin:0;
+  list-style-type:decimal;
+}
+
+.postList {}
+
+#right ul {
+  padding:0;
+  margin:0;
+  list-style-type:none;
+}
+li.inline {
+  display:inline;
+}
+
+
+.CSlist
+{
+  display:inline;
+  list-style-type:none;
+  margin:0;
+  padding:0;
+}
+li.CSlist:before
+{
+;
+ content:", ";
+}
+
+li.CSlist:first-child:before
+{
+content: "";
+}
+
+#recaptcha_image
+{
+  display:block;
+  margin:auto;
+  margin-top:1em;
+  margin-bottom:1em;
+}
+#recaptcha_image img
+{
+  display:block;
+  margin:auto;
+}
+.bold
+{
+  font-weight:bold;
+}
+
+
+
+.table td, .table th {
+	padding: 2px;
+}
+.table th {
+	background-color: #e0e0e0;
+}
+.table tr {
+	background-color: #f0f0f0;
+}
+.table tr:hover {
+	background-color: #d5ffd6;
+}
+.table td form, .table td fieldset {
+	display: inline;
+}
+
+
+.noMargin {
+	margin: 0;
+}
+
+
+
+/*** postForm.xsl ***/
+/* specialne spravanie sa v odosielani postu */
+.postFormPortlet{
+	margin-top:45px;
+}
+#postForm {}
+#postForm label {
+	width: auto;
+	padding-bottom: .5em;
+}
+#postForm label.indentLabel {
+	width: 16em;
+	padding-bottom: 0;
+}
+
+.docuwikitable {
+	float:left;margin-right: 1em;
+	}
+
+.docuwikitable th, .docuwikitable td  {
+	padding: 0.2em .5em;
+}
+.docuwikitable th {
+	border: 1px solid gray;
+	background: #EAEAEA;
+}
+.docuwikitable td {
+	border: 1px solid gray;
+}
+
+.question_mark {
+	padding-right: 0.3em;
+}
+
+.postFormSection {
+	padding: 1em;
+	background: url("postForm_section_bg.gif") repeat-x top;
+	border-top: 1px solid gray;
+}
+
+.postFormSection h3 {
+	clear: both;
+}
+
+
+
+
+
+/*** userPosts.xsl ***/
+.draft {
+	color: gray;
+}
+
+
+
+/*** layout3Col_layrus-  prispevky stream ***/
+.post {
+	background: #fff url(layrus/8bit/post_regular_rightcorner.png) no-repeat bottom right;
+	/*padding: 1ex 0;*/
+	position: relative; /* IE6 */
+	margin: 0 0 1ex 0;
+}
+.holder{
+	padding: 0 0 0.45em 0;
+}
+.post .date {
+  background: #eee;
+  border-top: solid #CCC 1px;
+  padding: 0.3ex 0.5ex 0.5ex;
+  font-size: 85%;
+}
+.post .date p { margin: 0; }
+
+/*perex specific properties*/
+.perex{
+	overflow: hidden;
+}
+.perex img.imgRight{
+	margin: 0 0 1em;
+}
+
+/* top posts */
+#top5naTitulke {
+	background: white;
+}
+#top5naTitulke .post {
+	background: #eefaee url(layrus/8bit/post_selected_leftcorner.png) no-repeat bottom left;
+	padding: 0;
+}
+#top5naTitulke .holder {
+	background: transparent url(layrus/8bit/post_selected_rightcorner.png) no-repeat bottom right;
+	margin:0;
+}
+#top5naTitulke .postContent {
+	padding: 0 1em;
+}
+
+.post .dateTop {
+	/*what the hell was the person who did this thinking?
+	background: url(dateTopBorder.gif) right repeat-y #EEE;*/
+	border-right: 5px solid #006900;
+}
+
+.markTopPost {
+	float: right;
+	margin-right:0.4em;
+	font-weight: bold;
+}
+.imageTopPost {
+	float: right;
+	margin-right: .2em;
+}
+/* admin stuff? i dunno */
+/* TODO: find out what this is */
+.markTopPostOut {
+	color: gray;
+}
+
+.post .status {
+  font-size: 90%;
+  /*pravy padding z "date" hlavicky*/
+  padding: 1em 0.5ex 0 0;
+  position:relative;
+}
+#top5naTitulke .status{
+	/*lavy padding z "postContent" samotneho, lebo je v top clankoch posunuty */
+	padding-left: 1em;
+}
+.post .status-info{
+	/*ie can't handle this well
+	float:right;
+	padding-right:0.45em;*/
+	position:absolute;
+	right:0.45em;
+}
+
+/* ie hacks */
+/* zmaz div co robi clear:both */
+*:first-child+html .post .date .clear { clear: none; }
+* html .post .date .clear { clear: none; }
+
+/* posun flaot right element relativne pre ie7 */
+*:first-child+html .iefloathack{
+	position: relative;
+	top: -1.4em;
+}
+/* posun flaot right element relativne pre ie6 */
+* html .iefloathack{
+	position: relative;
+	top: -1.4em;
+}
+
+
+.post.last {
+	/*border-bottom: 0px;*/
+}
+.post h3 { /* bolo h2 */
+  margin: 1ex 0 1ex 0;
+  font-size: 136%;
+}
+.post h4 { /* bolo h3 */
+  margin: 1ex 0 1.5ex 0;
+  font-size: 100%;
+}
+
+
+
+
+
+
+.warning {
+	margin: 1em;
+	padding: 1em;
+  xcolor: red;
+	font-size: 1em;
+	border: 2px solid red;
+}
+
+
+
+
+
+
+
+/*** PORTLETS ***/
+
+/* usersPortlet */
+.usersPortlet ul{
+	margin: 0;
+	padding: 0;
+}
+.usersPortlet ul li{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+.usersPortlet ul li ul li {
+	margin: 0;
+	padding: 0;
+	display: inline;
+}
+.usersPortlet ul li ul li:after {
+	content: " · ";
+
+}
+.usersPortlet ul li ul li:last-child:after {
+  content: "";
+}
+.usersPortlet ul li ul li.display_none{
+	display: none;
+}
+.usersPortlet .capital{
+	float:left;
+	margin:0;padding:0;
+	margin-right:0.3em;
+	line-height: 1.5em;
+}
+.usersPortlet .names{
+	padding-bottom:1.1em;
+}
+
+/* sortPortlet */
+.sortPortlet ul {
+	margin: 0;
+	padding: 0;
+	display:inline;
+}
+.sortPortlet ul li{
+	margin: 0;
+	margin-left:2em;
+	padding: 0;
+	list-style-type: none;
+	display:inline;
+}
+/* blogHeader */
+.blogHeader h3{
+  font-size: 180%;
+  padding:1.5em 1em;
+  font-weight: bold;
+}
+.blogHeader a,.blogHeader a:visited, .blogHeader a:active, .blogHeader a:link {
+  color:black;
+  background-color: transparent;
+}
+
+/* loginPortlet */
+.loginPortlet {
+	position: absolute;
+	top: 0.15em; right: 0.3em;
+	z-index: 50;
+	text-align: right;
+}
+#loginAnchorInHeader{
+	overflow: hidden;
+}
+.loginPortlet #quickLoginForm {
+	border: 1px solid #c0c0c0;
+	background-color: #fdfdfd;
+	padding: 10px;
+	display: none;
+	
+	box-shadow: 0 0 5px 0px #d9d9d9 inset;
+}
+.loginPortlet #quickLoginForm fieldset {}
+.loginPortlet #quickLoginForm legend {
+	text-align: left;
+	font-weight: bold;
+	padding-bottom: 0.3em;
+}
+.loginPortlet label {}
+
+.loginPortlet #quickLoginForm input.submit {
+	/*this screwed ie up*/
+	/*float: right;*/
+	clear: both;
+}
+.loginPortlet #quickLoginForm input.input_large {
+	width: 10em;
+}
+.loginPortlet #quickLoginForm input#openid_url {
+	/*todo:find what do these x properties do*/
+	background: url('openid.png') no-repeat;
+	background-color: #fff;
+	background-position: 0% 50%;
+	xwidth: 18em;
+	border: 1px solid #000;
+	xborder: 1px solid #a5c8a5;
+	xbackground: #f9fdf9;
+	padding-left: 17px;
+}
+#loginViaDefault {
+	xdisplay: none;
+}
+#loginViaOpenID {
+	background: url(layrus/8bit/portlet_separator.png)  no-repeat center top;
+	margin-top: 1em;
+	padding-top: 1em;
+	xdisplay: none;
+}
+
+
+
+
+
+
+/* searchPortlet */
+.searchPortlet {
+	position:absolute;
+	bottom: 23px;
+	right: 10px;
+	width:190px;
+	text-align:left;
+}
+.searchPortlet #searchForm{
+	margin:0;
+}
+.searchPortlet fieldset {}
+.searchPortlet input.inputbox {
+	margin: 0px;
+	border: 1px solid #ccc;
+	padding: 2px;
+	background-color: #f8f8f8;
+	width:58%;
+}
+.searchPortlet input.submit {
+	margin: 0px;
+	padding: 2px;
+	width:35%;
+}
+*:first-child+html .searchPortlet input.submit { padding: 1px; }  /* ie7 */
+* html .searchPortlet input.submit {                    /* ie6 */
+	padding: 0px;
+	position: relative;
+	top: 1px;
+}
+
+
+/* bestRatedPortlet */
+.bestRatedPortlet {}
+.bestRatedPortlet .bestRatedReputation {	color: #afafaf; }
+
+
+/* mostReadPortlet */
+.mostReadPortlet {}
+.mostReadPortlet .mostReadAccessCount { color: #afafaf; }
+
+
+
+
+/* tagCloudPortlet */
+.tagCloudPortlet ol { padding-left: 0; }
+.tagCloudPortlet li { display:inline; }
+.tagCloudPortlet .tagBoxWrapper {
+	float: left; width: 48%;
+}
+.tagCloudPortlet .tagBoxWrapper #tags {
+	margin: .3em 0;
+}
+
+.tagCloudPortlet .tagBoxWrapper label {
+	text-align:left;
+	margin: .2em 0;
+}
+.tagCloudPortlet .tagAreaWrapper {
+	float: right; width: 48%;
+}
+.tagCloudPortlet .tagAreaWrapper #tagArea{
+	margin: .3em 0;
+}
+.tagCloudPortlet .tagAreaWrapper label {
+	text-align:left;
+	margin: .2em 0;
+}
+
+
+
+/* postFormPortlet */
+.postFormPortlet #showPostLabel {
+	padding-right: 0;
+	text-align:left;
+	width: 10.5em;
+}
+.postFormPortlet #postStatusRadioButtons {
+	float: left;
+	width: 17em;
+}
+.postFormPortlet #submitButton {
+	margin: .3em;
+}
+
+
+
+/* campaignsPortlet */
+.campaignsPortlet a:hover  {
+	background-color: white;
+}
+
+/* topmenuPortlet */
+.topmenuPortlet ul{
+	margin:0;padding:0;
+}
+.topmenuPortlet ul li{
+	display: inline;
+	margin-right:0.15em;
+}
+.topmenuPortlet ul li:after{
+  content:'|';
+}
+.topmenuPortlet ul li.last:after{
+  content:'';
+}
+
+/* managermenuPortlet */
+#header .managermenuPortlet{
+	position:absolute;
+	right:10px;
+	top:0px;
+	font-size: 0.85em;
+}
+.managermenuPortlet ul{
+	margin:0;padding:0;
+}
+.managermenuPortlet ul li{
+	display: inline;
+	line-height: 3em;
+	
+	margin-right:0.5em;
+}
+.managermenuPortlet a{
+	text-decoration: none;
+	
+	/*this padding artificially sets the height of the element, because ie 
+	can't work with inline-block elements. line-height loses it's point*/
+	padding:1em 0;
+	padding-left:25px;
+}	
+.managermenuPortlet .menu_myblog a{
+	background: transparent url(layrus/8bit/menu_myblog.png) no-repeat center left;
+	padding-left:22px;
+}
+
+.managermenuPortlet .menu_posts a{
+	background: transparent url(layrus/8bit/menu_posts.png) no-repeat center left;
+	padding-left:23px;
+}
+.managermenuPortlet .menu_files a{
+	background: transparent url(layrus/8bit/menu_files.png) no-repeat center left;
+}
+.managermenuPortlet .menu_settings a{
+	background: transparent url(layrus/8bit/menu_settings.png) no-repeat center left;
+}
+
+/* langMenuPortlet */
+.langMenuPortlet ul {
+	margin: 0;
+	padding: 0;
+}
+.langMenuPortlet ul li {
+	display: inline;
+	margin-right: .4em;
+}
+a.skLangTop, a.enLangTop { padding-top: 1px; } /* flagy v langMenuPortlet */
+#footer .langMenuPortlet {
+	float: right;
+}
+
+#mid-top .langMenuPortlet{
+	float:left;
+}
+#mid-top .lang_sk{
+	padding-left:28px;
+	background: url(layrus/8bit/flag_sk.png) no-repeat center left;
+}
+#mid-top .lang_en{
+	padding-left:28px;
+	background: url(layrus/8bit/flag_en.png) no-repeat center left;
+}
+#mid-top .lang_ensk{
+	padding-left:28px;
+	background: url(layrus/8bit/flag_all.png) no-repeat center left;
+}
+
+/* Flags */
+a.skLang, a.enLang { /* flagy pri postoch*/
+  padding-left: 20px;
+  background-repeat: no-repeat;
+  background-position: center left;
+}
+a.skLang { background-image: url("../css/flags/sk.png"); }
+a.enLang { background-image: url("../css/flags/en.png"); }
+
+
+/* should delete this replace all the elements using it with the .clear defined in the style_layrus.css*/
+.clear_both {
+	clear: both;
+}
+
+/* userInfoPortlet */
+.userInfoPortlet{
+	position:relative;
+}
+
+.avatar {
+	margin: 0;
+	text-align:center;
+}
+.avatar img {
+	margin:0;
+	width:178px;
+	border:1px solid #999999;
+	padding: 5px;
+	box-shadow: 1px 1px 2px rgba(50, 50, 50, 0.4);
+}
+.avatar a:hover{
+	/*in case the picture is be linked, for the fullsize picture, for example*/
+	background:none;
+}
+.userInfoPortlet .userName {margin:0;padding:0.2em 0 0 0;}
+.userInfoPortlet .aboutNode{
+	margin-top:1em;
+}
+
+/*todo: maybe move this to a separate css file in case settings are initiated*/
+/* settings page + picture drawing */
+
+.settingsPortlet .settingsNavigation{
+	background: url("layrus/8bit/separator_long.png") no-repeat scroll center top transparent;
+	text-align: center;
+	margin:0;
+	padding:1em 0;
+}
+.settingsPortlet .settingsNavigation li{
+	display:inline;
+}
+.settingsPortlet .settingsNavigation .submit{
+	margin:0 0.5em;
+	box-shadow: 0 8px 16px -6px rgba(0, 0, 0, 0.15);
+	/*very optional*/
+	display:inline-block;
+	min-width:13ex;
+}
+.settingsPortlet .settingsNavigation .submit:hover, .settingsPortlet .settingsNavigation .submit_pressed{
+	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0);
+	box-shadow: inset 0px 1px 1px 1px rgba(0,0,0,0.05);
+}
+.settingsPortlet .settingsContents{
+	background: url("layrus/8bit/separator_long.png") no-repeat scroll center top;
+	overflow:auto;
+	padding-top:30px; /*ie6 will collapse margins without this, so if you were to remove it, keep it at least at 1px*/
+}
+.settingsPortlet .hr_separator{
+	/*margin-bottom:0;*/
+	clear:both;
+}
+.settingsPortlet h2, .pictureCreatorPortlet h2{
+	font-size:1.1em;
+	color:#333;
+	margin-top:0;
+}
+/*settings:about*/
+.settingsPortlet .photo_right{
+	position:relative;
+	text-align:right;
+}
+.settingsPortlet .photo_right label{
+	float: none;
+	padding-right:0;
+}
+.settingsPortlet .avatar{
+	float:left;
+}
+.settingsPortlet #info{
+	text-align:right;
+	padding-right:20px;
+	padding-left:10px;
+}
+/*settings:design*/
+.settingsPortlet .color_example{
+	/*golden ratio ftw*/
+	width:51px;
+	height:32px;
+	border:1px solid #8b8b8b;
+	
+	float:left;
+	margin: -5px 0 0 1em;
+}
+.settingsPortlet .picture_example{
+	background:url(layrus/8bit/separator_vertical.png) no-repeat center left;
+	/*watch out so you don't break the floats*/
+	width:190px;
+	height:132px;
+	
+	float:right;
+	margin-top: -5px;
+	text-align: center;
+}
+.settingsPortlet #live_demo{
+	display:block;
+	margin-left:37px;
+}
+.handle{
+	cursor: pointer;
+}
+.color_slider{
+	margin-top:0.7em;
+	position:relative;
+	overflow:visible;
+}
+.color_slider .handle{
+	width:18px;height:23px;
+	background:transparent url('layrus/24bit/slider_handle_shadow.png');
+	position:absolute;
+	top:-4px;
+}
+.color_slider .handle_inside{
+	position:relative;
+}
+.color_slider .handle_color{
+	left:2px;top:2px;
+	position:absolute;
+	width:12px;
+	height:17px;
+	z-index:1;
+}
+.color_slider .handle_frame{
+	left:0px;top:0px;
+	position:absolute;
+	z-index:2;
+}
+.settingsPortlet #hueValue{
+	margin-right:0.5em;
+	margin-top:5px;
+}
+.upload_right{
+	float:right;
+}
+.settingsPortlet #headerpic .hint{
+	float:right;
+}
+.settingsPortlet .header_preview{
+	clear:both;
+	width:100%;
+	margin-bottom:1em;
+}
+.settingsPortlet .visibility_selectors{
+	background: url('layrus/8bit/separator_vertical.png') no-repeat top center;
+	position:relative;
+	width:100%;
+}
+.settingsPortlet .visibility_selectors img{
+	display:block;
+	margin:auto;
+}
+.settingsPortlet .visibility_selectors .left{
+	width:48%;
+	float:left;
+	position:relative;
+}
+.settingsPortlet .visibility_selectors .right{
+	width:48%;
+	float:right;
+	position:relative;
+}
+.settingsPortlet .visibility_selectors input.submit{
+	clear: both;
+	margin-top:1em;
+}
+.settingsPortlet .pictures_viewer{
+	width:99%;
+	position:relative;
+	overflow:auto;
+	
+	box-shadow: 0 0 5px 1px #D0D0D0 inset;
+	border:1px solid #d0d0d0;
+	margin-bottom:1em;
+}
+
+.backgroundPicturesPortlet{
+	white-space: nowrap;
+}
+.backgroundPicturesPortlet .pictureHolder{
+	/*limit for the filesize*/
+	display:inline;
+	position: relative;
+	width:130px;
+	height:130px;
+	font-size:10px;/*for absolute positionning*/
+	text-align: center;
+}
+.backgroundPicturesPortlet .pictureHolder img{
+	margin:auto;
+	display:inline;
+	vertical-align: middle;
+}
+/* ie6 & 7*/
+*:first-child+html .pictures_viewer{ height:150px; }
+* html .pictures_viewer{ height:150px; }
+* html .backgroundPicturesPortlet .pictureHolder img { vertical-align:top; }
+/* end ie*/
+.backgroundPicturesPortlet .pictureHolder .pictureChecker{
+	position:absolute;
+	right:10px;
+}
+.backgroundPicturesPortlet .pictureHolder .pictureChecker{
+	position:absolute;
+	right:10px;
+}
+.backgroundPicturesPortlet .pictureHolder .adminControls{
+	background:white;
+	margin:4px;
+	position:absolute;
+	left:0px;
+}
+.clean_slider{
+	position:relative;
+}
+.clean_slider .handle{
+	position: absolute;
+	top:2px;
+}
+.settingsPortlet .entropy_prview_wrap{
+	float:right;                                               
+	width:125px;      
+}
+.settingsPortlet .entropy_preview{
+	background: url(layrus/8bit/entropy_preview.png) no-repeat;
+	height:77px;     
+	position:relative;
+	overflow: hidden;
+}
+.settingsPortlet .entropy_desc{
+	text-align:center;
+}
+.settingsPortlet .entropy_dot{
+	width:2px;
+	height:2px;
+	background:red;
+	position:absolute;
+}
+.settingsPortlet #background .nojavascript_content{
+	margin-top:10px;
+}
+#javascript_only{
+	display:none;
+}
+.settingsPortlet .final_submit{
+	clear:both;
+	margin-top:1em;
+	margin-bottom:5px;
+}
+.pictureCreatorPortlet ul{
+	padding-left:0;
+	margin-left:1em;
+	list-style: disc;
+}
+.pictureCreatorPortlet .hr_separator{
+	margin:0;
+}
+.pictureCreatorPortlet .hr_separator.extra_space{
+	margin:23px auto 10px auto;
+}
+.pictureCreatorPortlet #sketchEditor{
+	border: 1px solid #939393;
+	box-shadow: 0 0 10px 2px #D0D0D0 inset;
+}
+.pictureCreatorPortlet .sketchControls{
+	float:right;
+	margin-right:30px;
+	width:190px;
+}
+.pictureCreatorPortlet #editorInterface{
+	position:relative;
+}
+.pictureCreatorPortlet #saveDrawingSubmit{
+	position:absolute;
+	bottom:0;
+	/*whatever*/
+	right:95px;
+}
+.pictureCreatorPortlet .slide{
+	margin-bottom:30px;
+}
+/*TEMPORARY jqueryUI overrides*/
+.ui-widget-content{
+	border:0 !important;
+}
+.ui-slider-handle{
+	background: url('layrus/24bit/slider_solidhandle.png') no-repeat !important;
+	width:18px !important;
+	height:23px !important;
+	border:0 !important;
+	border-radius: 0 !important;
+}
+.pictureCreatorPortlet .ui-slider-horizontal{
+	border-radius: 0 !important;
+	background: url('layrus/8bit/slider_small_cleanback.png') no-repeat center center !important;
+}
+.settingsPortlet .ui-slider-horizontal{
+	border-radius: 0 !important;
+	background: url('layrus/8bit/slider_cleanback.png') no-repeat center center !important;
+}
+.settingsPortlet #entropy_slider{
+	/*margin-left:12px;*/
+}
+.desc_width{
+	padding-left:20px;
+	margin-bottom:5px;
+	background: url('layrus/8bit/drawing_dot.png') no-repeat center left;
+}
+.desc_alpha{
+	padding-left:20px;
+	margin-bottom:5px;
+	background: url('layrus/8bit/drawing_dot_alpha.png') no-repeat center left;
+}
+
+.submit#drawModePencil, .submit#drawModeEraser{
+	padding: 0;
+	display:inline-block;
+	height:28px;
+}
+.submit#drawModePencil span, .submit#drawModeEraser span{
+	display:inline-block;
+	width:80px;
+	line-height:25px;
+	height:28px;
+}
+.submit#drawModePencil span{
+	background: url('layrus/24bit/pen_unpicked.png') no-repeat center;
+}
+.submit#drawModeEraser span{
+	background: url('layrus/24bit/eraser_unpicked.png') no-repeat center;
+}
+.submit#drawModePencil.modePicked span{
+	background: url('layrus/24bit/pen_picked.png') no-repeat center;
+}
+.submit#drawModeEraser.modePicked span{
+	background: url('layrus/24bit/eraser_picked.png') no-repeat center;
+}
+/*duplicate code, pure css without a preprocessor is lame*/
+.submit#drawModePencil.modePicked, .submit#drawModeEraser.modePicked{
+	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0);
+	background: #fafafa url("layrus/8bit/button_pressed_gradient.png") repeat-x top;
+	background-image: linear-gradient(0deg, rgb(250, 250, 250) 80%, rgb(235, 235, 235) 100%);
+}
+
+/*drawing board canvas app*/
+.drawing-board, .drawing-board * { -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; }
+.drawing-board-utils-hidden { display: none !important; }
+.drawing-board { position: relative; display: block; }
+.drawing-board-canvas-wrapper { position: relative; margin: 0; border: 1px solid #ddd; }
+.drawing-board-canvas { position: absolute; top: 0; left: 0; z-index: 10; width: auto; }
+.drawing-board-canvas { cursor: crosshair; z-index: 20; }
+.drawing-board-cursor { position: absolute; top: 0; left: 0; pointer-events: none; border-radius: 50%; background: #ccc; background: rgba(0, 0, 0, 0.2); z-index: 30; }
+
+/* Tags */
+.tagArea {
+  border: 1px solid #ccc;
+  padding: .4em .6em .6em .6em;
+  text-align:center;
+  width:95%;
+	margin-bottom: 1em;
+}
+.tagArea ol {
+	margin: 0;
+}
+
+.tag {
+  cursor:pointer;
+  margin-left:0em;
+  margin-right:0.2em;
+  margin-bottom:0;
+  margin-top:0;
+}
+.tag:hover {
+  text-decoration:underline;
+}
+
+/* v postForm.xsl - nech tagy vyzeraju klikatelnejsie */
+.tagButton {
+  cursor:pointer;
+	color: #006900;
+  margin: 0 .2em 0 0;
+	background: #e8fae8;
+	border-right: 1px solid #77cd77;
+	border-bottom: 1px solid #52b252;
+	padding: 0 .4em;
+	white-space: nowrap;
+	xcolor: black;                     /* seda verzia */
+	xbackground: #f1f1f1;              /* seda verzia */
+	xborder-right: 1px solid #cfcfcf;	 /* seda verzia */
+	xborder-bottom: 1px solid #b3b3b3; /* seda verzia */
+	text-decoration: none;
+	line-height: 1.5;
+}
+.tagButton a {
+	text-decoration: none;
+}
+.tagButton:hover, .tagButtonSelected
+{
+	background: #006900;
+	color: #dcf6dc;
+	border-right: 1px solid #004600;
+	border-bottom: 1px solid #004600;
+	xbackground: black;                /* seda verzia */
+	xcolor: #e8fae8;                   /* seda verzia */
+	xborder-right: 1px solid black;    /* seda verzia */
+	xborder-bottom: 1px solid black;	 /* seda verzia */
+}
+.tagButton:hover a, .tagButtonSelected a {
+color: white;
+}
+
+/* loginForm */
+.loginArea{
+	background: url(layrus/8bit/login_separators.png) no-repeat center top;
+	text-align:center;
+	position:relative;
+	margin:0;
+	padding:52px 0;
+	width:100%;
+	font-size: 0.9em;
+	/* TODO: min height for ie */
+	min-height: 25em;
+}
+.loginArea .login_legend{
+	display: block;
+	padding:0 1em;
+	font-size:1.2em;
+	margin-bottom:25px;
+}
+.loginArea .login_regular legend{
+	/*weird...*/
+	width:100%;
+	text-align:right;
+	display:block;
+}
+.loginArea .input_row{
+	margin-bottom:13px;
+	position:relative;
+}
+.loginArea label{
+	display:inline;
+}
+.loginArea .input_login{
+	width:8em;
+}
+.loginArea .login_regular, .loginArea .logged_name{
+	width:45%;
+	float:left;
+	text-align:right;
+	padding-right:3%;
+}
+.loginArea .login_openid, .loginArea .logged_action{
+	width:45%;
+	float:right;
+	text-align:left;
+	padding-left:3%
+}
+.loginArea .login_openid label{
+	position:absolute;
+	left:-2.1em;
+}
+.loginArea .login_openid .login_inputs{
+	margin-left:2.1em;
+}
+.loginArea .login_inputs{
+	padding-top:30px;
+}
+
+
+.error_box{
+	text-align:center;
+	border:1px solid #f9dea2;
+	background: #fef7e0;
+	padding: 0.5em 0.1em 0.5em 0.1em;
+	border-radius:5px;
+}
+#portal_error{
+	/*position:relative;
+	margin:10px 210px 0 210px;*/
+	position:absolute;
+	top:3em;
+	left:210px;
+	right:210px;
+	padding-right:20px;
+	padding-left:20px;
+}
+.error_close{
+	background: url('layrus/24bit/close.png') no-repeat center center;
+	width:15px;
+	height:15px;
+	position:absolute;
+	right:5px;
+	top:5px;
+	cursor:pointer;
+}

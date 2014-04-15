@@ -1,0 +1,32 @@
+<?php
+
+use OAuth2\ResponseType\ResponseTypeInterface;
+
+class Token extends CI_Controller
+{
+function index()
+{
+// include our OAuth2 Server object
+require_once __DIR__.'/server.php';
+
+// Handle a request for an OAuth2.0 Access Token and send the response to the client
+
+//check if it's not a combination client credentials and usupported scope for client credentials
+$request = OAuth2\Request::createFromGlobals();
+if($request->request('grant_type') == 'client_credentials')
+{
+    if($request->request('scope') != 'receiveinformation' )
+    {
+	$response = new OAuth2\Response();
+        $response->setError(400, 'invalid_scope', 'The scope requested is invalid for this request');
+	$response->send();
+	return null;
+    }	
+}
+
+
+
+$server->handleTokenRequest($request)->send();
+}
+}
+?>

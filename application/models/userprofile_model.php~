@@ -1,0 +1,183 @@
+<?php
+class Userprofile_model extends CI_Model
+{
+      /**FUNCTIONS FOR PROFILE.MATFYZ.SK PART
+      */
+      function get_all($username)
+      {
+           $this->db->where('username',$username);
+           $query = $this->db->get('profile_general');
+           
+          foreach($query->result() as $row)
+          {
+          
+           return $row;
+          }
+      }
+      function get_general($username)
+      {  
+         $this->db->select('first_name, surname, username, about_long, occupation, email');
+         $this->db->where('username',$username);   
+         $query = $this->db->get('profile_general');
+         
+         
+          foreach($query->result() as $row)
+          {
+           return $row;
+          }
+          
+          
+  
+      }
+      
+      /**
+      FUNCTIONS FOR EXTERNAL API FOR OTHER APPLICATIONS
+      */
+      function get_firstname($id_user)
+      {	
+	  $this->db->select('first_name');
+          $this->db->where('id_user',$id_user);   
+          $query = $this->db->get('profile_general');
+         
+         
+          foreach($query->result() as $row)
+          {
+           return $row->first_name;
+          }
+	
+      }
+
+      function get_surname($id_user)
+      {
+	  $this->db->select('surname');
+          $this->db->where('id_user',$id_user);   
+          $query = $this->db->get('profile_general');
+         
+         
+          foreach($query->result() as $row)
+          {
+           return $row->surname;
+          }
+      }
+      function get_whole_name($id_user)
+      {
+	  $this->db->select('first_name surname');
+          $this->db->where('id_user',$id_user);   
+          $query = $this->db->get('profile_general');
+         
+         
+          foreach($query->result() as $row)
+          {
+           return $row->first_name. " ". $row->surname;
+          }
+      }
+      function get_photo($id_user)
+      {
+	  $this->db->select('username');
+          $this->db->where('id_user',$id_user);   
+          $query = $this->db->get('oauth_users');
+         
+         
+          foreach($query->result() as $row)
+          {
+	    //way to the picture
+            return base_url().'/images/users/'.$row->username.'/avatar.jpg'; 
+          }
+      }
+      function get_about($id_user)
+      {
+	  $this->db->select('about_short');
+          $this->db->where('id_user',$id_user);   
+          $query = $this->db->get('profile_general');
+         
+         
+          foreach($query->result() as $row)
+          {
+           return $row->about_short;
+          }
+      }
+      function get_email($id_user)
+      {
+	  $this->db->select('email');
+          $this->db->where('id_user',$id_user);   
+          $query = $this->db->get('profile_general');
+         
+         
+          foreach($query->result() as $row)
+          {
+           return $row->email;
+          }
+      }
+      function get_is_student($id_user)
+      {
+	  $this->db->select('occupation');
+          $this->db->where('id_user',$id_user);   
+          $query = $this->db->get('profile_general');
+         
+         
+          foreach($query->result() as $row)
+          {
+           return ($row->occupation == 'student');
+          }
+      }
+      
+      function get_is_teacher($id_user)
+      {
+	  $this->db->select('occupation');
+          $this->db->where('id_user',$id_user);   
+          $query = $this->db->get('profile_general');
+         
+         
+          foreach($query->result() as $row)
+          {
+           return $row->occupation == 'teacher';
+          }
+      }
+
+      /**returns short html, which can be places on a destination website. This information contains
+      name, photo, short
+      verson of
+      about, little achievement pictures,...
+      */
+      //TOdo : should include small achievement pictures as well
+      function get_profile($id_user)
+      {
+	 $this->db->select('first_name, surname, about_short');
+         $this->db->where('id_user',$id_user);    
+         $query = $this->db->get('profile_general');
+         
+         
+          foreach($query->result() as $row)
+          {
+	      $html =
+	      '<div id="userprofile">
+	       <h3>'.$row->first_name. ' '. $row->surname.'</h3>
+	       <img src="'.$this->get_photo($id_user).'" width=250 />'.
+	      '<p>'.$row->about_short .'</p>'.
+	      '</div>';
+	      return $html;
+          }
+      }
+
+      function get_profile_short($id_user)
+      {
+	  $this->db->select('first_name, surname');
+         $this->db->where('id_user',$id_user);    
+         $query = $this->db->get('profile_general');
+         
+         
+          foreach($query->result() as $row)
+          {
+	      $html =
+	      '<div id="userprofile_short">
+	       <img src="'.$this->get_photo($id_user).'" width=50 />'.
+	      '<h5>'.$row->first_name. ' '. $row->surname.'</h5>'.
+	      '</div>';
+	      return $html;
+          }
+      }
+
+
+}
+
+?>

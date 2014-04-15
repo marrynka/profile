@@ -1,0 +1,61 @@
+<?php
+
+
+class Post extends CI_Controller
+{
+    protected $response;
+    protected $request;
+    function __construct()
+    {
+	 parent::__construct();
+	      // include our OAuth2 Server object
+	 $this->load->model('userprofile_model');
+	require_once __DIR__.'/server.php';
+	
+	// https://api.example.com/resource-requiring-postonwall-scope
+	$this->request = OAuth2\Request::createFromGlobals();
+	$this->response = new OAuth2\Response();
+	$scopeRequired = 'postinformation'; // this resource requires "receiveinformation" scope
+	if (!$server->verifyResourceRequest($this->request, $this->response, $scopeRequired)) 
+	{
+	  // if the scope required is different from what the token allows, this will send a "401 insufficient_scope" error
+	    
+	    $this->response->send();
+	    die;
+	}
+    }
+    
+    function index()
+    {
+	//decode the message sent
+	echo $this->request->request('message');
+    }
+
+     
+}
+    /**returns first name of the user whose id is as a first parameter in URI*/
+  
+/*
+function get_surname(username)
+returns surname of the user username
+function get_whole_name(username)
+returns the whole name including collage degrees, etc.
+function get_photo(username)
+returns link to the profile picture of the user username
+function get_about(username)
+returns the short version of “about the user”
+function get_email(username)
+returns the email of the user username
+function get_is_student(username)
+returns true if user username is a student else returns false function
+get_is_teacher(username)
+returns true if user username is a teacher else returns false
+function get_profile(username)
+returns short html, which can be places on a destination website. This information contains
+name, photo, short
+verson of
+about, little achievement pictures,...
+function get_profile_short(username)
+returns extra short version, only with name and photo.
+*/
+ ?> 

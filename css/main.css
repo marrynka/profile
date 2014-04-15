@@ -1,0 +1,980 @@
+/***********
+This CSS is for:
+- globalne zmeny, rovnake pre cely portal
+- formulare
+- tabulky
+- atd...
+
+
+- individual styling of portlets
+************/
+
+a, a:link, a:active { color: #006900; }
+a:visited { color: #555; }
+#header a:visited,
+#menu a:visited { color: #006900; }
+a:hover { color: white; background-color: #006900; }
+#header a:hover { color: white; background-color: #006900; }
+#menu a:hover { color: white; background-color: #006900; }
+
+
+a img { border: 0px; }
+
+/* clear pod novinkami na hlavnej stranke (a mozno aj inde...) */
+.clear {
+ clear: both;
+ font-size: 0;
+}
+
+
+
+form.frm input[disabled="disabled"].submit, .frm button.submit[disabled="disabled"],
+form.frm input.submit.disabled, .frm button.submit.disabled {
+ color:#aaa;
+ background-color:#f0f0f0;
+ display:inline;
+}
+
+.frm input.checkbox {
+  margin-right:2em;
+}
+
+form.frm label {
+ font-weight: bold;
+ text-align: right;
+ width: 15em;
+ float: left;
+ padding-right: 20px;
+
+}
+
+form.frm textarea {
+ width: 35em;
+ height: 20em;
+ border: 1px solid #000;
+ margin-bottom: 10px;
+}
+
+form.frm textarea.smallBox {
+ width: 35em;
+ height: 6em;
+}
+form.frm textarea.mediumBox {
+ width: 35em;
+ height: 12em;
+}
+form.frm textarea.tagBox {
+ width: 95%;
+ height: 10em;
+}
+form.frm textarea.megaBox {
+ width: 95%;
+ height: 30em;
+}
+form.frm br {
+ clear: left;
+}
+.frm input.input_small, input.input_large, input.input_medium {
+ margin-bottom: 10px;
+ xfloat: left;
+}
+.frm input.input_small {
+ width: 5em;
+ border: 1px solid #000;
+}
+.frm input.input_medium {
+ width: 12em;
+ border: 1px solid #000;
+}
+.frm input.input_large {
+ width: 18em;
+ border: 1px solid #000;
+}
+input { border: 1px solid #006900; }
+input.submit, button.submit, a.submit {
+	border: 1px solid #c0c0c0;
+	background-color: #f0f0f0;
+	xcolor: #000;
+	xtext-decoration: none;
+	xfont-size: 1em;
+	margin: 0;
+	padding: 3px;
+}
+*:first-child+html input.submit,
+*:first-child+html button.submit,
+*:first-child+html a.submit { padding: 1px; }  /* ie7 */
+* html input.submit,
+* html button.submit,
+* html a.submit {                    /* ie6 */
+	padding: 0px;
+	position: relative;
+	top: 1px;
+}
+
+input.submit:hover, button.submit:hover, a.submit:hover {
+ background-color: #e0e0e0;
+}
+
+
+fieldset {
+  border:none;
+  padding:0;
+  margin:0;
+}
+ul {}
+ol {}
+#TOC ul {
+ list-style-type: none;
+}
+hr {
+  /*clear:left;*/
+  width:70%;
+  border:0px;
+  border-bottom:1px dashed #AAAAAA;
+  margin-bottom:1.5em;
+  margin-top:0em;
+}
+pre.text {
+  font-family: Verdana, "Geneva CE", Lucida, sans-serif;
+  font-family: Arial, sans-serif;
+  padding:0.5em;border:1px dashed #8cacbb;color:#000;
+  overflow:auto;
+  line-height: 1.4em;
+  background-color:#f7f9fa;
+  margin:0 0 1.0em 0;
+}
+p {
+  margin:auto;
+  margin-bottom:1em;
+  margin-top:1em;
+}
+
+em {
+	font-style: italic;
+}
+
+.preview {
+  border:1px dashed #c0c0c0;
+  background-color: #eee;
+  margin:2em;
+  padding:1em;
+}
+
+img.imgLeft {
+  float:left;
+  margin:1em;
+  margin-top: 0;
+}
+img.imgRight {
+  float:right;
+  margin:1em;
+  margin-top: 0;
+}
+
+img.imgCenter
+{
+  display:block;
+  margin:auto;
+  margin-top:1em;
+  margin-bottom:1em;
+
+}
+.comment {
+
+  padding-left:1.5em;
+  border-left:2px solid #AAAAAA;
+}
+.reply {
+ margin-bottom: 1em;
+ margin-top: 0em;
+}
+.commentPost {
+ margin-bottom: 1em;
+ margin-top: 1.5em;
+}
+
+.ok {
+	text-align:center;
+	color:green;
+	padding:1em;
+}
+
+.fail {
+	text-align:center;
+	color:red;
+	padding:1em;
+}
+
+
+.dokuWiki {
+  margin-bottom:2em;
+}
+p.date
+{
+  font-size:80%;
+  margin-top:0;
+}
+
+#sortList
+{
+ font-size:90%;
+ text-align: right;
+ margin:0;
+ padding:0;
+ padding-bottom:1.5ex;
+}
+*html #sortList {padding-top: 1ex; padding-bottom:1ex;}
+#sortList a
+{
+ color: #000;
+ background-repeat:no-repeat;
+ margin-left:10px;
+}
+#sortList a.asc
+{
+ /*background-image: url('sort_ascending.png');*/
+ font-weight: bold;
+}
+#sortList a.desc:after
+{
+  content:' ▾';
+  color:#006633;
+}
+#sortList a.asc:after
+{
+  content:' ▴';
+  color:#006633;
+
+}
+#sortList a.desc
+{
+ /*background-image: url('sort_descending.png');*/
+ font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#content {
+  min-height:15em;
+}
+
+
+.hint
+{
+  font-size: .8em;
+  text-align: left;
+  margin-left: 20.5em;
+  margin-bottom: 1em;
+}
+.capital
+{
+  display:block;
+  font-size:150%;
+  text-transform:uppercase;
+}
+
+#posts {
+	margin-top: 1em;
+}
+
+#posts .tagCloud {
+	xwidth: 70%;
+	xmargin-left: 25%;
+	float: left;
+	padding: 6px;
+	border: 1px solid #ccc;
+	background-color: #f0f0f0;
+}
+/*
+.tagCloud a:link {text-decoration: none}
+.tagCloud a:visited{text-decoration: none}
+*/
+
+.post form, .post fieldset {
+	display: inline;
+}
+
+.center
+{
+  text-align:center;
+  margin:auto;
+}
+hr.line
+{
+  border-bottom:1px solid #AAAAAA;
+  display:block;
+  width:80%;
+  margin-top:1em;
+  margin-bottom:2em;
+}
+.clearstatcache
+{
+  clear:both;
+}
+
+
+
+
+
+
+
+.searchhighlight span.highlight, .post span.highlight, span.highlightedkey {
+	background-color: #006900;
+	color: white;
+	/*background-color: #f6ff00;*/
+	font-weight: bold;
+}
+
+#timeline
+{
+ color: #f00;
+ font-weight: bold;
+}
+#timeline iframe{
+ height: 20px;
+ border: 0;
+ margin: 0;
+ padding: 0;
+}
+#subtitleBox.disabled label
+{
+ color: #808080;
+}
+#subtitleBox.disabled input
+{
+ border-color: #808080;
+}
+
+.preview.scrollbar
+{
+ height: 30em;
+ overflow: auto;
+}
+
+
+
+
+
+
+.postList ol {
+  padding:0;
+  margin:0;
+  list-style-type:decimal;
+}
+
+.postList {}
+
+#right ul {
+  padding:0;
+  margin:0;
+  list-style-type:none;
+}
+li.inline {
+  display:inline;
+}
+
+
+.CSlist
+{
+  display:inline;
+  list-style-type:none;
+  margin:0;
+  padding:0;
+}
+li.CSlist:before
+{
+;
+ content:", ";
+}
+
+li.CSlist:first-child:before
+{
+content: "";
+}
+
+#recaptcha_image
+{
+  display:block;
+  margin:auto;
+  margin-top:1em;
+  margin-bottom:1em;
+}
+#recaptcha_image img
+{
+  display:block;
+  margin:auto;
+}
+.bold
+{
+  font-weight:bold;
+}
+
+
+
+.table td, .table th {
+	padding: 2px;
+}
+.table th {
+	background-color: #e0e0e0;
+}
+.table tr {
+	background-color: #f0f0f0;
+}
+.table tr:hover {
+	background-color: #d5ffd6;
+}
+.table td form, .table td fieldset {
+	display: inline;
+}
+
+
+.noMargin {
+	margin: 0;
+}
+
+
+
+/*** postForm.xsl ***/
+/* specialne spravanie sa v odosielani postu */
+#postForm {}
+#postForm label {
+	width: auto;
+	padding-bottom: .5em;
+}
+#postForm label.indentLabel {
+	width: 16em;
+	padding-bottom: 0;
+}
+
+.docuwikitable {
+	float:left;margin-right: 1em;
+	}
+
+.docuwikitable th, .docuwikitable td  {
+	padding: 0.2em .5em;
+}
+.docuwikitable th {
+	border: 1px solid gray;
+	background: #EAEAEA;
+}
+.docuwikitable td {
+	border: 1px solid gray;
+}
+
+.question_mark {
+	padding-right: 0.3em;
+}
+
+.postFormSection {
+	padding: 1em;
+	background: url("postForm_section_bg.gif") repeat-x top;
+	border-top: 1px solid gray;
+}
+
+.postFormSection h3 {
+	clear: both;
+}
+
+
+
+
+
+/*** userPosts.xsl ***/
+.draft {
+	color: gray;
+}
+
+
+
+
+
+
+
+
+/*** portalView.xsl ***/
+#top5naTitulke {
+	background: white;
+	/* border-top: 1px dashed #8ccb8c; */      /* oddelovace pre vrchne top5 */
+	/* border-bottom: 1px dashed #8ccb8c; */   /* oddelovace pre vrchne top5 */
+	}
+#top5naTitulke .post {
+	background: #eefaee;
+	border-bottom: none;
+  padding: 0;
+  margin-bottom: 1.5ex;
+}
+#top5naTitulke .postContent {
+	padding: 0 1em;
+}
+
+* html #top5naTitulke {
+	margin-top: 17px;
+	position: relative;
+}
+
+#top5naTitulkeOdporucane {
+	text-align: center;
+	font-size: 1.5em;
+	padding: .3em 0 0 0;
+	margin: 0;
+}
+#top5naTitulkeOstatne {
+	text-align: center;
+	font-size: 1.5em;
+	padding: .3em 0 0 0;
+	margin: 0;
+}
+
+
+
+
+
+.warning {
+	margin: 1em;
+	padding: 1em;
+  xcolor: red;
+	font-size: 1em;
+	border: 2px solid red;
+}
+
+
+
+
+
+
+
+/*** PORTLETS ***/
+
+/* usersPortlet */
+.usersPortlet ul{
+	margin: 0;
+	padding: 0;
+}
+.usersPortlet ul li{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+.usersPortlet ul li ul li {
+	margin: 0;
+	padding: 0;
+	display: inline;
+}
+.usersPortlet ul li ul li:after {
+	content: " · ";
+
+}
+.usersPortlet ul li ul li:last-child:after {
+  content: "";
+}
+
+.usersPortlet ul li ul li.display_none{
+	display: none;
+}
+
+/* sortPortlet */
+.sortPortlet ul {
+	margin: 0;
+	padding: 0;
+	display:inline;
+}
+.sortPortlet ul li{
+	margin: 0;
+	margin-left:2em;
+	padding: 0;
+	list-style-type: none;
+	display:inline;
+}
+/* blogHeader */
+.blogHeader h3{
+  font-size: 180%;
+  padding:1.5em 1em;
+  font-weight: bold;
+}
+.blogHeader a,.blogHeader a:visited, .blogHeader a:active, .blogHeader a:link {
+  color:black;
+  background-color: transparent;
+}
+
+/* loginPortlet */
+.loginPortlet {
+  position: absolute;
+  top: 5px; right: 8px;
+	z-index: 50;
+	text-align: right;
+}
+.loginPortlet #quickLoginForm {
+	border: 2px solid #a5c8a5;
+	background-color: #eefaee;
+	padding: 10px;
+	display: none
+}
+.loginPortlet #quickLoginForm fieldset {}
+.loginPortlet #quickLoginForm legend {
+	text-align: left;
+	font-weight: bold;
+	padding-bottom: 3px;
+}
+.loginPortlet label {}
+
+.loginPortlet #quickLoginForm input.submit {
+	float: right;
+	xclear: both;
+}
+.loginPortlet #quickLoginForm input.input_large {
+	width: 10em;
+}
+.loginPortlet #quickLoginForm input#openid_url {
+	background: url('openid.png') no-repeat;
+	background-color: #fff;
+	background-position: 0% 50%;
+	xwidth: 18em;
+	border: 1px solid #000;
+	xborder: 1px solid #a5c8a5;
+	xbackground: #f9fdf9;
+	padding-left: 17px;
+}
+#loginViaDefault {
+	xdisplay: none;
+}
+#loginViaOpenID {
+	margin-top: 15px;
+	padding-top: 8px;
+	border-top: 2px solid #a5c8a5;
+	xdisplay: none;
+}
+
+
+
+
+
+
+/* searchPortlet */
+.searchPortlet {
+	position: absolute;
+	/*top: 46px;*/
+	top: 30px;
+	right: 8px;
+	text-align: right;
+}
+.searchPortlet fieldset {}
+.searchPortlet input.inputbox {
+	margin: 0px;
+	border: 1px solid #ccc;
+	padding: 3px;
+	background-color: #f8f8f8;
+}
+.searchPortlet input.submit {
+	margin: 0px;
+	padding: 3px;
+}
+*:first-child+html .searchPortlet input.submit { padding: 1px; }  /* ie7 */
+* html .searchPortlet input.submit {                    /* ie6 */
+	padding: 0px;
+	position: relative;
+	top: 1px;
+}
+
+
+/* bestRatedPortlet */
+.bestRatedPortlet {}
+.bestRatedPortlet .bestRatedReputation {	color: #afafaf; }
+
+
+/* mostReadPortlet */
+.mostReadPortlet {}
+.mostReadPortlet .mostReadAccessCount { color: #afafaf; }
+
+
+
+
+/* tagCloudPortlet */
+.tagCloudPortlet ol { padding-left: 0; }
+.tagCloudPortlet .tagBoxWrapper {
+	float: left; width: 48%;
+}
+.tagCloudPortlet .tagBoxWrapper #tags {
+	margin: .3em 0;
+}
+
+.tagCloudPortlet .tagBoxWrapper label {
+	text-align:left;
+	margin: .2em 0;
+}
+.tagCloudPortlet .tagAreaWrapper {
+	float: right; width: 48%;
+}
+.tagCloudPortlet .tagAreaWrapper #tagArea{
+	margin: .3em 0;
+}
+.tagCloudPortlet .tagAreaWrapper label {
+	text-align:left;
+	margin: .2em 0;
+}
+
+
+
+/* postFormPortlet */
+.postFormPortlet #showPostLabel {
+	padding-right: 0;
+	text-align:left;
+	width: 10.5em;
+}
+.postFormPortlet #postStatusRadioButtons {
+	float: left;
+	width: 17em;
+}
+.postFormPortlet #submitButton {
+	margin: .3em;
+}
+
+
+
+/* campaignsPortlet */
+.campaignsPortlet a:hover  {
+	background-color: white;
+}
+
+/* langMenuPortlet */
+.langMenuPortlet ul {
+	margin: 0;
+	padding: 0;
+}
+.langMenuPortlet ul li {
+	display: inline;
+	margin-right: .5em;
+}
+*.skLangTop, *.enLangTop { padding-top: 1px; } /* flagy v langMenuPortlet */
+#footer .langMenuPortlet {
+	float: right;
+}
+*.selectedLang {
+	font-weight: bold;
+}
+
+/* Flags */
+*.skLang, *.enLang { /* flagy pri postoch aj v langMenuPortlet */
+  padding-left: 20px;
+  background-repeat: no-repeat;
+  background-position: center left;
+}
+*.skLang { background-image: url("../css/flags/sk.png"); }
+*.enLang { background-image: url("../css/flags/en.png"); }
+
+
+
+
+.clear_both {
+	clear: both;
+}
+
+
+
+/* Tags */
+.tagArea {
+  border: 1px solid #ccc;
+  padding: .4em .6em .6em .6em;
+  text-align:center;
+  width:95%;
+	margin-bottom: 1em;
+}
+.tagArea ol {
+	margin: 0;
+}
+
+.tag {
+  cursor:pointer;
+  margin-left:0em;
+  margin-right:0.2em;
+  margin-bottom:0;
+  margin-top:0;
+}
+.tag:hover {
+  text-decoration:underline;
+}
+
+/* v postForm.xsl - nech tagy vyzeraju klikatelnejsie */
+.tagButton {
+  cursor:pointer;
+	color: #006900;
+  margin: 0 .2em 0 0;
+	background: #e8fae8;
+	border-right: 1px solid #77cd77;
+	border-bottom: 1px solid #52b252;
+	padding: 0 .4em;
+	white-space: nowrap;
+	xcolor: black;                     /* seda verzia */
+	xbackground: #f1f1f1;              /* seda verzia */
+	xborder-right: 1px solid #cfcfcf;	 /* seda verzia */
+	xborder-bottom: 1px solid #b3b3b3; /* seda verzia */
+	text-decoration: none;
+	line-height: 1.5;
+}
+.tagButton a {
+	text-decoration: none;
+}
+.tagButton:hover, .tagButtonSelected
+{
+	background: #006900;
+	color: #dcf6dc;
+	border-right: 1px solid #004600;
+	border-bottom: 1px solid #004600;
+	xbackground: black;                /* seda verzia */
+	xcolor: #e8fae8;                   /* seda verzia */
+	xborder-right: 1px solid black;    /* seda verzia */
+	xborder-bottom: 1px solid black;	 /* seda verzia */
+}
+.tagButton:hover a, .tagButtonSelected a {
+color: white;
+}
+
+
+/********************************************************
+ Stare veci, ktore casom zmazem ak sa neobjavi ich zmysel
+*********************************************************
+#portal ul {
+  margin:0px;
+  padding-left:1em;
+  list-style-type:none;
+}
+**************************
+form.frm em {
+ font-style:normal;
+ font-weight:bold;
+}
+**************************
+.loginPortlet a:after {
+ content: ' »»';
+}
+**************************
+@media all and (min-width:0px) {
+	head~body .searchPortlet input.submit { padding: 3px; }
+}
+**************************
+#languageForm {
+	display:inline;
+}
+#languageForm fieldset {
+	display:inline;
+}
+#languageForm select {
+	border: 1px solid #ccc;
+	color:#006900;
+}#languageForm option {
+	padding-left: 20px;
+	background-repeat: no-repeat;
+	background-position: center left;
+}
+#languageForm option.sk {
+	background-image: url("../css/flags/sk.png");
+}
+#languageForm option.en {
+	background-image: url("../css/flags/en.png");
+}
+**************************
+.loginArea fieldset {
+ border: 1px solid gray;
+}
+
+.loginArea fieldset, .loginArea fieldset legend
+{
+ font-family: "Arial",sans-serif;
+ font-size: 12px;
+}
+.loginArea fieldset legend
+{
+ font-family: "Arial","Sans serif";
+ margin:1.2em;
+ font-weight: bold;
+ color: #FF6200;
+ padding-left: 5px;
+ padding-right: 5px;
+}
+.loginArea fieldset input.inputbox
+{
+ background: url('openid.png') no-repeat;
+ background-color: #fff;
+ background-position: 100% 50%;
+ width: 18em;
+ border: 1px solid #000;
+}
+
+.loginArea a, .loginArea a:visited {
+ color: silver;
+}
+.loginArea a:hover
+{
+ color: #5e5e5e;
+}
+**************************
+.loginPortlet { margin:1em; }
+.loginPortlet fieldset { padding:3px; }
+.loginPortlet label {
+	padding-right:0.3em;
+	margin:0;
+}
+.loginPortlet input {
+	border:1px solid #c0c0c0;
+	margin-right:5px;
+	padding:2px;
+}
+*/
+
+
+
+
+.rate-comment {
+	float:right;
+}
+
+.vote-category-box {
+	/*border:1px solid black;*/ 
+	padding:5px;
+	width:150px;
+	float:right;
+	vertical-alignment:middle;
+}
+
+.vote-category-box a {
+	text-align:right;
+	float:right;
+}
+
+.vote-category-box img {
+	width:32px;
+	float:right;
+	}
+
+.vote-box a {
+	background:none;
+	text-decoration:none;
+}
+
+	
+a .mouse-hover {
+	display:none;
+}
+
+a:hover .mouse-hover {
+	display:inline;
+}
+
+a:hover .mouse-normal {
+	display:none;
+}
+
+a .mouse-normal {
+	display:inline;
+}
+
+
