@@ -16,18 +16,51 @@ class Membership_model extends CI_Model
       }
       else return FALSE;
     }
+    function is_available($username)
+    {
+		
+		$this->db->where('username',$username);
+		$query = $this->db->get('oauth_users');
+		if($query->num_rows >0) return FALSE;
+		
+		return TRUE;
+		
+	}
     function create_member()
     {
+		//check if the username is not already used
+		$username = $this->input->post('username');
+		if(!($this->is_available($username)))
+		{ 
+			
+			return 'Username already used';
+		}
+    $new_oauth_user_data = array
+    (
+		'username' => $username,
+		'password' => sha1($this->input->post('password')),
+    );
+    $insert = $this->db->insert('oauth_users', $new_oauth_user_data);
+    if($insert != TRUE) return 'Some problem with database';
+    $this->load->model('userprofile_model');
+    $id = $this->userprofile_model->id($username);
+    
     $new_member_data = array
     (
+    'id_user' => $id ,
     'first_name' => $this->input->post('first_name') ,
-    'last_name' => $this->input->post('last_name') ,
-    'email_address' => $this->input->post('email_address') ,
+    'surname' => $this->input->post('last_name') ,
+    'email' => $this->input->post('email_address') ,
     'username' => $this->input->post('username') ,
-    'password' => md5($this->input->post('password')) ,
+    'occupation' => $this->input->post('occupation'),
+    'about_short' => $this->input->post('about_short') ,
+    'about_long' => $this->input->post('about_long') ,
     );
+    
+    
     $insert= $this->db->insert('profile_general',$new_member_data);
-    return $insert;
+    if($insert != TRUE) return 'Some problem with database';
+    return 'ok';
     }
     /**
      * Returns an array of all registered apps, with their home urls.

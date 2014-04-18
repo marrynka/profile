@@ -29,7 +29,7 @@
               </div>
               <div id="left-column">
 				  <?php
-				  $data['data'] = $main_contents_data;
+				  $data['data'] = $left_contents_data;
 				  $this->load->view($left_content, $data);
 					
 				  ?>
@@ -70,11 +70,8 @@
       </div>
       <div class="clear"></div>
     </div>
-    <div>
-      <a href="http://modis.ispras.ru/sedna/" title="Sedna, native XML database">
-        <img src="/css/sedna_logo.gif" alt="Sedna" />
-      </a>
-    </div>
+     <div id='footer'>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com/free-icon/homework_5121" title="Flaticon">www.flaticon.com</a></div>
+                
 
 
 

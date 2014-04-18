@@ -5,18 +5,19 @@
 	  <div class="centerTitle">
 	  <ul id="navigation">
 	  <li id="about_option" class="selected"><a href="about" id="about_button" > About </a></li>
-	  <li id="general_option"><a href="general" id="general_button"> General </a></li>
-	  <li id="blog_option"><a href="blog" id="blog_button"> Blog </a></li>
-	  <li id="courses_option"><a href="courses" id="courses_button"> Courses </a></li>
-	  <li id="wiki_option"><a href="wiki" id="wiki_button"> Wiki </a></li>
+	  <li id="general_option" ><a href="activities" id="general_button"> General </a></li>
+	  <li id="blog_option"><a href="activities/blog" id="blog_button"> Blog </a></li>
+	  <li id="courses_option"><a href="activities/courses" id="courses_button"> Courses </a></li>
+	  <li id="wiki_option"><a href="activities/wiki" id="wiki_button"> Wiki </a></li>
 	  </ul>
 	  </div>
 	  </div>
 	  <div class="articleWrapper"></div>
 	  
 	  <div id="info">
-	  <?php $data['records'] = $records;
-	  $this->load->view('userprofile_view-'.$main_contents,$data);   ?>
+	  <?php $data['data'] = $data['main_contents_data'];
+	  
+	  $this->load->view('userprofile_view-'.$data['main_content'],$data);   ?>
 	  </div>
   </div>
 
@@ -28,8 +29,8 @@ $('#about_button').click(function()
 	
 var form_data = 
 {
-	
-	 username: '<?php echo $records->username; ?>' ,
+
+	 username: '<?php echo $data['username']; ?>' ,
 	ajax: '1'
 	};
 	$.ajax(
@@ -59,12 +60,12 @@ $('#navigation li').click(function()
 {
 var form_data = 
 {
- username: '<?php echo $records->username; ?>' ,
+ username: '<?php echo $data['username']; ?>' ,
 ajax: '1'
 };
 $.ajax(
 {
-url: "<?php echo site_url('userprofile/general'); ?>",
+url: "<?php echo site_url('userprofile/activities'); ?>",
 type:'POST',
 data: form_data,
 success: function(msq)
@@ -89,12 +90,13 @@ $('#blog_button').click(function()
 {
 var form_data = 
 {
-username: '<?php echo $records->username; ?>' ,
-ajax: '1'
+username: '<?php echo $data['username']; ?>' ,
+ajax: '1' ,
+client_id: 'blog'
 };
 $.ajax(
 {
-url: "<?php echo site_url('userprofile/blog'); ?>",
+url: "<?php echo site_url('userprofile/activities'); ?>",
 type:'POST',
 data: form_data,
 success: function(msq)
@@ -115,12 +117,13 @@ $('#courses_button').click(function()
 {
 var form_data = 
 {
-username: '<?php echo $records->username; ?>' ,
-ajax: '1'
+username: '<?php echo $data['username']; ?>' ,
+ajax: '1' ,
+client_id: 'courses'
 };
 $.ajax(
 {
-url: "<?php echo site_url('userprofile/courses'); ?>",
+url: "<?php echo site_url('userprofile/activities'); ?>",
 type:'POST',
 data: form_data,
 success: function(msq)
@@ -141,12 +144,13 @@ $('#wiki_button').click(function()
 {
 var form_data = 
 {
-username: '<?php echo $records->username; ?>' ,
-ajax: '1'
+username: '<?php echo $data['username']; ?>' ,
+ajax: '1' ,
+client_id: 'wiki'
 };
 $.ajax(
 {
-url: "<?php echo site_url('userprofile/wiki'); ?>",
+url: "<?php echo site_url('userprofile/activities'); ?>",
 type:'POST',
 data: form_data,
 success: function(msq)

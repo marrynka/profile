@@ -10,6 +10,7 @@
 <?php
     $data['main_content'] = $main_content;
 	$data['main_contents_data'] = $main_contents_data;
+	$data['left_contents_data'] = $left_contents_data;
     $this->load->view('includes/content', $data);
 ?>
 </div>

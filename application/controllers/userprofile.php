@@ -19,7 +19,7 @@ class Userprofile extends CI_Controller
           {
 				return FALSE;
           }
-          return TRUE;
+          return $this->session->userdata('username');
     }
     
     function index()
@@ -44,7 +44,7 @@ class Userprofile extends CI_Controller
 		  
 		}
 		$data['header'] = array(
-									  'title' => 'Profil používateľa'. $profile_of,
+									  'title' => 'Profil používateľa '. $profile_of,
 									  'apps' => $this->membership_model->get_apps(),
 									  'header' => $query->first_name." ".$query->surname,
 									  'is_logged_in' => $this->is_logged_in(),
@@ -52,12 +52,20 @@ class Userprofile extends CI_Controller
 			
 		$data['main_content'] = 'userprofile_view';
 		$data['left_content'] = 'left_userprofile_view';
-		$data['main_contents_data'] = array(
-												'main_contents' => 'about',
-												'records' => $query,
+		$data['main_contents_data'] = array(	'username' =>$profile_of,
+												'main_content' => 'about',
+												'main_contents_data' => array (
+																				
+																				'records' => $query,
+																				
+																			  ),
 												
 			
 												);
+		$data['left_contents_data']= array
+											(
+												'records'=>$query,
+											);
 			
 		$this->load->view('includes/template',$data);
 		
@@ -65,65 +73,70 @@ class Userprofile extends CI_Controller
 		
     }
     
-    function general()
-    {
-      $this->load->model('userprofile_model');
-      $is_ajax = $this->input->post('ajax');
-      if($is_ajax)
-      {
-        $query = $this->userprofile_model->general($this->input->post('username'));
-        $data['records'] = $query;
-        $this->load->view('userprofile_view-general', $data );
-      }
-      
-      else
-      {
-        $this->load->model('userprofile_model');
-        $data['main_contents'] = 'general';
-        $subdomain_arr = explode('.', $_SERVER['HTTP_HOST'], 2); //creates the various parts  
-    $profile_of = $subdomain_arr[0]; //assigns the first part  
-    
-        if($query = $this->userprofile_model->general($profile_of))
-        {      
-          $data['records'] = $query;
-          
-        }   
-        $this->load->view('userprofile_view',$data);
-      }
-        
-      
-    }
-    function blog()
+    function activities()
     {   
       $this->load->model('userprofile_model');
       $is_ajax = $this->input->post('ajax');
       if($is_ajax)
       {
-        $query = $this->userprofile_model->get_blog($this->input->post('username'));
-        $data['records'] = $query;
-        $this->load->view('userprofile_view-blog', $data );
+        $query = $this->userprofile_model->activities($this->input->post('username'), $this->input->post('client_id'));
+        $data['data'] = array(
+							'records'=> $query,
+							);
+        $this->load->view('userprofile_view-activities', $data );
         
       }
       
       else
       {
         
-        $this->load->model('userprofile_model');
-        $data['main_contents'] = 'blog';
         $subdomain_arr = explode('.', $_SERVER['HTTP_HOST'], 2); //creates the various parts  
-        $profile_of = $subdomain_arr[0]; //assigns the first part  
+		$profile_of = $subdomain_arr[0]; //assigns the first part  
+		//ak niesme na konkretnom profile, tak sa nedaju ani pozerat aktivity, cize redirect
+		if($profile_of =="" ) redirect(userprofile);
+		//ak sme na niekoho profile, tak chceme pozerat jeho aktivity:
+		$which_activities = $this->uri->segment(3);
+		
+        $this->load->model('userprofile_model');
+        $query_about = $this->userprofile_model->about($profile_of);
+        $this->load->model('membership_model');
+        
     
-        if($query = $this->userprofile_model->get_all($profile_of))
-        { 
+        $query = $this->userprofile_model->activities($profile_of, $which_activities);
+         
               
-          $data['records'] = $query;
           
-        }
+          
+        
            
-        $this->load->view('userprofile_view',$data);
+        $data['header'] = array(
+									  'title' => 'Profil používateľa '. $profile_of,
+									  'apps' => $this->membership_model->get_apps(),
+									  'header' => $query_about->first_name." ".$query_about->surname,
+									  'is_logged_in' => $this->is_logged_in(),
+									);
+			
+		$data['main_content'] = 'userprofile_view';
+		$data['left_content'] = 'left_userprofile_view';
+		$data['main_contents_data'] = array(
+												'username' => $profile_of,
+												'main_content' => 'activities',
+												'main_contents_data'=> array ('records' => $query,
+																			  'which_activities' =>$which_activities,
+																			 
+																			 ) ,
+			
+												);
+		$data['left_contents_data'] = array(
+												'records'=>$query_about,
+											);
+			
+		$this->load->view('includes/template',$data);
       }  
     
     }
+   
+   
     function about()
     {
 		$this->load->model('userprofile_model');
@@ -131,7 +144,9 @@ class Userprofile extends CI_Controller
       if($is_ajax)
       {
         $query = $this->userprofile_model->about($this->input->post('username'));
-        $data['records'] = $query;
+        $data['data'] = array(
+								'records' => $query ,
+							);
         $this->load->view('userprofile_view-about', $data );
         
       }
@@ -156,15 +171,7 @@ class Userprofile extends CI_Controller
 	}
     
     
-    function courses()
-    {
     
-    }
-    
-    function wiki()
-    {
-    
-    }
     
     
 }

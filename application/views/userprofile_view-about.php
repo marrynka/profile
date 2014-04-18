@@ -1,10 +1,15 @@
 
   
     <div id="about_long">
-    <p><?php echo $records->about_long ?></p>
+    <p><?php echo $data['records']->about_long ?></p>
     </div>
-    <?php echo $records->email ?>
+    <?php echo $data['records']->email ?>
     <br />
-    NEjake kecy o achievementoch a spol.
+    <div class="articleWrapper"></div>
+    <div id="badge_outside">
+	<img src=" <?php echo base_url().'images/files/badges/'; ?>badge_blogger.png" />
+	
+	</div>
+    
     
     

@@ -60,6 +60,48 @@ class Userprofile_model extends CI_Model
           
   
       }
+      function activities($username, $client_id)
+      {  
+		 $user_id = $this->id($username);
+         $this->db->select('profile_activities.activity, profile_activities.activity_type, profile_activities.time, profile_activity_types.activity_title');
+         $this->db->from('profile_activities');
+         $this->db->join('profile_activity_types','profile_activity_types.activity_type = profile_activities.activity_type' );
+         
+		 $this->db->where('profile_activities.id_user',$user_id);
+		 if($client_id != '')
+         {
+			$this->db->where('profile_activity_types.client_id', $client_id);
+		 }
+         $this->db->order_by('time', 'desc');   
+         $query = $this->db->get();
+         
+         
+         if($query->num_rows > 0)
+         return $query->result();
+         return null;
+          
+          
+  
+      }
+      function blog($username)
+      {  
+		 $user_id = $this->id($username);
+         $this->db->select('profile_activities.activity, profile_activities.activity_type, profile_activities.time, profile_activity_types.activity_title');
+         $this->db->from('profile_activities');
+         $this->db->join('profile_activity_types','profile_activity_types.activity_type = profile_activities.activity_type AND profile_activity_types.client_id = "blog"');
+         
+         $this->db->where('profile_activities.id_user',$user_id);
+         $this->db->order_by('time', 'desc');   
+         $query = $this->db->get();
+         
+         
+         if($query->num_rows > 0)
+         return $query->result();
+         return null;
+          
+          
+  
+      }
       
       /**
       FUNCTIONS FOR EXTERNAL API FOR OTHER APPLICATIONS

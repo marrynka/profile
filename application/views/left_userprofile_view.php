@@ -3,11 +3,16 @@
 			 <div class="avatar">
 			<img src="<?php echo base_url().'/images/users/'.$data['records']->username.'/avatar.jpg'; ?>"   />
 		  </div>
-		  <h3></h3>
+		  <?php if($data['records']->occupation != 'other')
+		  {?>
+		  <h3>Kto som</h3>
 		  <div id="occupation">
-			<?php echo $data['records']->occupation; ?>
+			<img src="<?php echo base_url().'/css/'.$data['records']->occupation.'.png';?>" /><label><?php echo $data['records']->occupation; ?></label>
 		  </div>
-		  <h3></h3>
+		  <?php
+		  } 
+		  ?>
+		  <h3>Čo robím</h3>
 		  <div id="aboutShort">
 			<?php echo $data['records']->about_short; ?>
 		  </div>

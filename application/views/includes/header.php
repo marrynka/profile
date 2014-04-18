@@ -45,7 +45,7 @@
       ?>
 		
      
-			  <a href="<?php echo base_url();?>/login/signup"> Registrácia </a>
+			  <a href="<?php echo site_url();?>/login/signup"> Registrácia </a>
 		  
 			  <a id="loginAnchorInHeader" href="<?php echo site_url();?>/login"> Prihlásenie </a>
 		  
@@ -56,7 +56,7 @@
 		
 			  <a href="<?php echo $is_logged_in.".".site_url();?>"> <?php echo $is_logged_in;?></a>
 		  
-			  <a id="loginAnchorInHeader" href="<?php echo base_url();?>/login/logout"> Odhlásenie</a>
+			  <a id="loginAnchorInHeader" href="<?php echo site_url();?>/login/logout"> Odhlásenie</a>
 		  
 	 </ul>
 		

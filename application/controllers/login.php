@@ -35,7 +35,7 @@ class Login extends CI_Controller
 											'text'=> 'V systéme už ste prihlásený',
 		
 											);
-		
+			$data['left_contents_data'] = array();
 			$this->load->view('includes/template',$data);
 			
 		}
@@ -57,6 +57,7 @@ class Login extends CI_Controller
 												'errors'=> $str,
 			
 												);
+			$data['left_contents_data'] = array();
 			
 			$this->load->view('includes/template',$data);
 		}
@@ -83,16 +84,24 @@ class Login extends CI_Controller
     }
     else
     {
-    $this->load->model('membership_model');
-    if($query = $this->membership_model->create_member())
-    {
-       $data['main_content'] = 'signup_successful';
-       $this->load->view('includes/template', $data);
-    }
-    else
-    {
-    $this->load->view('signup_form');
-    }
+		$this->load->model('membership_model');
+		$status = $this->membership_model->create_member();
+		if($status == 'ok')
+		{
+			//ak sa podarilo prehodime na signup successfull, co je login form s napisom, ze sa zaregistroval
+			
+			$this->index('Úspešne ste sa zaregistrovali, teraz sa môžete prihlásiť');
+		   
+		
+		}
+		else
+		{
+			//zobrazime znova formular + kde nastala chyba:
+			
+			$this->signup($status);
+			
+		}
+    
     }
     
     
@@ -117,18 +126,21 @@ class Login extends CI_Controller
 		  $this->index();
 	  }
 	  else
-	  { 
+	  {
+		  
 	    
 	    $this->load->model('membership_model');	
 		$id = $this->membership_model->validate();
 		
 		if($id == FALSE)
 		{
+			
 			$this->form_validation->set_message('validate', 'Invalid username or password');
 			$this->index('Invalid username or password');
 		}
 		else 
 		{
+			
 			$data = array(
 			'username' => $this->input->post('username'),
 			'is_logged_in' => true,
@@ -136,7 +148,6 @@ class Login extends CI_Controller
 			);
 			
 			$this->session->set_userdata($data);
-		
 			 
 			
 			
@@ -161,19 +172,19 @@ class Login extends CI_Controller
 										'text' => 'Boli ste prihlásený',
 	
 										);
-	
+			$data['left_contents_data'] = array();
 			$this->load->view('includes/template',$data);
 			
 		} 
 	  }
     }
-    function signup()
+    function signup($errors = null)
     {
 			$this->load->model('membership_model');
 			$data['header'] = array(
-							 'title' => 'Prihlásenie do systému matfyz.sk',
+							 'title' => 'Registrácia do systému matfyz.sk',
 							  'apps' => $this->membership_model->get_apps(),
-							  'header' => 'Prihlásenie do systému matfyz.sk',
+							  'header' => 'Registrácia do systému matfyz.sk',
 							  'is_logged_in' => $this->is_logged_in(),
 							);
 	
@@ -182,8 +193,10 @@ class Login extends CI_Controller
 			$data['main_contents_data'] = array(
 										//'returnUrl' => $returnUrl,
 										//'text' => 'Boli ste prihlásený',
+										'errors' => $errors,
 	
 										);
+			$data['left_contents_data'] = array();
 	
 			$this->load->view('includes/template',$data);
     }
@@ -225,7 +238,7 @@ class Login extends CI_Controller
 										//'text' => 'Boli ste prihlásený',
 	
 										);
-	
+		$data['left_contents_data'] = array();
 	    $this->load->view('includes/template',$data);
 		}
 		
@@ -250,7 +263,7 @@ class Login extends CI_Controller
 										//'text' => 'Boli ste prihlásený',
 	
 										);
-	
+				$data['left_contents_data'] = array();
 				$this->load->view('includes/template',$data);
 			}
 			else
@@ -301,7 +314,7 @@ class Login extends CI_Controller
 												'errors' =>'Boli ste odhlásený zo všetkých aplikácii',
 			
 												);
-			
+			$data['left_contents_data'] = array();
 			$this->load->view('includes/template',$data);
 			
 	  
@@ -324,7 +337,7 @@ class Login extends CI_Controller
 										'errors'=> 'Boli ste odhlásený',
 	
 										);
-	
+	 $data['left_contents_data'] = array();
 	  $this->load->view('includes/template',$data);
       
 	}

@@ -2,6 +2,11 @@
 
 Class edit_model extends CI_Model
 {
+	  function __construct()
+	  {
+		   parent::__construct();
+		  $this->load->helper('directory');
+	  }
       function list_sources()
       {
           $query  = $this->db->get('profile_source_types');

@@ -1,3 +1,53 @@
+#badge_outside
+{
+background:pink;
+background: url("blank_badge_green.png") no-repeat;
+
+}
+#footer
+{
+font-size:0.8em;
+}
+#occupation img
+{
+width:30px;
+display:inline;
+}
+label
+{
+
+vertical-align:middle;
+margin-left:20px;
+
+}
+#ac_title, #ac_activity
+{
+display:inline;
+font-size:1.45em;
+}
+#ac_activity
+{
+display:inline;
+}
+#activityUpperbar
+{
+	background: none repeat scroll 0% 0% rgb(238, 238, 238);
+	border-top: 1px solid rgb(204, 204, 204);
+	overflow:hidden;
+	font-size:0.8em;
+}
+
+#activity_time
+{
+float:left;
+margin-left: 5px;
+}
+#activity_title, #activity_client_id
+{
+float:right;
+margin-right:5px;
+}
+
 #activityWrap
 {
 min-height:160px;
@@ -9,26 +59,27 @@ overflow:hidden;
 #ac_picture img
 {
 
-font-size:50pt;
+/*font-size:50pt;*/
 background-color:pink;
 width:40%;
 float:right;
+margin-bottom:5px;
 
 }
 #ac_picture
 {
-margin:10px;
+margin:5px;
 }
-#ac_perex
+#ac_description
 {
 float:left;
 width:50%;
 margin:10px;
+font-size:0.8em;
 }
-#activity_time
+#navigationProfile
 {
-width:100%;
-clear:both;
+margin-right:20px;
 }
 
 #navigationProfile ul
@@ -37,7 +88,8 @@ clear:both;
 	
 	font-size:13pt;
 	margin:0px;
-	margin-right:30px;
+	margin-right:20px;
+	
 	padding: 0em;
 }
 #navigationProfile ul:after {
@@ -52,7 +104,7 @@ clear:both;
 }
 #navigationProfile a:link {text-decoration:none;}
 #navigationProfile a:visited {text-decoration:none;}
-#navigationProfile a:hover {text-decoration:underline; background-color:white; color: #006900;}
+#navigationProfile a:hover {text-decoration:underline; background-color:transparent; color: #006900;}
 #navigationProfile a:active {text-decoration:underline;}
 .selected
 {
