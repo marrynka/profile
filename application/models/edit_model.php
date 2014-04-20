@@ -102,7 +102,7 @@ Class edit_model extends CI_Model
             'badge_description' => $badge_description,
             'picture' => $badge_picture,
              );
-        echo $badge_picture;    
+           
         $this->db->insert('profile_badge_types',$data);
         $this->db->where('badge_title', $badge_title);
         $id = $this->db->get('profile_badge_types');

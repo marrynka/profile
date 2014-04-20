@@ -8,11 +8,38 @@ Class Edit extends CI_Controller
       $this->load->model('edit_model');
     
     }
-    
+    function is_logged_in()
+      {
+          
+          $is_logged_in = $this->session->userdata('is_logged_in');
+          if(!isset($is_logged_in) || $is_logged_in != true)
+          {
+				return FALSE;
+          }
+          return $this->session->userdata('username');
+      }
     function index()
     { 
-      $data['options'] = TRUE;
-      $this->load->view('edit_view', $data);
+	  
+      //$data['options'] = TRUE;
+     // $this->load->view('edit_view', $data);
+      $this->load->model('membership_model');
+      $data['header'] = array(
+							 'title' => 'Administrácia profile.matfzy.sk',
+							  'apps' => $this->membership_model->get_apps(),
+							  'header' => 'Administrácia',
+							  'is_logged_in' => $this->is_logged_in(),
+							);
+	
+			$data['main_content'] = 'edit_view';
+			$data['left_content'] = 'left_normal_view';
+			$data['main_contents_data'] = array(
+										//'returnUrl' => $returnUrl,
+										'options' => TRUE,
+	
+										);
+			$data['left_contents_data'] = array();
+			$this->load->view('includes/template',$data);
       
     }
     function sources()
@@ -44,8 +71,31 @@ Class Edit extends CI_Controller
       $data['pictures'] = $pictures;
       $data['pictures_url'] = $this->edit_model->get_badges_pictures_directory();
       
-      $data['options'] = FALSE;
-      $this->load->view('edit_view', $data);
+      $this->load->model('membership_model');
+      $data['header'] = array(
+							 'title' => 'Administrácia profile.matfzy.sk',
+							  'apps' => $this->membership_model->get_apps(),
+							  'header' => 'Administrácia',
+							  'is_logged_in' => $this->is_logged_in(),
+							);
+	
+			$data['main_content'] = 'edit_view';
+			$data['left_content'] = 'left_normal_view';
+			$data['main_contents_data'] = array(
+										//'returnUrl' => $returnUrl,
+										'options' => FALSE,
+										'items_name' => 'badge',
+										
+											'items' => $badges,
+											'pictures' => $pictures,
+											'pictures_url' => $this->edit_model->get_badges_pictures_directory(),
+      
+										
+										);
+			$data['left_contents_data'] = array();
+			$this->load->view('includes/template',$data);
+      
+     
     }
     function add_source_type()
     {
@@ -113,7 +163,7 @@ Class Edit extends CI_Controller
       $badge_picture = $this->input->post('new_badge_picture'); 
       $id = $this->edit_model->add_badge_type($badge_title, $badge_description, $badge_picture);
     
-      echo "New badge was successfully added.<br />";
+      
       $this->badges();
     }
     function delete_badge_type()
@@ -124,7 +174,7 @@ Class Edit extends CI_Controller
        if($this->input->post('item'.$i) != '')
        {
           $this->edit_model->delete_badge_type($this->input->post('item'.$i));
-          echo "Badge was successfully deleted<br />" ;
+          
        } 
       
       

@@ -12,7 +12,7 @@
 	  </ul>
 	  </div>
 	  </div>
-	  <div class="articleWrapper"></div>
+	  
 	  
 	  <div id="info">
 	  <?php $data['data'] = $data['main_contents_data'];

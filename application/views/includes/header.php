@@ -46,15 +46,19 @@
 		
      
 			  <a href="<?php echo site_url();?>/login/signup"> Registrácia </a>
-		  
-			  <a id="loginAnchorInHeader" href="<?php echo site_url();?>/login"> Prihlásenie </a>
+		      <?php
+		      $query = $_SERVER['QUERY_STRING'] ? '?'.$_SERVER['QUERY_STRING'] : '';
+              $url =$this->config->site_url()."/".$this->uri->uri_string(). $query; 
+              
+		      ?>
+			  <a id="loginAnchorInHeader" href="<?php echo site_url();?>/login?returnUrl=<?php echo $url; ?> "> Prihlásenie </a>
 		  
     <?php 
 		}
 		else
 		{?>
 		
-			  <a href="<?php echo $is_logged_in.".".site_url();?>"> <?php echo $is_logged_in;?></a>
+			  <a href="http://<?php echo $is_logged_in;?>.profile.matfyz.sk"> <?php echo $is_logged_in;?></a>
 		  
 			  <a id="loginAnchorInHeader" href="<?php echo site_url();?>/login/logout"> Odhlásenie</a>
 		  

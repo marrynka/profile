@@ -4,7 +4,7 @@ class Membership_model extends CI_Model
     function validate()
     {
       $this->db->where('username', $this->input->post('username'));
-      $this->db->where('password',sha1($this->input->post('password')));
+      $this->db->where('password', sha1($this->input->post('password')));
       
       $query = $this->db->get('oauth_users');
       if($query->num_rows == 1)
@@ -16,6 +16,14 @@ class Membership_model extends CI_Model
       }
       else return FALSE;
     }
+    function change_password($username, $password)
+    {
+		$this->db->where('username',$username);
+		$data = array(
+               'password' => sha1($password),
+            );
+		return $this->db->update('oauth_users',$data);
+	}
     function is_available($username)
     {
 		

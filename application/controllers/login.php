@@ -155,8 +155,14 @@ class Login extends CI_Controller
 			if($returnUrl != "")
 			{
 		 
-		 
-			redirect($returnUrl."&user_id=".$this->session->userdata('user_id'));
+				if(strpos($returnUrl,'?') !== false)
+				{
+					redirect($returnUrl."&user_id=".$this->session->userdata('user_id'));
+				}
+				else
+				{
+					redirect($returnUrl);
+				}
 			}
 			$data['header'] = array(
 							 'title' => 'Prihlásenie do systému matfyz.sk',

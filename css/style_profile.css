@@ -1,6 +1,63 @@
+#giveBadge
+{
+background: url(layrus/8bit/pen_add.png) no-repeat center left;
+padding-left:60px;
+height:60px;
+font-size:1.2em;
+vertical-align:center;
+float:right;
+line-height:60px;
+}
+#giveBadge a
+{
+cursor:auto;
+}
+.sideportlet #errors
+{
+font-size:1em;
+display:block;
+color:black;
+font-weight:bold;
+}
+.sideportlet input[type=password]
+{
+width:90%;
+display:block;
+}
+.sideportlet input[type=submit]
+{
+margin-top:5px;
+}
+#clear
+{
+clear:both;
+}
+#edit_userprofile
+{
+text-align:right;
+}
+#achievementsWrapper h3 , #badgesWrapper h3, #about_long h3, #activitiesWrapper h3, #contact h3
+{
+background: url("layrus/8bit/separator_long.png") no-repeat scroll center top transparent;
+padding: 0.3ex 0.5ex;
+font-size: 90%;
+margin: 10px 0px 5px;
+position: relative;
+}
+#contact
+{
+text-align:right;
+}
+#achievement_outside
+{
+float:left;
+background: url("blank_achievement_green.png") no-repeat;
+
+}
+
 #badge_outside
 {
-background:pink;
+float:left;
 background: url("blank_badge_green.png") no-repeat;
 
 }
@@ -141,11 +198,21 @@ margin:10px;
 height:30px;
 width:60px;
 }
-#signup_form input
+#signup_form input, #edit_userprofile_form input[type=text]
 {
 height: 40px;
 display:block;
 margin:10px;
+}
+#edit_userprofile_form input[type=text],#edit_userprofile_form input[type=file], #edit_userprofile_form textarea 
+{
+width:90%;
+}
+#edit_userprofile_form .avatar img
+{
+width:90%;
+max-width:178px;
+
 }
 #signup_form input[type=radio]
 {
@@ -168,11 +235,13 @@ margin:auto;
 }
 #general_info
 {
+min-width:178px;
 width: 50%;
 float:left;
 }
 #about_info
 {
+min-width:178px;
 width:50%;
 float:right;
 }

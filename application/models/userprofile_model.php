@@ -16,16 +16,20 @@ class Userprofile_model extends CI_Model
 			  }
 		  }
 	  }
+      
       function all($username)
       {
            $this->db->where('username',$username);
            $query = $this->db->get('profile_general');
-           
-          foreach($query->result() as $row)
-          {
+           if($query->num_rows >0)
+		   {
+			foreach($query->result() as $row)
+			{
           
-           return $row;
-          }
+				return $row;
+			}
+		   }
+		   return FALSE;
       }
       function about($username)
       {  
@@ -42,13 +46,15 @@ class Userprofile_model extends CI_Model
           
   
       }
-      function general($username)
-      {  $user_id = $this->id($username);
-         $this->db->select('profile_activities.activity, profile_activities.activity_type, profile_activities.time, profile_activity_types.client_id');
-         $this->db->from('profile_activities');
-         $this->db->join('profile_activity_types','profile_activity_types.activity_type = profile_activities.activity_type');
+      function badges($username)
+      {
+		 $user_id = $this->id($username);
+         $this->db->select('profile_badge_types.badge_title, profile_badge_types.picture, profile_badges.id_user_who_gave_it, profile_badges.time, profile_badges.comment');
+         $this->db->from('profile_badges');
+         $this->db->join('profile_badge_types','profile_badge_types.id_badge = profile_badges.id_badge' );
          
-         $this->db->where('profile_activities.id_user',$user_id);
+		 $this->db->where('profile_badges.id_user',$user_id);
+		 
          $this->db->order_by('time', 'desc');   
          $query = $this->db->get();
          
@@ -57,9 +63,27 @@ class Userprofile_model extends CI_Model
          return $query->result();
          return null;
           
+		
+	  }
+	  function achievements($username)
+      {
+		 $user_id = $this->id($username);
+         $this->db->select('profile_achievement_types.achievement_title, profile_achievement_types.picture, profile_achievements.course_name, profile_achievements.time');
+         $this->db->from('profile_achievements');
+         $this->db->join('profile_achievement_types','profile_achievement_types.id_achievement = profile_achievements.id_achievement' );
+         
+		 $this->db->where('profile_achievements.id_user',$user_id);
+		 
+         $this->db->order_by('time', 'desc');   
+         $query = $this->db->get();
+         
+         
+         if($query->num_rows > 0)
+         return $query->result();
+         return null;
           
-  
-      }
+		
+	  }
       function activities($username, $client_id)
       {  
 		 $user_id = $this->id($username);
@@ -83,25 +107,22 @@ class Userprofile_model extends CI_Model
           
   
       }
-      function blog($username)
-      {  
-		 $user_id = $this->id($username);
-         $this->db->select('profile_activities.activity, profile_activities.activity_type, profile_activities.time, profile_activity_types.activity_title');
-         $this->db->from('profile_activities');
-         $this->db->join('profile_activity_types','profile_activity_types.activity_type = profile_activities.activity_type AND profile_activity_types.client_id = "blog"');
-         
-         $this->db->where('profile_activities.id_user',$user_id);
-         $this->db->order_by('time', 'desc');   
-         $query = $this->db->get();
-         
-         
-         if($query->num_rows > 0)
-         return $query->result();
-         return null;
-          
-          
-  
-      }
+      /**
+       * ADD FUNCTIONS
+       */
+      function add_badge($badge_type, $id_user, $user_who_gave_it, $comment, $timestamp)
+      {
+		  $data = array
+		  (
+			  'id_badge' => $badge_type,
+			  'id_user' => $id_user,
+			  'id_user_who_gave_it' => $user_who_gave_it,
+			  'comment' => $comment,
+			  'time' => $timestamp,
+		  );
+		  $this->db->insert('profile_badges', $data);
+	  }
+		
       
       /**
       FUNCTIONS FOR EXTERNAL API FOR OTHER APPLICATIONS

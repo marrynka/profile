@@ -1,4 +1,8 @@
+
+<div id="activitiesWrapper">
+	<h3>Moje aktivity<?php if (isset($data['which_activities']) && $data['which_activities'] != '') echo " na ".$data['which_activities']; ?></h3>
 <?php
+
 if(isset($data['records']))
 {
 	foreach($data['records'] as $row)
@@ -19,4 +23,6 @@ else
 {
 	echo "Zatiaľ nebola vykonaná žiadna aktivita";
 }
+
 ?>
+</div>

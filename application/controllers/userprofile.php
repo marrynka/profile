@@ -57,7 +57,10 @@ class Userprofile extends CI_Controller
 												'main_contents_data' => array (
 																				
 																				'records' => $query,
-																				
+																				'badges' => $this->userprofile_model->badges($profile_of),
+																				'achievements'=>$this->userprofile_model->achievements($profile_of),
+																				'username' => $profile_of,
+																				'is_logged_in' => $this->is_logged_in(),
 																			  ),
 												
 			
@@ -65,6 +68,7 @@ class Userprofile extends CI_Controller
 		$data['left_contents_data']= array
 											(
 												'records'=>$query,
+										        'is_logged_in' => ($this->is_logged_in() == $profile_of),
 											);
 			
 		$this->load->view('includes/template',$data);
@@ -82,6 +86,7 @@ class Userprofile extends CI_Controller
         $query = $this->userprofile_model->activities($this->input->post('username'), $this->input->post('client_id'));
         $data['data'] = array(
 							'records'=> $query,
+							'which_activities' => $this->input->post('client_id'),
 							);
         $this->load->view('userprofile_view-activities', $data );
         
@@ -129,6 +134,7 @@ class Userprofile extends CI_Controller
 												);
 		$data['left_contents_data'] = array(
 												'records'=>$query_about,
+												'is_logged_in' => ($this->is_logged_in() == $profile_of),
 											);
 			
 		$this->load->view('includes/template',$data);
@@ -139,13 +145,19 @@ class Userprofile extends CI_Controller
    
     function about()
     {
-		$this->load->model('userprofile_model');
+	  $this->load->model('userprofile_model');
+	  $username = $this->input->post('username');
       $is_ajax = $this->input->post('ajax');
       if($is_ajax)
       {
-        $query = $this->userprofile_model->about($this->input->post('username'));
+        $query = $this->userprofile_model->about($username);
         $data['data'] = array(
 								'records' => $query ,
+								'badges' => $this->userprofile_model->badges($username),
+								'achievements'=>$this->userprofile_model->achievements($username),
+								'username' => $profile_of,
+								'is_logged_in' => $this->is_logged_in(),
+																				
 							);
         $this->load->view('userprofile_view-about', $data );
         
