@@ -7,7 +7,7 @@ class Userprofile extends CI_Controller
     parent::__construct();
     //$this->is_logged_in();
     $subdomain_arr = explode('.', $_SERVER['HTTP_HOST'], 2); //creates the various parts  
-    $profile_of = $subdomain_arr[0]; //assigns the first part  
+    $this->profile_of = $subdomain_arr[0]; //assigns the first part  
     
     
     }
@@ -35,16 +35,14 @@ class Userprofile extends CI_Controller
 		$this->load->model('userprofile_model');
 		$this->load->model('membership_model');
 		$data['main_contents'] = 'about';
-		$subdomain_arr = explode('.', $_SERVER['HTTP_HOST'], 2); //creates the various parts  
-		$profile_of = $subdomain_arr[0]; //assigns the first part  
-
-		if($query = $this->userprofile_model->about($profile_of))
+		
+		if($query = $this->userprofile_model->about($this->profile_of))
 		{      
 		  $data['records'] = $query;
 		  
 		}
 		$data['header'] = array(
-									  'title' => 'Profil používateľa '. $profile_of,
+									  'title' => 'Profil používateľa '. $this->profile_of,
 									  'apps' => $this->membership_model->get_apps(),
 									  'header' => $query->first_name." ".$query->surname,
 									  'is_logged_in' => $this->is_logged_in(),
@@ -52,14 +50,14 @@ class Userprofile extends CI_Controller
 			
 		$data['main_content'] = 'userprofile_view';
 		$data['left_content'] = 'left_userprofile_view';
-		$data['main_contents_data'] = array(	'username' =>$profile_of,
+		$data['main_contents_data'] = array(	'username' =>$this->profile_of,
 												'main_content' => 'about',
 												'main_contents_data' => array (
 																				
 																				'records' => $query,
-																				'badges' => $this->userprofile_model->badges($profile_of),
-																				'achievements'=>$this->userprofile_model->achievements($profile_of),
-																				'username' => $profile_of,
+																				'badges' => $this->userprofile_model->badges($this->profile_of),
+																				'achievements'=>$this->userprofile_model->achievements($this->profile_of),
+																				'username' => $this->profile_of,
 																				'is_logged_in' => $this->is_logged_in(),
 																			  ),
 												
@@ -68,7 +66,7 @@ class Userprofile extends CI_Controller
 		$data['left_contents_data']= array
 											(
 												'records'=>$query,
-										        'is_logged_in' => ($this->is_logged_in() == $profile_of),
+										        'is_logged_in' => ($this->is_logged_in() == $this->profile_of),
 											);
 			
 		$this->load->view('includes/template',$data);
@@ -103,11 +101,11 @@ class Userprofile extends CI_Controller
 		$which_activities = $this->uri->segment(3);
 		
         $this->load->model('userprofile_model');
-        $query_about = $this->userprofile_model->about($profile_of);
+        $query_about = $this->userprofile_model->about($this->profile_of);
         $this->load->model('membership_model');
         
     
-        $query = $this->userprofile_model->activities($profile_of, $which_activities);
+        $query = $this->userprofile_model->activities($this->profile_of, $which_activities);
          
               
           
@@ -115,7 +113,7 @@ class Userprofile extends CI_Controller
         
            
         $data['header'] = array(
-									  'title' => 'Profil používateľa '. $profile_of,
+									  'title' => 'Profil používateľa '. $this->profile_of,
 									  'apps' => $this->membership_model->get_apps(),
 									  'header' => $query_about->first_name." ".$query_about->surname,
 									  'is_logged_in' => $this->is_logged_in(),
@@ -124,7 +122,7 @@ class Userprofile extends CI_Controller
 		$data['main_content'] = 'userprofile_view';
 		$data['left_content'] = 'left_userprofile_view';
 		$data['main_contents_data'] = array(
-												'username' => $profile_of,
+												'username' => $this->profile_of,
 												'main_content' => 'activities',
 												'main_contents_data'=> array ('records' => $query,
 																			  'which_activities' =>$which_activities,
@@ -134,7 +132,7 @@ class Userprofile extends CI_Controller
 												);
 		$data['left_contents_data'] = array(
 												'records'=>$query_about,
-												'is_logged_in' => ($this->is_logged_in() == $profile_of),
+												'is_logged_in' => ($this->is_logged_in() == $this->profile_of),
 											);
 			
 		$this->load->view('includes/template',$data);
@@ -155,7 +153,7 @@ class Userprofile extends CI_Controller
 								'records' => $query ,
 								'badges' => $this->userprofile_model->badges($username),
 								'achievements'=>$this->userprofile_model->achievements($username),
-								'username' => $profile_of,
+								'username' => $this->profile_of,
 								'is_logged_in' => $this->is_logged_in(),
 																				
 							);
@@ -171,7 +169,7 @@ class Userprofile extends CI_Controller
         $subdomain_arr = explode('.', $_SERVER['HTTP_HOST'], 2); //creates the various parts  
         $profile_of = $subdomain_arr[0]; //assigns the first part  
     
-        if($query = $this->userprofile_model->about($profile_of))
+        if($query = $this->userprofile_model->about($this->profile_of))
         { 
               
           $data['records'] = $query;

@@ -70,6 +70,12 @@ font-size:0.8em;
 width:30px;
 display:inline;
 }
+#occupation
+{
+line-height:34px;
+cursor:auto;
+font-size:1.2em;
+}
 label
 {
 
