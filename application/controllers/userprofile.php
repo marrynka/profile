@@ -24,6 +24,7 @@ class Userprofile extends CI_Controller
     
     function index()
     {
+    if($this->profile_of == 'profile') redirect('profile');
      
     $this->profile();
    
@@ -35,42 +36,67 @@ class Userprofile extends CI_Controller
 		$this->load->model('userprofile_model');
 		$this->load->model('membership_model');
 		$data['main_contents'] = 'about';
-		
-		if($query = $this->userprofile_model->about($this->profile_of))
-		{      
-		  $data['records'] = $query;
-		  
-		}
-		$data['header'] = array(
+		if($this->membership_model->is_available($this->profile_of))
+		{
+				$data['header'] = array(
 									  'title' => 'Profil používateľa '. $this->profile_of,
 									  'apps' => $this->membership_model->get_apps(),
-									  'header' => $query->first_name." ".$query->surname,
+									  'header' => 'Profil užívateľa',
 									  'is_logged_in' => $this->is_logged_in(),
 									);
 			
-		$data['main_content'] = 'userprofile_view';
-		$data['left_content'] = 'left_userprofile_view';
+		$data['main_content'] = 'home_view';
+		$data['left_content'] = 'left_normal_view';
 		$data['main_contents_data'] = array(	'username' =>$this->profile_of,
-												'main_content' => 'about',
-												'main_contents_data' => array (
-																				
-																				'records' => $query,
-																				'badges' => $this->userprofile_model->badges($this->profile_of),
-																				'achievements'=>$this->userprofile_model->achievements($this->profile_of),
-																				'username' => $this->profile_of,
-																				'is_logged_in' => $this->is_logged_in(),
-																			  ),
+												'text' => 'Užívateľ s menom '. $this->profile_of.' žiaľ neexistuje',
+																			  
 												
 			
 												);
 		$data['left_contents_data']= array
 											(
-												'records'=>$query,
-										        'is_logged_in' => ($this->is_logged_in() == $this->profile_of),
+												
 											);
 			
 		$this->load->view('includes/template',$data);
-		
+		}
+		else
+		{
+			if($query = $this->userprofile_model->about($this->profile_of))
+			{      
+			  $data['records'] = $query;
+			  
+			}
+			$data['header'] = array(
+										  'title' => 'Profil používateľa '. $this->profile_of,
+										  'apps' => $this->membership_model->get_apps(),
+										  'header' => $query->first_name." ".$query->surname,
+										  'is_logged_in' => $this->is_logged_in(),
+										);
+				
+			$data['main_content'] = 'userprofile_view';
+			$data['left_content'] = 'left_userprofile_view';
+			$data['main_contents_data'] = array(	'username' =>$this->profile_of,
+													'main_content' => 'about',
+													'main_contents_data' => array (
+																					
+																					'records' => $query,
+																					'badges' => $this->userprofile_model->badges($this->profile_of),
+																					'achievements'=>$this->userprofile_model->achievements($this->profile_of),
+																					'username' => $this->profile_of,
+																					'is_logged_in' => $this->is_logged_in(),
+																				  ),
+													
+				
+													);
+			$data['left_contents_data']= array
+												(
+													'records'=>$query,
+													'is_logged_in' => ($this->is_logged_in() == $this->profile_of),
+												);
+				
+			$this->load->view('includes/template',$data);
+		}
 		   
 		
     }

@@ -6,7 +6,7 @@
 			<img src="<?php echo base_url().'/images/users/'.$data['records']->username.'/avatar.jpg'; ?>"   />
 		  </div>
 		   <?php
-		    if($data['is_logged_in']) echo "<div id='edit_userprofile'><a href='edit_userprofile'>edit my profile</a></div>";
+		    if($data['is_logged_in']) echo "<div id='edit_userprofile'><a href='".site_url()."/edit_userprofile'>edit my profile</a></div>";
 		    ?>
 		  <?php if($data['records']->occupation != 'other')
 		  {?>

@@ -157,7 +157,7 @@ success: function(msq)
 {
   $('#info').html(msq);
   $('#navigation li').removeClass('selected');
-  $('#general_option').addClass('selected');
+  $('#wiki_option').addClass('selected');
 }
 
 }

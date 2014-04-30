@@ -55,12 +55,17 @@ class Authorize extends CI_Controller
       */
       $user = $this->session->userdata('user_id');
       
-      $server->handleAuthorizeRequest($request, $response, TRUE, $user);
-      if ($is_authorized) {
+       $server->handleAuthorizeRequest($request, $response, TRUE, $user);
+      
 	// this is only here so that you get to see your code in the cURL request. Otherwise, we'd redirect back to the client
-	$code = substr($response->getHttpHeader('Location'), strpos($response->getHttpHeader('Location'), 'code=')+5, 40);
+	  $code = substr($response->getHttpHeader('Location'), strpos($response->getHttpHeader('Location'), 'code=')+5, 40);
 	//exit("SUCCESS! Authorization Code: $code");
-      }
+      //ulozime k danemu authorization codu este aj session_id aby sme si to potom vedeli v databaze spravne priradit:
+      
+      $this->load->model('oauth/token_model');
+      $this->token_model->assign_session_to_authorization_code($this->session->all_userdata()['session_id'], $code);
+      
+      
       $response->send();
       }
 }

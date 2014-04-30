@@ -34,14 +34,19 @@
 		);
 
 	echo form_radio($input_data); echo "student";
+	//nechceme aby sa mohli studenti samovolne zmenit na ucitelov
+	//nechceme aby sa mohli studenti samovolne zmenit na ucitelov
+	/*
 	$input_data = array(
 		'name'        => 'occupation',
 		'id'          => 'occupation',
 		'value'       => 'teacher',
 		'checked'     => $data['records']->occupation == 'teacher',
 		);
-
+    
 	echo form_radio($input_data);echo "teacher";
+	*/
+	
 	$input_data = array(
 		'name'        => 'occupation',
 		'id'          => 'occupation',

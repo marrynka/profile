@@ -15,7 +15,7 @@ class Login extends CI_Controller
           return $this->session->userdata('username');
       }
     
-    function index($str=null)
+    function index($str=null, $returnUrl=null)
     {
        
 		if($this->is_logged_in() != FALSE)
@@ -42,7 +42,10 @@ class Login extends CI_Controller
 		else
 		{
 			$this->load->model('membership_model');
-			$returnUrl = $this->input->get('returnUrl');
+			if(!isset($returnUrl)) 
+			{
+				$returnUrl = $this->input->get('returnUrl');
+			}
 			$data['header'] = array(
 									 'title' => 'Prihlásenie do systému matfyz.sk',
 									  'apps' => $this->membership_model->get_apps(),
@@ -123,7 +126,7 @@ class Login extends CI_Controller
       
       if($this->form_validation->run()==FALSE)
       {   //nevhodny vstup
-		  $this->index();
+		  $this->index(null, $this->input->post('returnUrl'));
 	  }
 	  else
 	  {
@@ -136,7 +139,7 @@ class Login extends CI_Controller
 		{
 			
 			$this->form_validation->set_message('validate', 'Invalid username or password');
-			$this->index('Invalid username or password');
+			$this->index('Invalid username or password',$this->input->post('returnUrl'));
 		}
 		else 
 		{

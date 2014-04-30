@@ -24,6 +24,7 @@
 							echo form_hidden('returnUrl',$data['returnUrl']);
 							}
 							echo anchor('login/signup','Create Account');
+							echo form_close();
 							?>
 						</div>
                       

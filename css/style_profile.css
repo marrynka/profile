@@ -1,3 +1,128 @@
+#listedUsers a:hover 
+{
+text-decoration:none;
+background:transparent;
+}
+#listedUsers #name a:hover 
+{
+background-color:rgb(0, 105, 0);;
+}
+
+#bestUser img, #bestUser2 img
+{
+border: 1px solid #999999;
+padding: 5px;
+box-shadow: 1px 1px 2px rgba(50, 50, 50, 0.4);
+}
+#bestUser
+{
+background-color: white;
+z-index:1;
+float:right;
+position:relative;
+right:30%;
+text-align:center;
+
+}
+#bestUser img
+{
+
+display:block;
+margin:auto;
+}
+#bestUser2
+{
+background-color: white;
+z-index:1;
+float:right;
+position:relative;
+right:35%;
+text-align:center;
+
+}
+#bestUser2 img
+{
+
+display:block;
+margin:auto;
+}
+
+
+#mid-content-2
+{position:relative;}
+#profile
+{
+margin:20px;
+min-width:492px;
+overflow:hidden;
+}
+#mozaicUsers-left
+{
+float:left;
+overflow:hidden;
+}
+#mozaicUsers-right
+{
+
+overflow:hidden;
+position:absolute;
+bottom:20px;
+right:40px;
+}
+#clearing_div
+
+{
+clear:both;
+}
+#mozaicUsers-left
+{
+width:100%;
+
+}
+#mozaic-Users-left #mozaic_row
+{
+float:left;
+}
+#mozaicUsers-right #mozaic_row
+{
+float:right;
+display:block;
+}
+#searchForm
+{
+width:90%;
+float:right;
+margin-right:10px;
+}
+#searchForm input[type=text]
+{
+width:100%;
+min-width:3em;	
+display:block;
+margin:0px;
+}
+#searchForm input[type=submit]
+{
+
+float:right;
+align:right;
+}
+#profile a:hover 
+{
+text-decoration:none;
+background:transparent;
+}
+#header-user
+{
+	right:70px;
+}
+#outer-column-container
+{
+border-right:10px solid transparent;
+}
+#mozaic
+{display:inline;
+}
 #giveBadge
 {
 background: url(layrus/8bit/pen_add.png) no-repeat center left;
@@ -36,7 +161,7 @@ clear:both;
 {
 text-align:right;
 }
-#achievementsWrapper h3 , #badgesWrapper h3, #about_long h3, #activitiesWrapper h3, #contact h3
+#achievementsWrapper h3 , #badgesWrapper h3, #about_long h3, #activitiesWrapper h3, #contact h3, #listedUsers h3
 {
 background: url("layrus/8bit/separator_long.png") no-repeat scroll center top transparent;
 padding: 0.3ex 0.5ex;
@@ -182,12 +307,15 @@ text-decoration:underline;
     position: relative;
    
 }
+
 #mid-content-1
 {
+
 min-height:400px;
 }
 #mid-content-2
 {
+
 min-height:400px;
 }
 

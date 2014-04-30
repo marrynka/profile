@@ -22,17 +22,39 @@ class Membership_model extends CI_Model
 		$data = array(
                'password' => sha1($password),
             );
-		return $this->db->update('oauth_users',$data);
+		return $this->db->update('oauth_users',$s);
 	}
     function is_available($username)
     {
 		
+		if($username == 'profile' ) return FALSE;
 		$this->db->where('username',$username);
 		$query = $this->db->get('oauth_users');
 		if($query->num_rows >0) return FALSE;
 		
 		return TRUE;
 		
+	}
+	function change_information($username)
+	{
+		$this->load->model('userprofile_model');
+		$id = $this->userprofile_model->id($username);
+		
+		$new_member_data = array
+		(
+		'first_name' => $this->input->post('first_name') ,
+		'surname' => $this->input->post('last_name') ,
+		'email' => $this->input->post('email_address') ,
+		'occupation' => $this->input->post('occupation'),
+		'about_short' => $this->input->post('about_short') ,
+		'about_long' => $this->input->post('about_long') ,
+		);
+    
+    
+		$this->db->where('id_user', $id);
+		$insert= $this->db->update('profile_general',$new_member_data);
+		if($insert != TRUE) return 'Some problem with database';
+		return 'ok';
 	}
     function create_member()
     {
@@ -59,7 +81,7 @@ class Membership_model extends CI_Model
     'first_name' => $this->input->post('first_name') ,
     'surname' => $this->input->post('last_name') ,
     'email' => $this->input->post('email_address') ,
-    'username' => $this->input->post('username') ,
+    'username' => $username,
     'occupation' => $this->input->post('occupation'),
     'about_short' => $this->input->post('about_short') ,
     'about_long' => $this->input->post('about_long') ,
@@ -68,6 +90,9 @@ class Membership_model extends CI_Model
     
     $insert= $this->db->insert('profile_general',$new_member_data);
     if($insert != TRUE) return 'Some problem with database';
+    //vytvorime priecienok s avatarom:
+    mkdir(FCPATH.'images/users/'.$username);
+    copy(FCPATH.'images/avatar.jpg' , FCPATH.'images/users/'.$username.'/avatar.jpg');
     return 'ok';
     }
     /**

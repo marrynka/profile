@@ -32,7 +32,8 @@
 		);
 
 	echo form_radio($input_data); echo "student";
-	$input_data = array(
+	//ucitela musi vyrobit admin, a neda sa sam zaregistrovat ako ucitel
+	/*$input_data = array(
 		'name'        => 'occupation',
 		'id'          => 'occupation',
 		'value'       => 'teacher',
@@ -40,6 +41,7 @@
 		);
 
 	echo form_radio($input_data);echo "teacher";
+	*/
 	$input_data = array(
 		'name'        => 'occupation',
 		'id'          => 'occupation',

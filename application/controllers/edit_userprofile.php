@@ -125,12 +125,12 @@ class Edit_userprofile extends CI_Controller
     else
     {
 		$this->load->model('membership_model');
-		$status = $this->membership_model->create_member();
+		$status = $this->membership_model->change_information($this->session->userdata('username'));
 		if($status == 'ok')
 		{
 			//ak sa podarilo prehodime na signup successfull, co je login form s napisom, ze sa zaregistroval
 			
-			$this->index('Úspešne ste sa zaregistrovali, teraz sa môžete prihlásiť');
+			$this->index('Údaje boli úspene zmenené ',null);
 		   
 		
 		}
@@ -138,7 +138,7 @@ class Edit_userprofile extends CI_Controller
 		{
 			//zobrazime znova formular + kde nastala chyba:
 			
-			$this->signup($status);
+			$this->index($status,null);
 			
 		}
     
@@ -148,27 +148,27 @@ class Edit_userprofile extends CI_Controller
     {
 		$this->load->library('form_validation');
 		$this->load->model('membership_model');
-    //field name, error message, validation rules
-    $this->form_validation->set_rules('new_password','Password','trim|required|min_length[4]|max_length[32]');
-    $this->form_validation->set_rules('new_password2','Password Confirmation','trim|required|matches[new_password]');
-    if(!$this->membership_model->validate())
-    {
-		$this->index(null,'Zlé heslo');
-	}
-    if($this->form_validation->run()==FALSE)
-    {
-       $this->index(null,null);
-    }
-	//zadla spravne stare heslo aj nove dvakrat rovnake, takze ho zmenme:
-	
-    if( $this->membership_model->change_password($this->input->post('username'),$this->input->post('new_password')))
-    {
-		$this->index(null,'Heslo bolo úspešne zmenené');
-	}
-	else
-	{
-		$this->index(null, 'Nastal problém s databázou, heslo nebolo zmenené');
-	}
+		//field name, error message, validation rules
+		$this->form_validation->set_rules('new_password','Password','trim|required|min_length[4]|max_length[32]');
+		$this->form_validation->set_rules('new_password2','Password Confirmation','trim|required|matches[new_password]');
+		if(!$this->membership_model->validate())
+		{
+			$this->index(null,'Zlé heslo');
+		}
+		if($this->form_validation->run()==FALSE)
+		{
+		   $this->index(null,null);
+		}
+		//zadla spravne stare heslo aj nove dvakrat rovnake, takze ho zmenme:
+		
+		if( $this->membership_model->change_password($this->input->post('username'),$this->input->post('new_password')))
+		{
+			$this->index(null,'Heslo bolo úspešne zmenené');
+		}
+		else
+		{
+			$this->index(null, 'Nastal problém s databázou, heslo nebolo zmenené');
+		}
 	}
     
     
@@ -178,4 +178,3 @@ class Edit_userprofile extends CI_Controller
     
 }
 ?>
-

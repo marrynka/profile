@@ -74,7 +74,13 @@
           <div id="header-user">
            <?php echo $header ?>
           </div>
-          <a href="<?php echo site_url();?>">
+          <?php
+           $base = base_url();
+		   $pos = strpos($base,'://');
+           $baseurl = substr($base,$pos+3,strlen($base));
+        
+          ?>
+          <a href="<?php echo "http://profile.matfyz.sk";?>">  
             <span class="logo"></span>
           </a>
         </div>
