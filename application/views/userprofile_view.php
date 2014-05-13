@@ -4,11 +4,38 @@
 	  <div id="navigationProfile">
 	  <div class="centerTitle">
 	  <ul id="navigation">
-	  <li id="about_option" class="selected"><a href="about" id="about_button" > About </a></li>
-	  <li id="general_option" ><a href="activities" id="general_button"> General </a></li>
-	  <li id="blog_option"><a href="activities/blog" id="blog_button"> Blog </a></li>
+	  <li id="profile_option" 
+	  <?php
+	  if($data['main_content'] == 'my_profile')
+	  {
+		  echo "class='selected'"; 
+	  }
+	  ?>
+	  ><a href="my_profile" id="profile_button" > Profil </a></li>
+	
+	  <li id="about_option" 
+	  <?php
+	  if($data['main_content'] == 'about')
+	  {
+		  echo "class='selected'"; 
+	  }
+	  ?>
+	  
+	  ><a href="about" id="about_button" > O mne </a></li>
+	   <li id="general_option" 
+	   
+	   <?php
+	  if($data['main_content'] == 'activities')
+	  {
+		  echo "class='selected'"; 
+	  }
+	  ?>
+	   
+	   ><a href="activities" id="general_button"> Aktivity </a></li>
+	 <!-- <li id="blog_option"><a href="activities/blog" id="blog_button"> Blog </a></li>
 	  <li id="courses_option"><a href="activities/courses" id="courses_button"> Courses </a></li>
 	  <li id="wiki_option"><a href="activities/wiki" id="wiki_button"> Wiki </a></li>
+	  -->
 	  </ul>
 	  </div>
 	  </div>
@@ -23,6 +50,42 @@
 
 
 <script type="text/javascript">
+	
+$('#profile_button').click(function()
+{
+	
+var form_data = 
+{
+
+	 username: '<?php echo $data['username']; ?>' ,
+	ajax: '1'
+	};
+	$.ajax(
+	{
+	url: "<?php echo site_url('userprofile/my_profile'); ?>",
+	type:'POST',
+	data: form_data,
+	success: function(msq)
+	{
+	  $('#info').html(msq);
+	  /*$('#selected').replaceWith($('#selected').html());
+	  $('#about_option').html('<div id="selected">'+$('#about_option').html()+"</div>");
+*/
+	$('#navigation li').removeClass('selected');
+	//$(this).html('tento tu');
+	$('#profile_option').addClass('selected');
+	}
+
+	}
+	)
+	
+	return false;
+}
+
+);
+
+
+
 	
 $('#about_button').click(function()
 {

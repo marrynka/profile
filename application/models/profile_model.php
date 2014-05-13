@@ -17,9 +17,51 @@ class profile_model extends CI_Model
 		$query = $this->db->get('profile_general', $per_page, $page);
 		return $query;
 	}
+	function get_bestRatingUsers($amount)
+	{
+		$this->db->order_by('rating', 'desc');
+		$this->db->limit($amount);
+		$this->db->select('first_name, surname,username');
+        $query = $this->db->get('profile_general');
+        foreach($query->result() as $row)
+         {
+            $data[] = $row;
+         }
+         $data['amount'] = $query->num_rows();
+         return $data;
+		
+	}
+	function get_newUsers($amount)
+	{
+		$this->db->order_by('id_user', 'desc');
+		$this->db->limit($amount);
+		$this->db->select('first_name, surname,username');
+        $query = $this->db->get('profile_general');
+        foreach($query->result() as $row)
+         {
+            $data[] = $row;
+         }
+         $data['amount'] = $query->num_rows();
+         return $data;
+		
+	}
+	function get_randomUsers($amount)
+	{
+		$this->db->order_by('id_user', 'RANDOM');
+		$this->db->limit($amount);
+		$this->db->select('first_name, surname,username');
+        $query = $this->db->get('profile_general');
+        foreach($query->result() as $row)
+         {
+            $data[] = $row;
+         }
+         $data['amount'] = $query->num_rows();
+         return $data;
+		
+	}
     function get_random_mozaic($amount)
     {
-        $this->db->order_by('id', 'RANDOM');
+        $this->db->order_by('id_user', 'RANDOM');
         $this->db->limit($amount);
         $query = $this->db->get('profile_general');
         foreach($query->result() as $row)

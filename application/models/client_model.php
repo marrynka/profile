@@ -9,7 +9,7 @@ class Client_model extends CI_Model
 		  $this->load->library('client');
 		}
 		public function findByKey($key)
-		{
+		{s
 		      $this->db->where('client_key',$key);
 		      $query = $this->db->get('authorization_clients');
 		      
@@ -20,7 +20,11 @@ class Client_model extends CI_Model
 		      }
 		      return;
 		}
-
+		function get_redirects_uri($client_id)
+		{
+			
+		
+		}
 		/* Create in the DB a consumer with a given key & secret */
 		public function create($key,$secret)
 		{

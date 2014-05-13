@@ -16,6 +16,19 @@ class Userprofile_model extends CI_Model
 			  }
 		  }
 	  }
+	  function username($id)
+	  {
+		  $this->db->select('username');
+		  $this->db->where('id_user', $id);
+		  $query = $this->db->get('oauth_users');
+		  if($query->num_rows == 1)
+		  {
+			  foreach($query->result() as $row)
+			  {
+				  return $row->username;
+			  }
+		  } 
+	  }
       
       function all($username)
       {
@@ -46,33 +59,20 @@ class Userprofile_model extends CI_Model
           
   
       }
-      function badges($username)
+      function badges($username, $amount = null)
       {
 		 $user_id = $this->id($username);
-         $this->db->select('profile_badge_types.badge_title, profile_badge_types.picture, profile_badges.id_user_who_gave_it, profile_badges.time, profile_badges.comment');
+         $this->db->select('oauth_users.username , profile_badge_types.badge_description, profile_badge_types.badge_title, profile_badge_types.picture, profile_badges.id_user_who_gave_it, profile_badges.time, profile_badges.comment');
          $this->db->from('profile_badges');
-         $this->db->join('profile_badge_types','profile_badge_types.id_badge = profile_badges.id_badge' );
-         
+         $this->db->join('profile_badge_types','profile_badge_types.badge_type = profile_badges.badge_type' );
+         $this->db->join('oauth_users', 'oauth_users.id_user = profile_badges.id_user_who_gave_it');
+
 		 $this->db->where('profile_badges.id_user',$user_id);
 		 
-         $this->db->order_by('time', 'desc');   
-         $query = $this->db->get();
-         
-         
-         if($query->num_rows > 0)
-         return $query->result();
-         return null;
-          
-		
-	  }
-	  function achievements($username)
-      {
-		 $user_id = $this->id($username);
-         $this->db->select('profile_achievement_types.achievement_title, profile_achievement_types.picture, profile_achievements.course_name, profile_achievements.time');
-         $this->db->from('profile_achievements');
-         $this->db->join('profile_achievement_types','profile_achievement_types.id_achievement = profile_achievements.id_achievement' );
-         
-		 $this->db->where('profile_achievements.id_user',$user_id);
+		 if($amount!=null)
+		 {
+			 $this->db->limit($amount);
+		 }
 		 
          $this->db->order_by('time', 'desc');   
          $query = $this->db->get();
@@ -84,17 +84,42 @@ class Userprofile_model extends CI_Model
           
 		
 	  }
-      function activities($username, $client_id)
+	  function achievements($username, $amount = null)
+      {
+		 $user_id = $this->id($username);
+         $this->db->select('profile_achievement_types.achievement_title, profile_achievement_types.achievement_description, profile_achievement_types.picture, profile_achievements.source, profile_achievements.time');
+         $this->db->from('profile_achievements');
+         $this->db->join('profile_achievement_types','profile_achievement_types.achievement_type = profile_achievements.achievement_type' );
+         
+		 $this->db->where('profile_achievements.id_user',$user_id);
+		 if($amount!=null)
+		 {
+			 $this->db->limit($amount);
+		 }
+         $this->db->order_by('time', 'desc');   
+         $query = $this->db->get();
+         
+         
+         if($query->num_rows > 0)
+         return $query->result();
+         return null;
+          
+		
+	  }
+      function activities($username, $client_id, $amount = null)
       {  
 		 $user_id = $this->id($username);
-         $this->db->select('profile_activities.activity, profile_activities.activity_type, profile_activities.time, profile_activity_types.activity_title');
+         $this->db->select('profile_activities.activity, profile_activities.activity_type, profile_activities.time, profile_activity_types.activity_title,profile_activity_types.client_id');
          $this->db->from('profile_activities');
          $this->db->join('profile_activity_types','profile_activity_types.activity_type = profile_activities.activity_type' );
-         
 		 $this->db->where('profile_activities.id_user',$user_id);
 		 if($client_id != '')
          {
 			$this->db->where('profile_activity_types.client_id', $client_id);
+		 }
+		 if($amount != null)
+		 {
+			 $this->db->limit($amount);
 		 }
          $this->db->order_by('time', 'desc');   
          $query = $this->db->get();
@@ -114,7 +139,7 @@ class Userprofile_model extends CI_Model
       {
 		  $data = array
 		  (
-			  'id_badge' => $badge_type,
+			  'badge_type' => $badge_type,
 			  'id_user' => $id_user,
 			  'id_user_who_gave_it' => $user_who_gave_it,
 			  'comment' => $comment,

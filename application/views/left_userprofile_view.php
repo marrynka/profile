@@ -12,7 +12,14 @@
 		  {?>
 		  <h3>Kto som</h3>
 		  <div id="occupation">
-			<img src="<?php echo base_url().'/css/'.$data['records']->occupation.'.png';?>" /><label><?php echo $data['records']->occupation; ?></label>
+			<img src="<?php echo base_url().'/css/'.$data['records']->occupation.'.png';?>" />
+			<label>
+				<?php 
+				if($data['records']->occupation == 'student') echo "študent"; 
+				if($data['records']->occupation == 'teacher') echo "učiteľ"; 
+				
+				?>
+			</label>
 		  </div>
 		  <?php
 		  } 

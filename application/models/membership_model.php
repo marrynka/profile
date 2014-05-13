@@ -1,6 +1,16 @@
 <?php
 class Membership_model extends CI_Model
 {
+    
+    function add_unique_session_id()
+    {
+		$this->db->where('session_id', $this->session->userdata('session_id'));
+		$data = array(
+					  'unique_session_id' => $this->session->userdata('session_id'),
+						);
+		$this->db->update('ci_sessions', $data);
+		return $this->session->userdata('session_id');
+	}
     function validate()
     {
       $this->db->where('username', $this->input->post('username'));
@@ -115,12 +125,16 @@ class Membership_model extends CI_Model
      * 
      */
       
-    function where_is_logged_in()
+    function where_is_logged_in($user_id=null)
     {
-		
+		if($user_id == null)
+		{
+			 $user_id = $this->session->userdata('user_id');
+		}
 		$this->db->distinct();
 		$this->db->select('client_id');
-		$this->db->where('user_id', $this->session->userdata('user_id'));
+		$this->db->where('user_id', $user_id);
+		$this->db->where('expires <=', 'CURRENT_TIMESTAMP');
 		
 		$query = $this->db->get('oauth_access_tokens');
 
@@ -130,19 +144,25 @@ class Membership_model extends CI_Model
 	{
 		$this->db->where('user_id', $this->session->userdata('user_id'));
 		$this->db->delete('oauth_access_tokens');
+		$this->db->where('user_id', $this->session->userdata('user_id'));
+		$this->db->delete('oauth_refresh_tokens');
 	}
 	function logout_app($client_id)
 	{	
-		echo "deleting";
+		
 		$this->db->where('user_id', $this->session->userdata('user_id'));
 		$this->db->where('client_id', $client_id);
 		$this->db->delete('oauth_access_tokens');
+		$this->db->where('user_id', $this->session->userdata('user_id'));
+		$this->db->where('client_id', $client_id);
+		$this->db->delete('oauth_refresh_tokens');
+		
 		
 	}
 	function get_redirect_uri($client_id)
 	{
 		
-		$this->db->select('logout_uri');
+		$this->db->select('requests_uri');
 		
 		$this->db->where('client_id', $client_id);
 		$query = $this->db->get('oauth_clients');
@@ -150,9 +170,9 @@ class Membership_model extends CI_Model
 		if($query->num_rows == 1)
         {
           foreach($query->result() as $row)
-	    {
-	    return $row->logout_uri;
-	    }
+			{
+			return $row->requests_uri;
+			}
         }
 	}
 	function is_logged_in_app($client_id)

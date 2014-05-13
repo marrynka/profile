@@ -47,6 +47,11 @@ function __construct()
 		$this->load->model('profile_model');
 		$this->load->model('membership_model');
 		$this->load->model('userprofile_model');
+		
+		$best = $this->profile_model->get_bestRatingUsers(5);
+		$new = $this->profile_model->get_newUsers(5);
+		$random = $this->profile_model->get_randomUsers(5); 
+		
 		if($query = $this->profile_model->get_random_mozaic(42))
 		{
 		//echo $query->username;
@@ -63,10 +68,9 @@ function __construct()
 		$data['main_content'] = 'profile_view';
 		$data['left_content'] = 'left_search_view';
 		$data['main_contents_data'] = array(	
-												'mozaic' => $query,
-												'amount' => $query['pocet'],
-												'bestUser' => $this->userprofile_model->about('tester'),
-												'bestUser2' => $this->userprofile_model->about('marry'),
+												'bestUsers' => $best,
+												'newUsers' => $new,
+												'randomUsers' => $random,
 												'is_logged_in' => $this->is_logged_in(),
 												);
 		$data['left_contents_data']= array
@@ -274,40 +278,7 @@ function __construct()
 	
 	
 	
-    function register()
-    {
-       $this->load->view('client_register_view');
-    }
-    function client_register()
-    {
-		error_reporting(E_ALL);
-		ini_set('display_errors', '1');
-      
-		$this->load->library('form_validation');
     
-		$this->load->library('Provider');
-
-		//field name, error message, validation rules
-		$this->form_validation->set_rules('client_key','Name','trim|required');
-		$this->form_validation->set_rules('client_about','Last Name','trim|required');
-    
-		if($this->form_validation->run()==FALSE)
-		{
-        
-			$this->register();
-
-		}
-		echo "<!DOCTYPE html><head>
-			  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
-
-			  </head><body>";
-      
-    echo "<h1>Registering the app</h1>";
-    $client_secret = Provider::createClient($this->input->post('client_key'));
-    echo "You generated secret is: ".bin2hex($client_secret);
-    echo "</body></html5>";
-    
-    }
     
     
 

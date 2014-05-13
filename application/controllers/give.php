@@ -39,6 +39,7 @@ Class Give
     { 
 	  
       $this->load->model('membership_model');
+      $this->load->model('profile_model');
       $this->load->model('edit_model');
       
       $badges = $this->edit_model->list_badges(); 
@@ -58,7 +59,12 @@ Class Give
 										'pictures_url' => $this->edit_model->get_badges_pictures_directory(),
 	
 										);
-			$data['left_contents_data'] = array();
+			$data['left_contents_data'] = array(
+												'bestUsers' => $this->profile_model->get_bestRatingUsers(8),
+											    'newUsers' => $this->profile_model->get_newUsers(8),		
+						
+			
+			);
 			$this->load->view('includes/template',$data);
       
     }

@@ -16,6 +16,7 @@ $storage = new OAuth2\Storage\Pdo(array('dsn' => $dsn, 'username' => $username, 
 $server = new OAuth2\Server($storage, array(
     'always_issue_new_refresh_token' => true,
     'refresh_token_lifetime'         => 10800,
+    'access_lifetime'          => 7200,
     
 ));
 

@@ -10,7 +10,7 @@ if(isset($data['records']))
 		echo "<div id='activity'>";
 		echo "<div id='activityUpperbar'>";
 		echo "<div id='activity_time'>".$row->time."</div>";
-		echo "<div id='activity_title'>". $row->activity_title. "</div>";
+		echo "<div id='activity_title'>".$row->client_id." | ".$row->activity_title. "</div>";
 		echo "</div>";
 		echo $row->activity;
 		

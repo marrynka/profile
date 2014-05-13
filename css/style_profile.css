@@ -1,11 +1,134 @@
-#listedUsers a:hover 
+#timeAward
+{
+font-size:0.8em;
+text-indent:0px;
+text-align:right;
+}
+
+#badgesWrapper_small, #achievementsWrapper_small
+{
+overflow:hidden;
+}
+#add_client input
+{
+display:block;
+}
+
+blockquote.style1 a
+{
+float:right;
+}
+#badge_giver a, #achievement_giver a
+{
+float:right;
+
+}
+#badge_giver, #achievement_giver
+{
+  background-color: rgb(238, 250, 238);
+  margin:5px;
+  padding:8px;
+  
+}
+blockquote.style1 {
+  /*font: 14px/20px italic Times, serif;*/
+  font-style : italic;	
+  padding: 8px;
+  background-color: rgb(238, 250, 238);
+  /*border-top: 1px solid rgb(0, 105, 0);*/
+  /*border-bottom: 1px solid rgb(0, 105, 0);*/
+  margin: 5px;
+  background-image: url(openquote1.png);
+  background-position: top left;
+  background-repeat: no-repeat;
+  text-indent: 23px;
+  overflow:hidden;
+  
+  }
+  blockquote.style1 span {
+     display: block;
+     background-image: url(closequote1.png);
+     background-repeat: no-repeat;
+     background-position: bottom right;
+	 min-height:25px;
+   }
+
+#info
+{overflow:hidden;}
+#my_profile #ac_description,#my_profile #ac_picture 
+{
+display:none;
+}
+#my_profile #activityWrap
+{
+min-height:0px;
+
+}
+#my_profile #ac_title
+{
+font-size:100%;
+}
+#my_profile #badgesWrapper
+{
+overflow:hidden;
+}
+#showAll
+
+{
+padding-left:20px;
+height:60px;
+/*font-size:1.2em;*/
+vertical-align:center;
+
+line-height:60px;
+}
+
+#my_profile #achievement_outside_small
+{
+float:left;
+/*background: url("blank_achievement_green_small.png") no-repeat;*/
+max-width:100px;
+font-size:80%;
+text-align:center;
+}
+
+#my_profile #badge_outside_small
+{
+float:left;
+max-width:100px;
+font-size:80%;
+text-align:center;
+}
+#my_profile #left_profile_column
+{
+width:48%;
+float:left;
+}
+#my_profile #right_profile_column
+{
+width:48%;
+float:right;
+}
+
+#my_profile
+{
+overflow:hidden;
+}
+#listofUsers
+{
+
+overflow:hidden;
+
+}
+
+#userList a:hover 
 {
 text-decoration:none;
 background:transparent;
 }
-#listedUsers #name a:hover 
+ #userList a:hover 
 {
-background-color:rgb(0, 105, 0);;
+
 }
 
 #bestUser img, #bestUser2 img
@@ -18,8 +141,8 @@ box-shadow: 1px 1px 2px rgba(50, 50, 50, 0.4);
 {
 background-color: white;
 z-index:1;
-float:right;
-position:relative;
+float:left;
+padding:5px;
 right:30%;
 text-align:center;
 
@@ -123,19 +246,26 @@ border-right:10px solid transparent;
 #mozaic
 {display:inline;
 }
+
+#my_profile #giveBadge
+{
+float:right;
+}
+#contact_address
+{
+float:right;
+line-height:60px;
+vertical-align:center;
+}
 #giveBadge
 {
-background: url(layrus/8bit/pen_add.png) no-repeat center left;
+background: url(pen.png) no-repeat center left;
 padding-left:60px;
 height:60px;
 font-size:1.2em;
 vertical-align:center;
-float:right;
+float:left;
 line-height:60px;
-}
-#giveBadge a
-{
-cursor:auto;
 }
 .sideportlet #errors
 {
@@ -161,7 +291,7 @@ clear:both;
 {
 text-align:right;
 }
-#achievementsWrapper h3 , #badgesWrapper h3, #about_long h3, #activitiesWrapper h3, #contact h3, #listedUsers h3
+#my_profile h3, #profile h3, #achievementsWrapper h3 , #badgesWrapper h3, #about_long h3, #activitiesWrapper h3, #contact h3, #listedUsers h3
 {
 background: url("layrus/8bit/separator_long.png") no-repeat scroll center top transparent;
 padding: 0.3ex 0.5ex;
@@ -169,20 +299,52 @@ font-size: 90%;
 margin: 10px 0px 5px;
 position: relative;
 }
+#profile h3
+{
+font-size: 110%;
+}
 #contact
 {
 text-align:right;
 }
+
+#badgesWrapper
+{
+width:45%;
+float:left;
+}
+#achievementsWrapper
+{
+width:45%;
+float:right;
+}
 #achievement_outside
 {
+/*line-height:178px;*/
 float:left;
+vertical-align:center;
 background: url("blank_achievement_green.png") no-repeat;
 
 }
+#badge_description
+{
+font-style:normal;
+}
+#badge_comment, #achievement_comment
+{font-style:italic;
 
+float:right;
+width:50%;
+}
+#achievement_comment
+{
+text-align:right;
+}
 #badge_outside
 {
 float:left;
+/*line-height:128px;*/
+vertical-align:center;
 background: url("blank_badge_green.png") no-repeat;
 
 }
@@ -208,23 +370,26 @@ vertical-align:middle;
 margin-left:20px;
 
 }
-#ac_title, #ac_activity
+#ac_title
 {
-display:inline;
+padding:5px;
 font-size:1.45em;
 }
-#ac_activity
-{
-display:inline;
-}
-#activityUpperbar
+
+#activityUpperbar, #badgeUpperbar, #achievementUpperbar
 {
 	background: none repeat scroll 0% 0% rgb(238, 238, 238);
 	border-top: 1px solid rgb(204, 204, 204);
 	overflow:hidden;
 	font-size:0.8em;
 }
-
+#badgeUpperbar, #achievementUpperbar
+{
+text-align:center;
+border-bottom: 1px solid rgb(204, 204, 204);
+	
+background:none;
+}
 #activity_time
 {
 float:left;
@@ -236,7 +401,7 @@ float:right;
 margin-right:5px;
 }
 
-#activityWrap
+#activityWrap, #badgeWrap, #achievementWrap
 {
 min-height:160px;
 background: url("layrus/8bit/post_regular_rightcorner.png") no-repeat scroll right bottom ;

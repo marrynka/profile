@@ -129,8 +129,8 @@ class Edit_userprofile extends CI_Controller
 		if($status == 'ok')
 		{
 			//ak sa podarilo prehodime na signup successfull, co je login form s napisom, ze sa zaregistroval
-			
-			$this->index('Údaje boli úspene zmenené ',null);
+			redirect('userprofile');
+			$this->index('Údaje boli úspešne zmenené ',null);
 		   
 		
 		}

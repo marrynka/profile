@@ -4,7 +4,6 @@ class Authorize extends CI_Controller
       function __construct()
       {
 	  parent::__construct();
-	  // include our OAuth2 Server object
 	  
       }
       function is_logged_in()
@@ -13,14 +12,12 @@ class Authorize extends CI_Controller
           $is_logged_in = $this->session->userdata('is_logged_in');
           if(!isset($is_logged_in) || $is_logged_in != true)
           {
-          echo 'You have to log in! ';
-	  echo form_open('login');
-	  $query = $_SERVER['QUERY_STRING'] ? '?'.$_SERVER['QUERY_STRING'] : '';
+         
+		  $query = $_SERVER['QUERY_STRING'] ? '?'.$_SERVER['QUERY_STRING'] : '';
           $url =$this->config->site_url()."/".$this->uri->uri_string(). $query;  
-	  echo form_hidden('returnUrl',$url);
+	 
 	  
-	  echo form_submit('submit','Login');
-          echo form_close();
+	 
           redirect('login?returnUrl='.urlencode($url));
 
            die();
@@ -38,21 +35,9 @@ class Authorize extends CI_Controller
 	  $response->send();
 	  die;
       }
-      //check if some user is logged in
+      //check if some user is logged in, we will get further only after somebody has logged in
       $this->is_logged_in();
-      // display an authorization form
-      /*if (empty($_POST)) {
-	exit('
-      <form method="post">
-	<label>Do You Authorize TestClient?</label><br />
-	<input type="submit" name="authorized" value="yes">
-	<input type="submit" name="authorized" value="no">
-      </form>');
-      }
-
-      // print the authorization code if the user has authorized your client
-      $is_authorized = ($_POST['authorized'] === 'yes');
-      */
+      
       $user = $this->session->userdata('user_id');
       
        $server->handleAuthorizeRequest($request, $response, TRUE, $user);
@@ -63,8 +48,8 @@ class Authorize extends CI_Controller
       //ulozime k danemu authorization codu este aj session_id aby sme si to potom vedeli v databaze spravne priradit:
       
       $this->load->model('oauth/token_model');
-      $this->token_model->assign_session_to_authorization_code($this->session->all_userdata()['session_id'], $code);
-      
+      $this->token_model->assign_session_to_authorization_code($this->session->userdata('unique_session_id'), $code);
+     
       
       $response->send();
       }

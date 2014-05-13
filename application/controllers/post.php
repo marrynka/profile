@@ -27,7 +27,7 @@ class Post extends CI_Controller
     
     function index()
     {
-	
+	  
     }
     function activity()
     {
@@ -71,11 +71,10 @@ class Post extends CI_Controller
     }
     function achievement()
     {
-		//here we should chcek wether the message is plain html and not some malicious crap, if allowing third party apps
 	   
-	     if(!($activity_type = $this->request->request('id_achievement')))
+	     if(!($achievement_type = $this->request->request('achievement_type')))
 	     {
-		$this->response->setParameters(array('Status' => 'Missing id_achievement parameter'));
+		$this->response->setParameters(array('Status' => 'Missing achievement_type parameter'));
 		$this->response->send();
 		die;
 	     }
@@ -86,13 +85,13 @@ class Post extends CI_Controller
 		$this->response->send();
 		die;
 	     }
-	     if(!($activity = $this->request->request('course_name')))
+	     if(!($source= $this->request->request('source')))
 	     {
-		$this->response->setParameters(array('Status' => 'Missing course_name'));
+		$this->response->setParameters(array('Status' => 'Missing name of the source'));
 		$this->response->send();
 		die;
 	     } 
-	     $this->load->model('activities_model');	
+	     $this->load->model('post_model');	
 	      if(!($id_user = $this->uri->segment(3)))
 	      {
 			 $this->response->setParameters(array('Status' => 'Missing user id in url'));
@@ -100,7 +99,52 @@ class Post extends CI_Controller
 			 die; 
 		  }
 		  $timestamp = date('Y-m-d H:i:s',$timestamp);
-	      $this->activities_model->add_activity($id_user, $activity_type, $activity, $timestamp);
+	      $this->activities_model->add_achievement($id_user, $achievement_type, $source, $timestamp);
+  
+	     //we can also check whether here the correct source is posting correct activty type
+	    
+	     
+	     
+             $this->response->setParameters(array('Status' => 'OK'));
+			 $this->response->send();
+    }
+    function badge()
+    {
+	   
+	     if(!($badge_type = $this->request->request('badge_type')))
+	     {
+		$this->response->setParameters(array('Status' => 'Missing badge_type parameter'));
+		$this->response->send();
+		die;
+	     }
+	    
+	     if(!($timestamp = $this->request->request('timestamp')))
+	     {
+		$this->response->setParameters(array('Status' => 'Missing timestamp parameter'));
+		$this->response->send();
+		die;
+	     }
+	     if(!($id_user_who_gave_it= $this->request->request('id_user_who_gave_it')))
+	     {
+		$this->response->setParameters(array('Status' => 'Missing id_user_who_gave_it parameter'));
+		$this->response->send();
+		die;
+	     } 
+	     if(!($comment= $this->request->request('comment')))
+	     {
+		$this->response->setParameters(array('Status' => 'Missing comment parameter'));
+		$this->response->send();
+		die;
+	     }
+	     $this->load->model('post_model');	
+	      if(!($id_user = $this->uri->segment(3)))
+	      {
+			 $this->response->setParameters(array('Status' => 'Missing user id in url'));
+			 $this->response->send();
+			 die; 
+		  }
+		  $timestamp = date('Y-m-d H:i:s',$timestamp);
+	      $this->activities_model->add_badge($id_user, $badge_type,$id_user_who_gave_it,$comment ,$timestamp);
   
 	     //we can also check whether here the correct source is posting correct activty type
 	    

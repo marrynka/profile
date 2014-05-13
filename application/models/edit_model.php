@@ -7,12 +7,21 @@ Class edit_model extends CI_Model
 		   parent::__construct();
 		  $this->load->helper('directory');
 	  }
-      function list_sources()
+	  function is_permitted()
+	  {
+		  $id = $this->session->userdata('user_id');
+		  $this->db->where('id_user', $id);
+		  $this->db->where('role', 1);
+		  $query = $this->db->get('profile_roles');
+		  if($query->num_rows > 0) return TRUE;
+		  return FALSE;
+	  }
+      function list_clients()
       {
-          $query  = $this->db->get('profile_source_types');
+          $query  = $this->db->get('oauth_clients');
           return $query->result();
       }
-      function list_activity_types()
+      function list_activities()
       {
           $query  = $this->db->get('profile_activity_types');
           return $query->result();
@@ -53,28 +62,32 @@ Class edit_model extends CI_Model
       }
       
       
-      function add_source($source)
+      function add_client()
       {
         $data = array(
-            'source_title' => $source );
+            'client_id' => $this->input->post('client_id'),
+            'client_secret' => $this->input->post('client_secret'),
+            'home_uri' => $this->input->post('home_uri'),
+            'requests_uri' => $this->input->post('requests_uri'),
+            'redirect_uri' => $this->input->post('redirect_uri'),
             
-        $this->db->insert('profile_source_types',$data);
-        $this->db->where('source_title', $source);
-        $id = $this->db->get('profile_source_types');
-        foreach ($id->result() as $row)
-         {return $row->id_source;}
+            
+             );
+            
+       return $this->db->insert('oauth_clients',$data);
+       
       }
-      function add_activity_type($id_source, $activity_title)
+      function add_activity_type($id_client, $activity_title)
       {
         $data = array(
-            'id_source' => $id_source,
+            'client_id' => $id_client,
             'activity_title' => $activity_title );
             
         $this->db->insert('profile_activity_types',$data);
         $this->db->where('activity_title', $activity_title);
         $id = $this->db->get('profile_activity_types');
         foreach ($id->result() as $row)
-         {return $row->id_source;}
+         {return $row->client_id;}
       }
       function add_achievement_type($achievement_title, $achievement_description, $achievement_max, $achievement_picture)
     
@@ -91,7 +104,7 @@ Class edit_model extends CI_Model
         $this->db->where('achievement_title', $achievement_title);
         $id = $this->db->get('profile_achievement_types');
         foreach ($id->result() as $row)
-         {return $row->id_achievement;}
+         {return $row->achievement_type;}
       }
       function add_badge_type($badge_title, $badge_description, $badge_picture)
     
@@ -107,21 +120,21 @@ Class edit_model extends CI_Model
         $this->db->where('badge_title', $badge_title);
         $id = $this->db->get('profile_badge_types');
         foreach ($id->result() as $row)
-         {return $row->id_badge;}
+         {return $row->badge_type;}
       }
       function delete_achievement_type($id_achievement)
       {
-        $this->db->where('id_achievement', $id_achievement);
+        $this->db->where('achievement_type', $id_achievement);
         $this->db->delete('profile_achievement_types');
       }
       function delete_badge_type($id_badge)
       {
-        $this->db->where('id_badge', $id_badge);
+        $this->db->where('badge_type', $id_badge);
         $this->db->delete('profile_badge_types');
       }
       function delete_activity_type($id_activity)
       {
-        $this->db->where('id_activity', $id_activity);
+        $this->db->where('activity_type', $id_activity);
         $this->db->delete('profile_activity_types');
       }
       

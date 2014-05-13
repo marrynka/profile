@@ -10,7 +10,7 @@
      
            foreach ($data['items'] as $row)
            {
-              $strid = "id_".$data['items_name'];
+              $strid = $data['items_name']."_type";
               $strtitle = $data['items_name']."_title";
               echo "<tr>
               <td>".form_radio('item', $row->$strid, FALSE)."</td><td>". $row->$strid. "</td><td>". $row->$strtitle. "</td>";

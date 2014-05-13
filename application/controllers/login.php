@@ -21,6 +21,7 @@ class Login extends CI_Controller
 		if($this->is_logged_in() != FALSE)
 		{
 			$this->load->model('membership_model');
+			$this->load->model('profile_model');
 			$data['header'] = array(
 								 'title' => 'Prihlásenie do systému matfyz.sk',
 								  'apps' => $this->membership_model->get_apps(),
@@ -35,13 +36,19 @@ class Login extends CI_Controller
 											'text'=> 'V systéme už ste prihlásený',
 		
 											);
-			$data['left_contents_data'] = array();
+			$data['left_contents_data'] = array(
+												'bestUsers' => $this->profile_model->get_bestRatingUsers(8),
+											    'newUsers' => $this->profile_model->get_newUsers(8),		
+						
+			
+			);
 			$this->load->view('includes/template',$data);
 			
 		}
 		else
 		{
 			$this->load->model('membership_model');
+			$this->load->model('profile_model');
 			if(!isset($returnUrl)) 
 			{
 				$returnUrl = $this->input->get('returnUrl');
@@ -60,7 +67,12 @@ class Login extends CI_Controller
 												'errors'=> $str,
 			
 												);
-			$data['left_contents_data'] = array();
+			$data['left_contents_data'] = array(
+											    'bestUsers' => $this->profile_model->get_bestRatingUsers(8),
+											    'newUsers' => $this->profile_model->get_newUsers(8),		
+			
+			
+												);
 			
 			$this->load->view('includes/template',$data);
 		}
@@ -144,6 +156,7 @@ class Login extends CI_Controller
 		else 
 		{
 			
+			//TODO: Garbage collecting na vyprsane tokeny.
 			$data = array(
 			'username' => $this->input->post('username'),
 			'is_logged_in' => true,
@@ -151,22 +164,30 @@ class Login extends CI_Controller
 			);
 			
 			$this->session->set_userdata($data);
+			/* codeigniter recomputes the session_id every two minutes if the user is active. 
+			 * However we need to refer to some unique id of the session for the whole time of its existence,
+			 * so we will save the first generated one into the db to the session.
+			 */
 			 
+			 $id = $this->membership_model->add_unique_session_id();
+			 $this->session->set_userdata(array('unique_session_id' => $id));
 			
 			
 			$returnUrl = $this->input->post('returnUrl');
-			if($returnUrl != "")
+			if($returnUrl != "" && strpos($returnUrl,'logout') == false  && strpos($returnUrl,'not_permitted') == false)
 			{
 		 
 				if(strpos($returnUrl,'?') !== false)
 				{
 					redirect($returnUrl."&user_id=".$this->session->userdata('user_id'));
 				}
+				
 				else
 				{
 					redirect($returnUrl);
 				}
 			}
+			$this->load->model('profile_model');
 			$data['header'] = array(
 							 'title' => 'Prihlásenie do systému matfyz.sk',
 							  'apps' => $this->membership_model->get_apps(),
@@ -181,7 +202,13 @@ class Login extends CI_Controller
 										'text' => 'Boli ste prihlásený',
 	
 										);
-			$data['left_contents_data'] = array();
+			$data['left_contents_data'] = array(
+												'bestUsers' => $this->profile_model->get_bestRatingUsers(8),
+											    'newUsers' => $this->profile_model->get_newUsers(8),		
+						
+			
+			
+			);
 			$this->load->view('includes/template',$data);
 			
 		} 
@@ -190,6 +217,7 @@ class Login extends CI_Controller
     function signup($errors = null)
     {
 			$this->load->model('membership_model');
+			$this->load->model('profile_model');
 			$data['header'] = array(
 							 'title' => 'Registrácia do systému matfyz.sk',
 							  'apps' => $this->membership_model->get_apps(),
@@ -205,7 +233,11 @@ class Login extends CI_Controller
 										'errors' => $errors,
 	
 										);
-			$data['left_contents_data'] = array();
+			$data['left_contents_data'] = array(
+												'bestUsers' => $this->profile_model->get_bestRatingUsers(8),
+											    'newUsers' => $this->profile_model->get_newUsers(8),		
+						
+			);
 	
 			$this->load->view('includes/template',$data);
     }
@@ -223,6 +255,7 @@ class Login extends CI_Controller
 	 
 	 
 	  $this->load->model('membership_model');
+	  $this->load->model('profile_model');
 	  $this->logged_in_apps = $this->membership_model->where_is_logged_in();	
 	  if($this->logged_in_apps->num_rows > 0)
 	  {
@@ -247,7 +280,12 @@ class Login extends CI_Controller
 										//'text' => 'Boli ste prihlásený',
 	
 										);
-		$data['left_contents_data'] = array();
+		$data['left_contents_data'] = array(
+											'bestUsers' => $this->profile_model->get_bestRatingUsers(8),
+											    'newUsers' => $this->profile_model->get_newUsers(8),		
+						
+		
+		);
 	    $this->load->view('includes/template',$data);
 		}
 		
@@ -272,7 +310,11 @@ class Login extends CI_Controller
 										//'text' => 'Boli ste prihlásený',
 	
 										);
-				$data['left_contents_data'] = array();
+				$data['left_contents_data'] = array(
+													'bestUsers' => $this->profile_model->get_bestRatingUsers(8),
+											    'newUsers' => $this->profile_model->get_newUsers(8),		
+						
+				);
 				$this->load->view('includes/template',$data);
 			}
 			else
@@ -290,6 +332,7 @@ class Login extends CI_Controller
 	  
 	  
 	  $this->load->model('membership_model');
+	  $this->load->model('profile_model');
 	  $this->logged_in_apps = $this->membership_model->where_is_logged_in();
 	 
 	  
@@ -297,11 +340,10 @@ class Login extends CI_Controller
 	  {
 		  foreach($this->logged_in_apps->result() as $row)
 		  {
-			  $redirectUri = $this->membership_model->get_redirect_uri($row->client_id);
-			  $this->membership_model->logout_app($row->client_id);
-			 
-			 
-			  redirect($redirectUri."?redirectUrl=".base_url()."index.php/login/logout_all");
+			  
+			  $requestsUri = $this->membership_model->get_redirect_uri($row->client_id);
+			  $this->logout_app($row->client_id);
+			  
 		  }
       } 
       
@@ -323,7 +365,12 @@ class Login extends CI_Controller
 												'errors' =>'Boli ste odhlásený zo všetkých aplikácii',
 			
 												);
-			$data['left_contents_data'] = array();
+			$data['left_contents_data'] = array(
+												'bestUsers' => $this->profile_model->get_bestRatingUsers(8),
+											    'newUsers' => $this->profile_model->get_newUsers(8),		
+						
+			
+			);
 			$this->load->view('includes/template',$data);
 			
 	  
@@ -331,6 +378,9 @@ class Login extends CI_Controller
 	 
 	function logout_end()
 	{
+	  $this->load->model('membership_model');
+	  $this->load->model('profile_model');
+	  
 	  $this->session->sess_destroy();
       $data['header'] = array(
 							 'title' => 'Prihlásenie do systému matfyz.sk',
@@ -346,17 +396,48 @@ class Login extends CI_Controller
 										'errors'=> 'Boli ste odhlásený',
 	
 										);
-	 $data['left_contents_data'] = array();
+	 $data['left_contents_data'] = array(
+										'bestUsers' => $this->profile_model->get_bestRatingUsers(8),
+											    'newUsers' => $this->profile_model->get_newUsers(8),		
+						
+	 );
 	  $this->load->view('includes/template',$data);
       
 	}
-	function logout_app()
+	function logout_app($client_id = null)
 	{
-		
+		      
 		      $this->load->model('membership_model');
-		 	  $redirectUri = $this->membership_model->get_redirect_uri($this->uri->segment(3));
-			  $this->membership_model->logout_app($this->uri->segment(3));
-		  	  redirect($redirectUri);
+		      $this->load->model('profile_model');
+		      if($client_id == null)
+		      {
+				  $this->uri->segment(3);
+			  }
+		 	  $requestsUri = $this->membership_model->get_redirect_uri($client_id);
+		 	  
+			  $this->membership_model->logout_app($client_id);
+		  	  //send a logout request to the app
+		  	  require __DIR__.'/../../vendor/autoload.php';
+             
+			  $http = new Guzzle\Http\Client($requestsUri, array(
+					'request.options' => array(
+						'exceptions' => false,
+					)
+				));
+
+				$request = $http->post($requestsUri, null, array(
+					'request'     => 'logout',
+					'unique_session_id' => $this->session->userdata('unique_session_id'),
+					'id_user' => $this->session->userdata('user_id'),
+				));
+			   try{ 
+			   $response = $request->send();
+			   }
+				catch (Guzzle\Http\Exception\BadResponseException $e)
+				{
+					echo 'Error: ' . $e->getMessage();
+				}
+
 		 
 		 
 		      
@@ -364,15 +445,10 @@ class Login extends CI_Controller
 	}
 	function logout_theonlyapp()
 	{
-		
 		      $this->load->model('membership_model');
 		 	  $redirectUri = $this->membership_model->get_redirect_uri($this->uri->segment(3));
-			  $this->membership_model->logout_app($this->uri->segment(3));
-		  	  $this->session->sess_destroy();
-		  	  redirect($redirectUri);
-		 
-		 
-		      
+			  $this->logout_app($this->uri->segment(3));
+		  	  $this->logout_end();
 		 
 	}
 	 

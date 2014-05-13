@@ -26,7 +26,11 @@ class Resource extends CI_Controller
     }
     
     if(!$this->user = $this->uri->segment(3))
-    {echo "Invalid url.";}
+    {
+		$this->response->setParameters(array('Status' => 'Missing user_id in the uri'));
+		$this->response->send();
+		die;
+	}
     
     
     }

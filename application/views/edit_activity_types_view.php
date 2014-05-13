@@ -27,7 +27,7 @@
      echo '<h1>Existing activities: </h1>';
      echo form_open('edit/delete_activity_type');
      echo "<table>";
-     echo "<thead><th></th><th>ID</th><th>Activity type</th></thead>";
+     echo "<thead><th></th><th>ID</th><th>Activity type</th><th>Subportal</th></thead>";
      
      echo form_hidden('number_of_activity_types', count($activity_types));
      $count = 0;
@@ -35,7 +35,7 @@
      foreach ($activity_types as $row)
       {
        echo "<tr>
-       <td>".form_checkbox('activity'.$count, $row->id_activity, FALSE)."</td><td>". $row->id_activity. "</td><td>". $row->activity_title. "</td>
+       <td>".form_checkbox('activity'.$count, $row->activity_type, FALSE)."</td><td>". $row->activity_type. "</td><td>". $row->activity_title. "</td><td>". $row->client_id. "</td>
        </tr>";
        $count++;
       }
@@ -45,7 +45,7 @@
       echo "<h2>Add new activity:</h2>";
        foreach ($sources as $row)
       {
-       $existing_sources[$row->id_source] = $row->source_title ;
+       $existing_sources[$row->client_id] = $row->client_id;
       }
        echo 'Choose source: ';   
       ?>

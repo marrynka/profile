@@ -1,6 +1,7 @@
 {
     "name": "root/profile",
     "require": {
-        "bshaffer/oauth2-server-php": "v1.3"
+        "bshaffer/oauth2-server-php": "v1.3",
+        "guzzle/guzzle": "v3.9.0"
     }
 }
