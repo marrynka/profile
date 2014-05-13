@@ -46,15 +46,15 @@
 		    ?>
 			</div>
 			
-			<?php
-			//}
-			if(isset($data['achievements']))
-			{	
-			?>
+			
 
 			<div id="achievementsWrapper_small">
 			<h3>Moje najnovšie ocenenia</h3>
 			<?php
+		
+			//}
+			if(isset($data['achievements']))
+			{	
 			
 				foreach($data['achievements'] as $row)
 				{
@@ -66,9 +66,9 @@
 					
 					
 				}
-				
+			}	
 			?>
-			</div>
+
 			<div id="clear"></div>
 			<?php
 			  if(isset($data['achievements']))
@@ -77,8 +77,9 @@
 			<div id="showAll" ><a href="<?php echo site_url('userprofile/about')?>" id="about_button">Všetky ocenenia</a></div>
 			<?php
 		      }
-			}
-			 ?>
+			
+			 ?>	
+			</div>
 	
 	</div>	
 	

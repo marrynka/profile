@@ -11,7 +11,7 @@
 		  echo "class='selected'"; 
 	  }
 	  ?>
-	  ><a href="my_profile" id="profile_button" > Profil </a></li>
+	  ><a href="<?php echo site_url('userprofile/my_profile');?>" id="profile_button" > Profil </a></li>
 	
 	  <li id="about_option" 
 	  <?php
@@ -21,7 +21,7 @@
 	  }
 	  ?>
 	  
-	  ><a href="about" id="about_button" > O mne </a></li>
+	  ><a href="<?php echo site_url('userprofile/about');?>" id="about_button" > O mne </a></li>
 	   <li id="general_option" 
 	   
 	   <?php
@@ -31,7 +31,7 @@
 	  }
 	  ?>
 	   
-	   ><a href="activities" id="general_button"> Aktivity </a></li>
+	   ><a href="<?php echo site_url('userprofile/activities');?>" id="general_button"> Aktivity </a></li>
 	 <!-- <li id="blog_option"><a href="activities/blog" id="blog_button"> Blog </a></li>
 	  <li id="courses_option"><a href="activities/courses" id="courses_button"> Courses </a></li>
 	  <li id="wiki_option"><a href="activities/wiki" id="wiki_button"> Wiki </a></li>
